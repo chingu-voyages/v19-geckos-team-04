@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.scss';
+import { LoggedOut } from './../LoggedOut/LoggedOut.jsx';
 
 class App extends Component {
     
@@ -18,7 +19,10 @@ class App extends Component {
         { this.state.serverData.user ? 
             <span>Test</span>
             :
-            <bitton onClick={ () => window.location = 'http://geckos4-backend.herokuapp.com/login' }>Sign In</bitton>
+            <>
+                <h1>Geckos team 4</h1>
+                <LoggedOut />
+            </>
         }
         </div>
       );
