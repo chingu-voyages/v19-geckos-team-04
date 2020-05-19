@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
-import ListIcon from '../images/list-icon.png';
-import MenuPlusIcon from '../images/menu-plus-icon.png';
-import { DarkTheme } from './Shared/Styles/DarkTheme';
+import ListIcon from '../../../images/list-icon.png';
+import MenuPlusIcon from '../../../images/menu-plus-icon.png';
+import { DarkTheme } from '../Styles/DarkTheme';
 
 const Menu = () => {
   return (
