@@ -3,12 +3,13 @@ import styled from 'styled-components';
 import ListIcon from '../../../images/list-icon.png';
 import MenuPlusIcon from '../../../images/menu-plus-icon.png';
 import { DarkTheme } from '../Styles/DarkTheme';
+import Burger from '../UI/Burger';
 
-const Menu = () => {
+const Menu = (props) => {
   return (
     <Fragment>
-      <Toggler />
-      <MenuContainer>
+      <Burger setOpen={props.setOpen} />
+      <MenuContainer open={props.open}>
         <UserProfile>
           <ProfilePic />
           <Greeting>Hello, Jalisa</Greeting>
@@ -29,26 +30,8 @@ const Menu = () => {
 
 export default Menu;
 
-const Toggler = styled.button`
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: inline-block;
-  border: none;
-  background-color: black;
-  color: white;
-  padding: 0.75rem;
-  margin-top: 1rem;
-  margin-right: 1rem;
-  transition: opacity 1s ease-in;
-  z-index: 2;
-  cursor: pointer;
-  width: 3rem;
-  height: 3rem;
-  opacity: 0;
-`;
-
 const MenuContainer = styled.div`
+  display: ${props => (props.open ? 'block' : 'none')};
   position: fixed;
   top: 0;
   bottom: 0;
@@ -58,8 +41,8 @@ const MenuContainer = styled.div`
   font-size: 1rem;
   z-index: 1;
 
-  @media screen and (max-width: 990px) {
-    display: none;
+  @media screen and (min-width: 990px) {
+    display: block;
   }
 `;
 
@@ -105,10 +88,14 @@ const Item = styled.div`
   padding-bottom: 2rem;
   cursor: pointer;
   font-size: 1.2rem;
+
+  &:hover {
+    color: ${DarkTheme.orange};
+  }
 `;
 
 const Icon = styled.img`
-  width: 3rem;
-  height: 3rem;
+  width: 2.8rem;
+  height: 2.8rem;
   padding-right: 1rem;
 `;
