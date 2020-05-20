@@ -1,7 +1,21 @@
+body {
+  // CSS resets.
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: #212e3a;
+}
+
 .App {
   text-align: center;
 }
 
+
+/*
+// Old create-react-app crap
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -36,3 +50,4 @@
     transform: rotate(360deg);
   }
 }
+*/
