@@ -3,6 +3,7 @@ import './App.scss';
 import Header from './../LoggedOut/Header';
 import Buttons from '../LoggedOut/Buttons';
 import PseudoNavbar from '../LoggedOut/PseudoNavbar';
+import Modal from '../Shared/UI/Modal';
 
 class App extends Component {
   state = {
@@ -26,10 +27,10 @@ class App extends Component {
           <Buttons />
         </>
       }
+      <Modal />
       </div>
-      );
-    }
+    );
   }
-
+}
 
 export default App;
