@@ -1,13 +1,24 @@
 import React from 'react';
-import './Header.scss';
+import styled from 'styled-components';
 
 function Header() {
   return (
     <div>
-      <h1 className="header">BPM Workout</h1>
-      <h3 className="subhead">Choose your workout by beats per minute.</h3>
+      <HeaderStyle>BPM Workout</HeaderStyle>
+      <SubheadStyle>Choose your workout by beats per minute.</SubheadStyle>
     </div>
   )
 }
 
 export default Header;
+
+const HeaderStyle = styled.h1`
+  color: #0df0ff;
+  font-size: 3.5rem;
+  font-weight: 500;
+`;
+
+const SubheadStyle = styled.h3`
+  color: #ddd;
+  font-size: 0.9rem;
+`;
