@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const TourButton = (props) => {
   return (
     <TourStyle 
-      onClick={() => props.showModal}>
+      onClick={props.showModal}>
       Take a Tour
     </TourStyle>
   )
