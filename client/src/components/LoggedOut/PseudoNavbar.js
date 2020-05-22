@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import SunIcon from '../../images/sun-icon.png';
 
 export default function PseudoNavbar() {
   return (
@@ -11,7 +12,7 @@ export default function PseudoNavbar() {
           alt="icon" 
           aria-label="Temp sun emoji"
           onClick={() => console.log('Will change colors of page later.')}>
-          🌞
+          <img src={SunIcon} />
         </span>
       </AdjustableColorTheme>
     </StyledContainer>
@@ -32,4 +33,9 @@ const Logo = styled.p`
 const AdjustableColorTheme = styled.span`
   font-size: 2rem;
   cursor: pointer;
+
+  img {
+    width: 2rem;
+    height: 2rem;
+  }
 `;
