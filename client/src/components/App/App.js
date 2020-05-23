@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import queryString from 'query-string';
 import './App.scss';
 import Header from './../LoggedOut/Header';
 import TourButton from '../LoggedOut/TourButton';
@@ -19,7 +20,16 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+      let parsed = queryString.parse( window.location.search );
+      let accessToken = parsed.access_token;
+      
+      fetch( 'https://api.spotify.com/v1/me', {
+          headers: { 'Authorization' : 'Bearer ' + accessToken}
+      } ).then( ( res ) => res.json() )
+      .then( data => this.setState( { serverData: { user: { name: data.display_name } } } ) )
+  }
+  
   onOpenModal() {
     this.setState({isModalOpen: true});
   }
@@ -32,7 +42,10 @@ class App extends Component {
     return (
       <div className="App">
       { this.state.serverData.user ?
-        <span>Test</span>
+        <>
+          <span style={ { fontSize: '30px', color: 'white' } }>Welcome { this.state.serverData.user.name }</span>
+          {/*<button>Log Out</button>*/}
+        </>
         :
         <>
           <PseudoNavbar />
