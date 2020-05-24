@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Modal from "styled-react-modal";
+import Modal from 'styled-react-modal';
 
 const TourStyle = styled.button`
   background-color: #e5e5e5;
@@ -20,37 +20,7 @@ const TourStyle = styled.button`
   width: 250px;
 `;
 
-/*
-const StyledModal = Modal.styled`
-display: flex;
-justify-content: center;
-align-items: center;
-position: absolute;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-z-index: 10000;
-&:after {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
-  background-color: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(8px);
-}
-`;
-*/
-
-export default function FancyModalButton() {
-  const [isOpen, setIsOpen] = useState(false);
-  // const [opacity, setOpacity] = useState(0);
-  const ModalContainer = styled.div`
-  display: ${isOpen ? 'flex' : 'none'};
+const ModalContainer = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
@@ -58,7 +28,7 @@ export default function FancyModalButton() {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 10000;
+  z-index: 1;
   &:after {
     content: '';
     display: block;
@@ -123,6 +93,9 @@ const CloseButton = styled.span`
 `;
 
 
+export default function FancyModalButton() {
+  const [isOpen, setIsOpen] = useState(false);
+
   function toggleModal(e) {
     setIsOpen(!isOpen);
   }
@@ -134,7 +107,7 @@ const CloseButton = styled.span`
   }
 
   return (
-    <div>
+    <>
       <TourStyle 
         onClick={toggleModal}>
       Take a Tour
@@ -144,13 +117,15 @@ const CloseButton = styled.span`
         onBackgroundClick={toggleModal}
         onEscapeKeydown={toggleModal}
       >
-        <ModalContainer>
+        <ModalContainer style={{display: isOpen ? 'flex' : 'none'}}>
           <ModalContent>
             <CloseButton onClick={toggleModal}>&times;</CloseButton>
-            
+            <p>[ 1 ] [ 2 ] [ 3 ]</p>
+            <p>Bad rough draft. A picture would go below:</p>
+            <span alt="ghost-emoji" role="img" aria-label="ghost-emoji">👻</span>
           </ModalContent>
         </ModalContainer>
       </Modal>
-    </div>
+    </>
   );
 }
