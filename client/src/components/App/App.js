@@ -4,7 +4,10 @@ import Header from './../LoggedOut/Header';
 import TourButton from '../LoggedOut/TourButton';
 import SignInButton from '../LoggedOut/SignInButton';
 import PseudoNavbar from '../LoggedOut/PseudoNavbar';
-import Modal from '../Shared/UI/Modal';
+import Modal, { ModalProvider, BaseModalBackground } from "styled-react-modal";
+
+// import Modal from '../Shared/UI/Modal';
+// import NewModal from '../Shared/UI/NewModal';
 
 
 class App extends Component {
@@ -21,6 +24,7 @@ class App extends Component {
 
   componentDidMount() {}
   onOpenModal() {
+    console.log("Open modal.");
     this.setState({isModalOpen: true});
   }
 
@@ -30,6 +34,7 @@ class App extends Component {
 
   render() {
     return (
+      <ModalProvider>
       <div className="App">
       { this.state.serverData.user ?
         <span>Test</span>
@@ -37,11 +42,10 @@ class App extends Component {
         <>
           <PseudoNavbar />
           <Header />
-          {this.state.isModalOpen && <Modal 
-            showModal={this.state.isModalOpen}
-            onCloseButtonClicked={this.onCloseModal}
-            onRequestClose={this.onCloseModal}
-          />}
+          {/* {this.state.isModalOpen && <NewModal 
+            isOpen={this.state.isModalOpen}
+            toggleModal={this.onCloseModal}
+          />} */}
           <div>
             <TourButton showModal={() => this.onOpenModal()}/>
             <SignInButton/>
@@ -49,6 +53,7 @@ class App extends Component {
         </>
       }
       </div>
+      </ModalProvider>
     );
   }
 }
