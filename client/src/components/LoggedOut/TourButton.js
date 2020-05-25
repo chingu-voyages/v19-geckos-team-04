@@ -11,7 +11,7 @@ export default class TourButton extends React.Component {
     this.onOpenModal = this.onOpenModal.bind(this);
     this.onCloseModal = this.onCloseModal.bind(this);
     this.state = {
-      isOpen: false,
+      isOpen: true,
       firstModalOpen: true,
       secondModalOpen: false,
       thirdModalOpen: false,
@@ -56,26 +56,26 @@ export default class TourButton extends React.Component {
         >
           <ModalContainer style={{display: this.state.isOpen ? 'flex' : 'none'}}>
             <ModalContent>
-              <div>
+              <ModalTourDiv>
                 <ModalTourNumber onClick={() => this.setState({
                   firstModalOpen: true,
                   secondModalOpen: false,
                   thirdModalOpen: false,
                 })}>1</ModalTourNumber>
-
+                <ModalNumberLine>_____</ModalNumberLine>
                 <ModalTourNumber onClick={() => this.setState({
                   firstModalOpen: false,
                   secondModalOpen: true,
                   thirdModalOpen: false,
                 })}>2</ModalTourNumber>
-
+                <ModalNumberLine>_____</ModalNumberLine>
                 <ModalTourNumber onClick={() => this.setState({
                   firstModalOpen: false,
                   secondModalOpen: false,
                   thirdModalOpen: true,
                 })}>3</ModalTourNumber>
+              </ModalTourDiv>
                 <CloseButton onClick={this.onCloseModal}>&times;</CloseButton>
-              </div>
               {modalConditional}
             </ModalContent>
           </ModalContainer>
@@ -87,15 +87,29 @@ export default class TourButton extends React.Component {
 
 
 // Styled components for the rest of this file.
+const ModalTourDiv = styled.div`
+  display: flex;
+  flex-shrink: 30; 
+  justify-content: space-evenly;
+  padding: 15px 0;
+`;
+
 const ModalTourNumber = styled.span`
   background-color: #444;
-  border-radius: 50px;
+  border-radius: 50%;
   color: #fff;
   cursor: pointer;
-  display: inline;
-  flex-wrap: nowrap;
-  font-size: 1.5rem;
-  max-width: 90px
+  display: inline-block;
+  font-size: 1.6rem;
+  text-align: center;
+  height: 45px;
+  width: 45px;
+`;
+
+const ModalNumberLine = styled.span`
+  display: flex;
+  align-items: center;
+  margin: 0 0 10px 0;
 `;
 
 const TourStyle = styled.button`
