@@ -8,11 +8,12 @@ import Burger from '../UI/Burger';
 const Menu = (props) => {
   return (
     <Fragment>
+        {console.log(props.userData.images ? props.userData.images[0].url : 'nothing')}
       <Burger setOpen={props.setOpen} />
       <MenuContainer open={props.open}>
         <UserProfile>
-          <ProfilePic />
-          <Greeting>Hello, Jalisa</Greeting>
+          <ProfilePic src={ props.userData.images[0].url }/>
+          <Greeting>{ props.userData.display_name }</Greeting>
         </UserProfile>
         <Logout>Logout</Logout>
         <MenuItems>
@@ -52,8 +53,7 @@ const UserProfile = styled.div`
   padding-top: 2rem;
 `;
 
-const ProfilePic = styled.div`
-  background-color: ${DarkTheme.mediumGray};
+const ProfilePic = styled.img`
   width: 3rem;
   height: 3rem;
   border-radius: 100%;
