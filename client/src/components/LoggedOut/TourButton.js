@@ -11,7 +11,7 @@ export default class TourButton extends React.Component {
     this.onOpenModal = this.onOpenModal.bind(this);
     this.onCloseModal = this.onCloseModal.bind(this);
     this.state = {
-      isOpen: true,
+      isOpen: false,
       firstModalOpen: true,
       secondModalOpen: false,
       thirdModalOpen: false,
@@ -87,6 +87,8 @@ export default class TourButton extends React.Component {
 
 
 // Styled components for the rest of this file.
+
+
 const ModalTourDiv = styled.div`
   display: flex;
   flex-shrink: 30; 
@@ -112,23 +114,6 @@ const ModalNumberLine = styled.span`
   margin: 0 0 10px 0;
 `;
 
-const TourStyle = styled.button`
-  background-color: #e5e5e5;
-  border-radius: 30px;
-  -webkit-border-radius: 30px;
-  -moz-border-radius: 30px;
-  -ms-border-radius: 30px;
-  -o-border-radius: 30px;
-  color: #222;
-  cursor: pointer;
-  display: inline;
-  font-size: 14px;
-  font-weight: bold;
-  letter-spacing: 2px;
-  padding: 15px 45px;
-  text-transform: uppercase;
-  width: 250px;
-`;
 
 const ModalContainer = styled.div`
   justify-content: center;
@@ -156,7 +141,7 @@ const ModalContainer = styled.div`
 const ModalContent = styled.div`
   position: relative;
   width: 50vw;
-  height: 50vh;
+  min-height: 55vh;
   background-color: #e5e5e5;
   box-sizing: border-box;
   border-radius: 40px;
@@ -200,4 +185,23 @@ const CloseButton = styled.span`
     right: 0.5rem;
     top: 0.5rem;
   }
+`;
+
+
+const TourStyle = styled.button`
+  background-color: #e5e5e5;
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+  color: #222;
+  cursor: pointer;
+  display: inline;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  padding: 15px 45px;
+  text-transform: uppercase;
+  width: 250px;
 `;
