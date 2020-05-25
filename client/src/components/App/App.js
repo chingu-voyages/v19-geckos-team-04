@@ -6,6 +6,7 @@ import TourButton from '../LoggedOut/TourButton';
 import SignInButton from '../LoggedOut/SignInButton';
 import PseudoNavbar from '../LoggedOut/PseudoNavbar';
 import Modal from '../Shared/UI/Modal';
+import Dashboard from '../Dashboard/Dashboard';
 
 
 class App extends Component {
@@ -27,7 +28,7 @@ class App extends Component {
       fetch( 'https://api.spotify.com/v1/me', {
           headers: { 'Authorization' : 'Bearer ' + accessToken}
       } ).then( ( res ) => res.json() )
-      .then( data => this.setState( { serverData: { user: { name: data.display_name } } } ) )
+      .then( data => this.setState( { serverData: { user: data } } ) )
   }
   
   onOpenModal() {
@@ -43,8 +44,7 @@ class App extends Component {
       <div className="App">
       { this.state.serverData.user ?
         <>
-          <span style={ { fontSize: '30px', color: 'white' } }>Welcome { this.state.serverData.user.name }</span>
-          {/*<button>Log Out</button>*/}
+          <Dashboard userData={ this.state.serverData.user } /> 
         </>
         :
         <>
