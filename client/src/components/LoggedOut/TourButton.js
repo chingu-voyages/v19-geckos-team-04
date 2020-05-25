@@ -1,6 +1,102 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Modal from 'styled-react-modal';
+import FirstModal from '../Shared/UI/FirstModal';
+import SecondModal from '../Shared/UI/SecondModal';
+import ThirdModal from '../Shared/UI/ThirdModal';
+
+export default class TourButton extends React.Component {
+  constructor() {
+    super();
+    this.onOpenModal = this.onOpenModal.bind(this);
+    this.onCloseModal = this.onCloseModal.bind(this);
+    this.state = {
+      isOpen: false,
+      firstModalOpen: true,
+      secondModalOpen: false,
+      thirdModalOpen: false,
+    }
+  }
+
+  onOpenModal() {
+    this.setState({isOpen: true});
+  }
+
+  onCloseModal() {
+    this.setState({isOpen: false});
+  }
+
+  render() {
+    if (this.state.isOpen) {
+      document.body.style.overflowY = 'hidden';
+    } else {
+      document.body.style.overflowY = 'auto';
+    }
+
+    // Conditionally render modals.
+    let modalConditional = null;
+    if (this.state.isOpen && this.state.firstModalOpen) {
+      modalConditional = <FirstModal/>
+    } else if (this.state.isOpen && this.state.secondModalOpen) {
+      modalConditional = <SecondModal />
+    } else if (this.state.isOpen && this.state.thirdModalOpen) {
+      modalConditional = <ThirdModal />
+    }
+
+    return (
+      <>
+        <TourStyle
+          onClick={this.onOpenModal}>
+        Take a Tour
+        </TourStyle>
+        <Modal
+          isOpen={this.state.isOpen}
+          onBackgroundClick={this.onCloseModal}
+          onEscapeKeydown={this.onCloseModal}
+        >
+          <ModalContainer style={{display: this.state.isOpen ? 'flex' : 'none'}}>
+            <ModalContent>
+              <div>
+                <ModalTourNumber onClick={() => this.setState({
+                  firstModalOpen: true,
+                  secondModalOpen: false,
+                  thirdModalOpen: false,
+                })}>1</ModalTourNumber>
+
+                <ModalTourNumber onClick={() => this.setState({
+                  firstModalOpen: false,
+                  secondModalOpen: true,
+                  thirdModalOpen: false,
+                })}>2</ModalTourNumber>
+
+                <ModalTourNumber onClick={() => this.setState({
+                  firstModalOpen: false,
+                  secondModalOpen: false,
+                  thirdModalOpen: true,
+                })}>3</ModalTourNumber>
+                <CloseButton onClick={this.onCloseModal}>&times;</CloseButton>
+              </div>
+              {modalConditional}
+            </ModalContent>
+          </ModalContainer>
+        </Modal>
+      </>
+    );
+  }
+}
+
+
+// Styled components for the rest of this file.
+const ModalTourNumber = styled.span`
+  background-color: #444;
+  border-radius: 50px;
+  color: #fff;
+  cursor: pointer;
+  display: inline;
+  flex-wrap: nowrap;
+  font-size: 1.5rem;
+  max-width: 90px
+`;
 
 const TourStyle = styled.button`
   background-color: #e5e5e5;
@@ -91,41 +187,3 @@ const CloseButton = styled.span`
     top: 0.5rem;
   }
 `;
-
-
-export default function FancyModalButton() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  function toggleModal(e) {
-    setIsOpen(!isOpen);
-  }
-
-  if (isOpen) {
-    document.body.style.overflowY = 'hidden';
-  } else {
-    document.body.style.overflowY = 'auto';
-  }
-
-  return (
-    <>
-      <TourStyle 
-        onClick={toggleModal}>
-      Take a Tour
-      </TourStyle>
-      <Modal
-        isOpen={isOpen}
-        onBackgroundClick={toggleModal}
-        onEscapeKeydown={toggleModal}
-      >
-        <ModalContainer style={{display: isOpen ? 'flex' : 'none'}}>
-          <ModalContent>
-            <CloseButton onClick={toggleModal}>&times;</CloseButton>
-            <p>[ 1 ] [ 2 ] [ 3 ]</p>
-            <p>Bad rough draft. A picture would go below:</p>
-            <span alt="ghost-emoji" role="img" aria-label="ghost-emoji">👻</span>
-          </ModalContent>
-        </ModalContainer>
-      </Modal>
-    </>
-  );
-}
