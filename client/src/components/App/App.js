@@ -37,7 +37,7 @@ class App extends Component {
   onCloseModal() {
     this.setState({isModalOpen: false});
   }
-
+  
   render() {
     return (
       <div className="App">
