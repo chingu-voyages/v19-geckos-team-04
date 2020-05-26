@@ -31,9 +31,9 @@ const StyledBurger = styled.button`
     outline: none;
   }
   div {
-    width: 2rem;
+    width: 1.8rem;
     height: 0.25rem;
-    background: ${DarkTheme.mediumGray};
+    background: white;
     border-radius: 10px;
     transition: transform 0.25s, opacity 0.25s;
     position: relative;
