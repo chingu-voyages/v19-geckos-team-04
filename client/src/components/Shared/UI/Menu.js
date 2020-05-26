@@ -1,19 +1,32 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import styled from 'styled-components';
 import ListIcon from '../../../images/list-icon.png';
 import MenuPlusIcon from '../../../images/menu-plus-icon.png';
 import { DarkTheme } from '../Styles/DarkTheme';
 import Burger from '../UI/Burger';
 
-const Menu = (props) => {
+const Menu = props => {
+  const [open, setOpen] = useState(false);
+
+  let profilePic = '';
+  let greeting = '';
+
+  if (props.userData) {
+    if (props.userData.images && props.userData.images.length) {
+      profilePic = props.userData.images[0].url;
+    }
+    if (props.userData.display_name) {
+      greeting = props.userData.display_name;
+    }
+  }
+
   return (
     <Fragment>
-        {console.log(props.userData.images ? props.userData.images[0].url : 'nothing')}
-      <Burger setOpen={props.setOpen} />
-      <MenuContainer open={props.open}>
+      <Burger open={open} setOpen={setOpen} />
+      <MenuContainer open={open}>
         <UserProfile>
-          <ProfilePic src={ props.userData.images[0].url }/>
-          <Greeting>{ props.userData.display_name }</Greeting>
+          <ProfilePic src={profilePic} />
+          <Greeting>{greeting}</Greeting>
         </UserProfile>
         <Logout>Logout</Logout>
         <MenuItems>

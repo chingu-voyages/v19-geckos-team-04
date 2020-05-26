@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { DarkTheme } from '../Styles/DarkTheme';
 
-const Burger = () => {
-  const [open, setOpen] = useState(false);
-
+const Burger = ({open, setOpen}) => {
+  
   return (
     <StyledBurger open={open} onClick={() => setOpen(!open)}>
       <div />
@@ -27,9 +26,11 @@ const StyledBurger = styled.button`
   border: none;
   cursor: pointer;
   z-index: 10;
+
   &:focus {
     outline: none;
   }
+
   div {
     width: 1.8rem;
     height: 0.25rem;
@@ -38,16 +39,20 @@ const StyledBurger = styled.button`
     transition: transform 0.25s, opacity 0.25s;
     position: relative;
     transform-origin: 1px;
+
     :first-child {
       transform: ${({ open }) => (open ? 'rotate(45deg)' : 'rotate(0)')};
     }
+
     :nth-child(2) {
       opacity: ${({ open }) => (open ? '0' : '1')};
     }
+
     :nth-child(3) {
       transform: ${({ open }) => (open ? 'rotate(-45deg)' : 'rotate(0)')};
     }
   }
+
   @media screen and (min-width: 990px) {
     display: none;
   }
