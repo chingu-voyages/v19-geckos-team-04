@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+
 import queryString from 'query-string';
 import './App.scss';
 import Header from './../LoggedOut/Header';
 import TourButton from '../LoggedOut/TourButton';
 import SignInButton from '../LoggedOut/SignInButton';
+import SoundBars from '../LoggedOut/SoundBars';
 import PseudoNavbar from '../LoggedOut/PseudoNavbar';
 // import Modal from '../Shared/UI/Modal';
 import Dashboard from '../Dashboard/Dashboard';
@@ -58,6 +61,7 @@ class App extends Component {
               </div>
             </>
           }
+        <SoundBars/>
         </div>
       </ModalProvider>
     );
