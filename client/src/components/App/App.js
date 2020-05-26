@@ -5,9 +5,9 @@ import Header from './../LoggedOut/Header';
 import TourButton from '../LoggedOut/TourButton';
 import SignInButton from '../LoggedOut/SignInButton';
 import PseudoNavbar from '../LoggedOut/PseudoNavbar';
-import Modal from '../Shared/UI/Modal';
+// import Modal from '../Shared/UI/Modal';
 import Dashboard from '../Dashboard/Dashboard';
-
+// import { ModalProvider } from 'styled-react-modal';
 
 class App extends Component {
   constructor(props) {
@@ -50,11 +50,6 @@ class App extends Component {
         <>
           <PseudoNavbar />
           <Header />
-          {this.state.isModalOpen && <Modal 
-            showModal={this.state.isModalOpen}
-            onCloseButtonClicked={this.onCloseModal}
-            onRequestClose={this.onCloseModal}
-          />}
           <div>
             <TourButton showModal={() => this.onOpenModal()}/>
             <SignInButton/>

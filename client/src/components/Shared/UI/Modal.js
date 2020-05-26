@@ -1,3 +1,4 @@
+// This file was basically transferred to TourButton.
 import React from 'react';
 import styled from 'styled-components';
 
