@@ -7,7 +7,7 @@ import SignInButton from '../LoggedOut/SignInButton';
 import PseudoNavbar from '../LoggedOut/PseudoNavbar';
 // import Modal from '../Shared/UI/Modal';
 import Dashboard from '../Dashboard/Dashboard';
-// import { ModalProvider } from 'styled-react-modal';
+import { ModalProvider } from 'styled-react-modal';
 
 class App extends Component {
   constructor(props) {
@@ -25,10 +25,11 @@ class App extends Component {
       let parsed = queryString.parse( window.location.search );
       let accessToken = parsed.access_token;
       
-      fetch( 'https://api.spotify.com/v1/me', {
-          headers: { 'Authorization' : 'Bearer ' + accessToken}
-      } ).then( ( res ) => res.json() )
-      .then( data => this.setState( { serverData: { user: data } } ) )
+      // ❗ TypeError: Cannot read property '0' of undefined ❗
+      // fetch( 'https://api.spotify.com/v1/me', {
+      //     headers: { 'Authorization' : 'Bearer ' + accessToken}
+      // } ).then( ( res ) => res.json() )
+      // .then( data => this.setState( { serverData: { user: data } } ) )
   }
   
   onOpenModal() {
@@ -41,22 +42,24 @@ class App extends Component {
   
   render() {
     return (
-      <div className="App">
-      { this.state.serverData.user ?
-        <>
-          <Dashboard userData={ this.state.serverData.user } /> 
-        </>
-        :
-        <>
-          <PseudoNavbar />
-          <Header />
-          <div>
-            <TourButton showModal={() => this.onOpenModal()}/>
-            <SignInButton/>
-          </div>
-        </>
-      }
-      </div>
+      <ModalProvider >
+        <div className="App">
+          { this.state.serverData.user ?
+            <>
+              <Dashboard userData={ this.state.serverData.user } /> 
+            </>
+            :
+            <>
+              <PseudoNavbar />
+              <Header />
+              <div>
+                <TourButton showModal={() => this.onOpenModal()}/>
+                <SignInButton/>
+              </div>
+            </>
+          }
+        </div>
+      </ModalProvider>
     );
   }
 }
