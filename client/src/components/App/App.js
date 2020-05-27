@@ -18,7 +18,7 @@ class App extends Component {
     this.onOpenModal = this.onOpenModal.bind(this);
     this.onCloseModal = this.onCloseModal.bind(this);
     this.state = {
-      serverData: {},
+      serverData: {user: false},
       filterString: '',
       isModalOpen: false,
     }
@@ -28,11 +28,11 @@ class App extends Component {
       let parsed = queryString.parse( window.location.search );
       let accessToken = parsed.access_token;
       
-      // ❗ TypeError: Cannot read property '0' of undefined ❗
-      // fetch( 'https://api.spotify.com/v1/me', {
-      //     headers: { 'Authorization' : 'Bearer ' + accessToken}
-      // } ).then( ( res ) => res.json() )
-      // .then( data => this.setState( { serverData: { user: data } } ) )
+      //❗ TypeError: Cannot read property '0' of undefined ❗
+      fetch( 'https://api.spotify.com/v1/me', {
+          headers: { 'Authorization' : 'Bearer ' + accessToken}
+      } ).then( ( res ) => res.json() )
+      .then( data => this.setState( { serverData: { user: data } } ) )
   }
   
   onOpenModal() {
@@ -47,7 +47,7 @@ class App extends Component {
     return (
       <ModalProvider >
         <div className="App">
-          { this.state.serverData.user ?
+          { this.state.serverData.user.display_name ?
             <>
               <Dashboard userData={ this.state.serverData.user } /> 
             </>
