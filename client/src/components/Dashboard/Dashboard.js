@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import { DarkTheme } from '../Shared/Styles/DarkTheme';
 import Menu from './../Shared/UI/Menu';
 import MyPlaylistsView from './MyPlaylistsView';
+import CreatePlaylistView from './CreatePlaylistView';
 
-function Dashboard({ userData }) {
+const Dashboard = ({ userData }) => {
   return (
     <Fragment>
       <DashboardContainer>
@@ -14,14 +15,18 @@ function Dashboard({ userData }) {
             <AppName>BPM Workout</AppName>
           </Brand>
           {/* CurrentView will be set conditionally in the future */}
-          <CurrentView>My Playlists</CurrentView>
+          {/* <CurrentView>My Playlists</CurrentView> */}
+          <CurrentView>Create Playlist</CurrentView>
         </DashboardHeader>
         <Menu userData={userData} />
-        <MyPlaylistsView />
+        <ViewsContainer>
+          {/* <MyPlaylistsView /> */}
+          <CreatePlaylistView />
+        </ViewsContainer>
       </DashboardContainer>
     </Fragment>
   );
-}
+};
 
 export default Dashboard;
 
@@ -62,6 +67,18 @@ const Logo = styled.div`
 const AppName = styled.div`
   @media screen and (max-width: 768px) {
     display: none;
+  }
+`;
+
+const ViewsContainer = styled.div`
+  font-size: 1.1rem;
+
+  @media screen and (max-width: 768px) {
+    font-size: 1rem;
+  }
+
+  @media screen and (max-width: 320px) {
+    font-size: 0.8rem;
   }
 `;
 
