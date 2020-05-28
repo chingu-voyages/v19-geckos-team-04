@@ -59,9 +59,9 @@ class App extends Component {
                 <TourButton showModal={() => this.onOpenModal()}/>
                 <SignInButton/>
               </div>
+              <SoundBars/>
             </>
           }
-        <SoundBars/>
         </div>
       </ModalProvider>
     );

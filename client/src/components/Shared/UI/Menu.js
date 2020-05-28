@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import styled from 'styled-components';
-import ListIcon from '../../../images/list-icon.png';
-import MenuPlusIcon from '../../../images/menu-plus-icon.png';
+import ListIcon from '../../../images/list-icon.svg';
+import MenuPlusIcon from '../../../images/menu-plus-icon.svg';
 import { DarkTheme } from '../Styles/DarkTheme';
 import Burger from '../UI/Burger';
 
@@ -20,20 +20,30 @@ const Menu = props => {
     }
   }
 
+  const onMyPlaylistsClickedHandler = () => {
+    alert('This will need to route to MyPlaylistsView');
+  };
+
+  const onCreateClickedHandler = () => {
+    alert('This will need to route to CreatePlaylistsView');
+  };
+
   return (
     <Fragment>
       <Burger open={open} setOpen={setOpen} />
       <MenuContainer open={open}>
         <UserProfile>
           <ProfilePic src={profilePic} />
-          <Greeting>{greeting}</Greeting>
+          <div>
+            <Greeting>{greeting}</Greeting>
+            <Logout>Logout</Logout>
+          </div>
         </UserProfile>
-        <Logout>Logout</Logout>
         <MenuItems>
-          <Item>
+          <Item onClick={onMyPlaylistsClickedHandler}>
             <Icon src={ListIcon} /> My Playlists
           </Item>
-          <Item>
+          <Item onClick={onCreateClickedHandler}>
             <Icon src={MenuPlusIcon} /> Create
           </Item>
         </MenuItems>
@@ -54,8 +64,17 @@ const MenuContainer = styled.div`
   background-color: ${DarkTheme.charcoal};
   font-size: 1rem;
   z-index: 1;
+
   @media screen and (min-width: 990px) {
     display: block;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 50%;
+  }
+
+  @media screen and (max-width: 500px) {
+    font-size: 0.9rem;
   }
 `;
 
@@ -63,7 +82,11 @@ const UserProfile = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 2rem;
+  padding-top: 4rem;
+
+  div {
+    flex-direction: column;
+  }
 `;
 
 const ProfilePic = styled.img`
@@ -71,6 +94,17 @@ const ProfilePic = styled.img`
   height: 3rem;
   border-radius: 100%;
   margin-right: 1rem;
+
+  @media screen and (max-width: 500px) {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  @media screen and (max-width: 320px) {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.5rem;
+  }
 `;
 
 const Greeting = styled.div`
@@ -82,26 +116,26 @@ const Logout = styled.div`
   cursor: pointer;
   color: #999;
   text-align: right;
-  padding-right: 4.6rem;
-  margin-top: -1rem;
 `;
 
 const MenuItems = styled.div`
   display: block;
+  flex-wrap: nowrap;
   color: white;
   padding-top: 5rem;
-  padding-left: 5rem;
 `;
 
 const Item = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   text-align: left;
   padding-bottom: 2rem;
   cursor: pointer;
   font-size: 1.2rem;
-  &:hover {
-    color: ${DarkTheme.orange};
+
+  @media screen and (max-width: 500px) {
+    font-size: 1rem;
   }
 `;
 
@@ -109,4 +143,10 @@ const Icon = styled.img`
   width: 2.8rem;
   height: 2.8rem;
   padding-right: 1rem;
+
+  @media screen and (max-width: 500px) {
+    width: 2rem;
+    height: 2rem;
+    padding-right: 0.5rem;
+  }
 `;

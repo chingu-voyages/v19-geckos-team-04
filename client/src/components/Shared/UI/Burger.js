@@ -2,8 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { DarkTheme } from '../Styles/DarkTheme';
 
-const Burger = ({open, setOpen}) => {
-  
+const Burger = ({ open, setOpen }) => {
   return (
     <StyledBurger open={open} onClick={() => setOpen(!open)}>
       <div />
@@ -21,21 +20,24 @@ const StyledBurger = styled.button`
   flex-direction: column;
   justify-content: space-around;
   height: 2rem;
-  margin-top: 0.5rem;
+  margin: 1.8rem 2rem 0 0;
   background: transparent;
   border: none;
   cursor: pointer;
   z-index: 10;
+
+  @media screen and (max-width: 768px) {
+    margin-right: 1rem;
+  }
 
   &:focus {
     outline: none;
   }
 
   div {
-    width: 1.8rem;
-    height: 0.25rem;
+    width: 1.9rem;
+    height: 0.2rem;
     background: white;
-    border-radius: 10px;
     transition: transform 0.25s, opacity 0.25s;
     position: relative;
     transform-origin: 1px;
