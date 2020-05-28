@@ -35,10 +35,9 @@ const StyledBurger = styled.button`
   }
 
   div {
-    width: 1.8rem;
-    height: 0.25rem;
+    width: 1.9rem;
+    height: 0.2rem;
     background: white;
-    border-radius: 10px;
     transition: transform 0.25s, opacity 0.25s;
     position: relative;
     transform-origin: 1px;
