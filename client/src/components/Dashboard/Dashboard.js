@@ -15,13 +15,13 @@ const Dashboard = ({ userData }) => {
             <AppName>BPM Workout</AppName>
           </Brand>
           {/* CurrentView will be set conditionally in the future */}
-          {/* <CurrentView>My Playlists</CurrentView> */}
-          <CurrentView>Create Playlist</CurrentView>
+          <CurrentView>My Playlists</CurrentView>
+          {/* <CurrentView>Create Playlist</CurrentView> */}
         </DashboardHeader>
         <Menu userData={userData} />
         <ViewsContainer>
-          {/* <MyPlaylistsView /> */}
-          <CreatePlaylistView />
+          <MyPlaylistsView />
+          {/* <CreatePlaylistView /> */}
         </ViewsContainer>
       </DashboardContainer>
     </Fragment>
