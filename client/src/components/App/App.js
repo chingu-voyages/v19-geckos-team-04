@@ -46,7 +46,7 @@ class App extends Component {
   render() {
     return (
       <ModalProvider >
-        <div className="App">
+        <div>
           { this.state.serverData.user.display_name ?
             <>
               <Dashboard userData={ this.state.serverData.user } /> 
@@ -55,7 +55,7 @@ class App extends Component {
             <>
               <PseudoNavbar />
               <Header />
-              <div>
+              <div style={{textAlign: 'center'}}>
                 <TourButton showModal={() => this.onOpenModal()}/>
                 <SignInButton/>
               </div>

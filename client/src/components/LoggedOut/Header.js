@@ -3,14 +3,19 @@ import styled from 'styled-components';
 
 function Header() {
   return (
-    <div>
+    <HeaderDiv>
       <HeaderStyle>BPM Workout</HeaderStyle>
       <SubheadStyle>Choose your workout by beats per minute.</SubheadStyle>
-    </div>
+    </HeaderDiv>
   )
 }
 
 export default Header;
+
+
+const HeaderDiv = styled.div`
+  text-align: center;
+`;
 
 const HeaderStyle = styled.h1`
   color: #0df0ff;
