@@ -36,7 +36,6 @@ const CreatePlaylistView = () => {
           <FilterLabel>Time</FilterLabel>
         </Time>
       </FilterControls>
-      <HorizontalRule />
       <CollapseExpand onClick={() => setCollapse(!collapse)}>
         {collapse ? (
           <span>
@@ -48,6 +47,7 @@ const CreatePlaylistView = () => {
           </span>
         )}
       </CollapseExpand>
+      <HorizontalRule />
     </CreatePlaylistViewContainer>
   );
 };
