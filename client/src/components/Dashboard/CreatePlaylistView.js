@@ -14,16 +14,16 @@ const CreatePlaylistView = () => {
           <FilterLabel>Category</FilterLabel>
           <RadioButtons>
             <input type="radio" id="warmup" value="warmup" name="category" />
-            <label for="warmup">Warm-up</label>
+            <label htmlFor="warmup">Warm-up</label>
             <input type="radio" id="workout" value="Workout" name="category" />
-            <label for="workout">Workout</label>
+            <label htmlFor="workout">Workout</label>
             <input
               type="radio"
               id="cooldown"
               value="Cool-down"
               name="category"
             />
-            <label for="cooldown">Cool-down</label>
+            <label htmlFor="cooldown">Cool-down</label>
           </RadioButtons>
         </Category>
         <BPM>
@@ -31,6 +31,14 @@ const CreatePlaylistView = () => {
         </BPM>
         <Genre>
           <FilterLabel>Genre</FilterLabel>
+          <CustomSelect>
+            <select>
+              <option>Electronic</option>
+              <option>Hip-hop</option>
+              <option>Rap</option>
+              <option>Pop</option>
+            </select>
+          </CustomSelect>
         </Genre>
         <Time>
           <FilterLabel>Time</FilterLabel>
@@ -38,13 +46,15 @@ const CreatePlaylistView = () => {
       </FilterControls>
       <CollapseExpand onClick={() => setCollapse(!collapse)}>
         {collapse ? (
-          <span>
-            Expand <img src={ExpandDownArrow} />
-          </span>
+          <div>
+            Expand
+            <img src={ExpandDownArrow} />
+          </div>
         ) : (
-          <span>
-            Collapse <img src={CollapseUpArrow} />
-          </span>
+          <div>
+            Collapse
+            <img src={CollapseUpArrow} />
+          </div>
         )}
       </CollapseExpand>
       <HorizontalRule />
@@ -69,8 +79,9 @@ const FilterControls = styled.div`
   height: 15vw;
 `;
 
-const FilterLabel = styled.label`
+const FilterLabel = styled.div`
   color: ${DarkTheme.lightgray};
+  margin-bottom: 1rem;
 `;
 
 const Category = styled.div`
@@ -80,7 +91,6 @@ const Category = styled.div`
 
 const RadioButtons = styled.div`
   color: ${DarkTheme.orange};
-  margin-top: 1rem;
 
   input[type='radio'] {
     visibility: hidden;
@@ -119,6 +129,17 @@ const BPM = styled.div`
 const Genre = styled.div`
   grid-row: 1/2;
   grid-column: 2/3;
+`;
+
+const CustomSelect = styled.div`
+  select {
+    font-size: 1.1rem;
+    color: ${DarkTheme.orange};
+    width: 12rem;
+    border: none;
+    background: none;
+    border-bottom: 3px solid ${DarkTheme.orange};
+  }
 `;
 
 const Time = styled.div`
