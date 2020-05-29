@@ -101,7 +101,9 @@ const ModalTourNumber = styled.span`
   border-radius: 50%;
   color: #fff;
   cursor: pointer;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 1.6rem;
   text-align: center;
   height: 45px;
@@ -204,4 +206,7 @@ const TourStyle = styled.button`
   padding: 15px 45px;
   text-transform: uppercase;
   width: 250px;
+  margin: 0 15px;
+  box-shadow: 7px 7px 19px -5px rgb(18, 28, 37);
+  border: none;
 `;
