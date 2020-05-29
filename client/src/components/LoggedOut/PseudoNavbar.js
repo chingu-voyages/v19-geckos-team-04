@@ -3,17 +3,17 @@ import styled from 'styled-components';
 import SunIcon from '../../images/sun-icon.png';
 import MoonIcon from '../../images/moon-icon.png';
 
-export default function PseudoNavbar() {
+export default function PseudoNavbar(props) {
   return (
     <StyledContainer>
-      <Logo>LOGO</Logo>
+      <Logo className="logo-text-TEMPORARY">LOGO</Logo>
       <AdjustableColorTheme>
         <span
           role="img" 
           alt="icon" 
-          aria-label="Temp sun emoji"
-          onClick={() => console.log('Will change colors of page later.')}>
-          <img src={MoonIcon} />
+          aria-label="theme-icon"
+          onClick={props.changeTheme}>
+          <img src={props.isDark ? SunIcon : MoonIcon} />
         </span>
       </AdjustableColorTheme>
     </StyledContainer>
