@@ -147,21 +147,26 @@ const SoundBars = () => {
         </Block>
       </GridContainer>
     </SoundBarContainer>
-  )
-}
+  );
+};
 
 export default SoundBars;
 
-
 const SoundBarContainer = styled.div`
-  transform: scale(1, -1); {/* Flips bars upside-down. By default the rows are built DOWNWARD. */}
+  transform: scale(1, -1);
+   {
+    /* Flips bars upside-down. By default the rows are built DOWNWARD. */
+  }
   -webkit-transform: scale(1, -1);
   -moz-transform: scale(1, -1);
   -ms-transform: scale(1, -1);
   -o-transform: scale(1, -1);
   width: min-content;
   margin: 0 auto;
-  padding-bottom: 350px; {/* Bumps up the bars away from the bottom of the screen. */}
+  padding-bottom: 32rem;
+   {
+    /* Bumps up the bars away from the bottom of the screen. */
+  }
 `;
 
 const GridContainer = styled.div`
@@ -170,13 +175,13 @@ const GridContainer = styled.div`
 `;
 
 const Block = styled.div`
-  background:
-    linear-gradient(
-      0deg,
-      rgba(2,0,36,1) 0%,
-      rgba(0,212,255,1) 40%,
-      rgba(255, 230, 0, 0.897) 80%,
-      rgb(255, 244, 141) 100%);
+  background: linear-gradient(
+    0deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 212, 255, 1) 40%,
+    rgba(255, 230, 0, 0.897) 80%,
+    rgb(255, 244, 141) 100%
+  );
   background-attachment: fixed;
   background-position: center;
   background-size: cover;

@@ -6,7 +6,7 @@ const SignInButton = () => {
     <SignInStyle
       className="spotify-login" 
       onClick={ () => window.location = 'http://geckos4-backend.herokuapp.com/login' }>
-        Sign In
+        Login with Spotify
     </SignInStyle>
   )
 }
@@ -20,14 +20,13 @@ const SignInStyle = styled.button`
   -moz-border-radius: 30px;
   -ms-border-radius: 30px;
   -o-border-radius: 30px;
-  color: #eee;
+  color: black;
   cursor: pointer;
   display: inline;
   font-size: 14px;
   font-weight: bold;
   letter-spacing: 2px;
   padding: 15px 45px;
-  text-transform: uppercase;
   width: 250px;
   margin: 0 15px;
   box-shadow: 7px 7px 19px -5px rgb(18, 28, 37);
