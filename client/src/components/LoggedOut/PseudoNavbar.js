@@ -6,36 +6,30 @@ export default function PseudoNavbar() {
   return (
     <StyledContainer>
       <Logo>LOGO</Logo>
-      <AdjustableColorTheme>
-        <span
-          role="img" 
-          alt="icon" 
-          aria-label="Temp sun emoji"
-          onClick={() => console.log('Will change colors of page later.')}>
-          <img src={SunIcon} />
-        </span>
-      </AdjustableColorTheme>
+      <AdjustableColorTheme
+        src={SunIcon}
+        alt="icon"
+        role="img"
+        aria-label="Temp sun emoji"
+        onClick={() => console.log('Will change colors of page later.')}
+      />
     </StyledContainer>
-  )
+  );
 }
 
 const StyledContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 0 40px;
 `;
 
 const Logo = styled.p`
   color: white;
-  font-weight: bold;
 `;
 
-const AdjustableColorTheme = styled.span`
-  font-size: 2rem;
+const AdjustableColorTheme = styled.img`
   cursor: pointer;
-
-  img {
-    width: 2rem;
-    height: 2rem;
-  }
+  width: 2rem;
+  height: 2rem;
 `;
