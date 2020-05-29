@@ -6,8 +6,8 @@ import SecondModal from '../Shared/UI/SecondModal';
 import ThirdModal from '../Shared/UI/ThirdModal';
 
 export default class TourButton extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.onOpenModal = this.onOpenModal.bind(this);
     this.onCloseModal = this.onCloseModal.bind(this);
     this.state = {
@@ -45,8 +45,10 @@ export default class TourButton extends React.Component {
 
     return (
       <>
-        <TourStyle
-          onClick={this.onOpenModal}>
+        <TourStyle 
+          onClick={this.onOpenModal} 
+          className="tour-btn"
+        >
         Take a Tour
         </TourStyle>
         <Modal
@@ -191,7 +193,6 @@ const CloseButton = styled.span`
 
 
 const TourStyle = styled.button`
-  background-color: #e5e5e5;
   border-radius: 30px;
   -webkit-border-radius: 30px;
   -moz-border-radius: 30px;

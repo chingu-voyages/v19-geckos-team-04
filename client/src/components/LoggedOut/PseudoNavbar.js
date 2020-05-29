@@ -1,20 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
 import SunIcon from '../../images/sun-icon.png';
+import MoonIcon from '../../images/moon-icon.png';
 
-export default function PseudoNavbar() {
+export default function PseudoNavbar(props) {
   return (
     <StyledContainer>
-      <Logo>LOGO</Logo>
+      <Logo className="logo-text-TEMPORARY">LOGO</Logo>
       <AdjustableColorTheme
-        src={SunIcon}
-        alt="icon"
-        role="img"
-        aria-label="Temp sun emoji"
-        onClick={() => console.log('Will change colors of page later.')}
-      />
+          role="img" 
+          alt="icon" 
+          aria-label="theme-icon"
+          onClick={props.changeTheme}
+          src={props.isDark ? SunIcon : MoonIcon}
+       >
+      </AdjustableColorTheme>
     </StyledContainer>
-  );
+    
+  )
+
 }
 
 const StyledContainer = styled.div`

@@ -4,8 +4,8 @@ import styled from 'styled-components';
 function Header() {
   return (
     <HeaderDiv>
-      <HeaderStyle>BPM Workout</HeaderStyle>
-      <SubheadStyle>Choose your workout by beats per minute.</SubheadStyle>
+      <HeaderStyle className="header-text">BPM Workout</HeaderStyle>
+      <SubheadStyle className="subhead-text">Choose your workout by beats per minute.</SubheadStyle>
     </HeaderDiv>
   );
 }
@@ -17,7 +17,6 @@ const HeaderDiv = styled.div`
 `;
 
 const HeaderStyle = styled.h1`
-  color: #0df0ff;
   font-size: 2.6rem;
   font-weight: 700;
   letter-spacing: 0.3em;
@@ -25,8 +24,7 @@ const HeaderStyle = styled.h1`
 `;
 
 const SubheadStyle = styled.h3`
-  color: white;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   font-weight: 500;
   margin-top: 2rem;
   margin-bottom: 3rem;
