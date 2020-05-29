@@ -19,11 +19,13 @@ const LandingContainer = styled.div`
   top: 0;
   bottom: 0;
   right: 0;
+  z-index: -1;
 `;
 
 const HeaderContainer = styled.div`
   position: relative;
   top: 20%;
+  z-index: 1000;
 `;
 
 const ButtonsContainer = styled.div`
