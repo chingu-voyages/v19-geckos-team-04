@@ -29,4 +29,7 @@ const SignInStyle = styled.button`
   padding: 15px 45px;
   text-transform: uppercase;
   width: 250px;
+  margin: 0 15px;
+  box-shadow: 7px 7px 19px -5px rgb(18, 28, 37);
+  border: none;
 `;
