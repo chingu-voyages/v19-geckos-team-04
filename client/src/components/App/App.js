@@ -64,16 +64,18 @@ class App extends Component {
       filterString: '',
       isModalOpen: false,
       isDarkMode: true,
+      accessToken: '',
     }
   }
 
   componentDidMount() {
     let parsed = queryString.parse(window.location.search);
-    let accessToken = parsed.access_token;
+    let urlAccessToken = parsed.access_token;
+    
+    this.setState( { accessToken: urlAccessToken } );
 
-    //❗ TypeError: Cannot read property '0' of undefined ❗
     fetch('https://api.spotify.com/v1/me', {
-      headers: { Authorization: 'Bearer ' + accessToken }
+      headers: { Authorization: 'Bearer ' + urlAccessToken }
     })
       .then(res => res.json())
       .then(data => this.setState({ serverData: { user: data } }));
@@ -98,7 +100,7 @@ class App extends Component {
         <GlobalStyle />
           { this.state.serverData.user.display_name ?
             <>
-              <Dashboard userData={ this.state.serverData.user } />
+              <Dashboard userData={ this.state.serverData.user } accessToken={ this.state.accessToken }/>
             </>
            : 
             <>
