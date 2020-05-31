@@ -2,15 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PlusIcon from '../../images/plus-icon.png';
 
-const MyPlaylistsView = () => {
-  const onCreatePlaylistClickedHandler = () => {
-    alert('This will need to route to Create Playlist view');
-    // Notes for routing:
-    // will need to use withRouter() hoc
-    // history.push('/some path')
-    // since we are not worried about SEO with this app (have to be a logged in user to use the app) - it's ok to do this as a button handler. But can change routing functionality if you wanna.
-  };
-
+const MyPlaylistsView = ( { setPlaylists }) => {
   return (
     <MyPlaylistsViewContainer>
       {/* Below text needs to be set to disappear if playlist(s) exist */}
@@ -19,7 +11,7 @@ const MyPlaylistsView = () => {
       </EmptyPlaylistText>
       <CreatePlaylistButton
         src={PlusIcon}
-        onClick={onCreatePlaylistClickedHandler}
+        onClick={ setPlaylists }
       />
     </MyPlaylistsViewContainer>
   );
