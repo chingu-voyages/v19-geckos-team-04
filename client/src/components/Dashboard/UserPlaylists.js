@@ -26,11 +26,16 @@ function UserPlaylists( { userPlaylists,
         }
     }
     
+    const backToHome = () => {
+        setView( 'home' );
+        setPlaylistView( 'user' );
+        setSelected( [] );
+    }
+    
     return (
         <SelectPlaylistsContainer>
-            {console.log(featuredPlaylists)}
             <SelectPlaylists>Select Playlists</SelectPlaylists>
-            <BackButton onClick={ () => setView( 'home' ) }>Back</BackButton>
+            <BackButton onClick={ () => backToHome() }>Back</BackButton>
             <Button disabled={ selected.length ? false : true }
                     onClick={ () => setView( 'playlistSettings' ) }>Next</Button>
             <PlaylistTabs>
