@@ -163,6 +163,7 @@ const SoundBarContainer = styled.div`
   -o-transform: scale(1, -1);
   width: min-content;
   margin: 0 auto;
+  height: 69vh;
 `;
 
 const GridContainer = styled.div`

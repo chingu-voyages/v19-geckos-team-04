@@ -35,7 +35,7 @@ const ButtonsContainer = styled.div`
 const SoundBarsContainer = styled.div`
   position: relative;
   align-self: center;
-  z-index: 1000;
+  z-index: 999;
   bottom: 0;
 `;
 
