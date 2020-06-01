@@ -5,7 +5,9 @@ function Header() {
   return (
     <HeaderDiv>
       <HeaderStyle className="header-text">BPM Workout</HeaderStyle>
-      <SubheadStyle className="subhead-text">Choose your workout by beats per minute.</SubheadStyle>
+      <SubheadStyle className="subhead-text">
+        Choose your workout by beats per minute.
+      </SubheadStyle>
     </HeaderDiv>
   );
 }
@@ -24,7 +26,8 @@ const HeaderStyle = styled.h1`
 `;
 
 const SubheadStyle = styled.h3`
-  font-size: 0.9rem;
+  color: white;
+  font-size: 1.2rem;
   font-weight: 500;
   margin-top: 2rem;
   margin-bottom: 3rem;

@@ -163,10 +163,6 @@ const SoundBarContainer = styled.div`
   -o-transform: scale(1, -1);
   width: min-content;
   margin: 0 auto;
-  padding-bottom: 32rem;
-   {
-    /* Bumps up the bars away from the bottom of the screen. */
-  }
 `;
 
 const GridContainer = styled.div`

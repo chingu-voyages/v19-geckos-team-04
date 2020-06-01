@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
+import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import queryString from 'query-string';
 import './App.scss';
 import Header from './../LoggedOut/Header';
@@ -32,22 +32,29 @@ const ButtonsContainer = styled.div`
   text-align: center;
 `;
 
+const SoundBarsContainer = styled.div`
+  position: relative;
+  align-self: center;
+  z-index: 1000;
+  bottom: 0;
+`;
+
 // Styles for dark and light modes, respectively.
 const GlobalStyle = createGlobalStyle`
   body, html {
-    background-color: ${props => (props.theme.mode ? "#212e3a" : "#fffde9")};
+    background-color: ${props => (props.theme.mode ? '#212e3a' : '#fffde9')};
     }
   .logo-text-TEMPORARY {
-    color: ${props => (props.theme.mode ? "#fff" : "#000")}
+    color: ${props => (props.theme.mode ? '#fff' : '#000')}
   }
   .header-text {
-    color: ${props => (props.theme.mode ? "#0df0ff" : "#088f99")}
+    color: ${props => (props.theme.mode ? '#0df0ff' : '#088f99')}
   }
   .tour-btn {
-    background-color: ${props => (props.theme.mode ? "#e5e5e5" : "#b6b6b6")};
+    background-color: ${props => (props.theme.mode ? '#e5e5e5' : '#b6b6b6')};
     }
   .subhead-text {
-    color: ${props => (props.theme.mode ? "#fff" : "#444")}
+    color: ${props => (props.theme.mode ? '#fff' : '#444')}
     }
   }
 `;
@@ -64,15 +71,15 @@ class App extends Component {
       filterString: '',
       isModalOpen: false,
       isDarkMode: true,
-      accessToken: '',
-    }
+      accessToken: ''
+    };
   }
 
   componentDidMount() {
     let parsed = queryString.parse(window.location.search);
     let urlAccessToken = parsed.access_token;
-    
-    this.setState( { accessToken: urlAccessToken } );
+
+    this.setState({ accessToken: urlAccessToken });
 
     fetch('https://api.spotify.com/v1/me', {
       headers: { Authorization: 'Bearer ' + urlAccessToken }
@@ -98,28 +105,35 @@ class App extends Component {
     return (
       <ThemeProvider theme={{ mode: this.state.isDarkMode }}>
         <GlobalStyle />
-          { this.state.serverData.user.display_name ?
-            <>
-              <Dashboard userData={ this.state.serverData.user } accessToken={ this.state.accessToken }/>
-            </>
-           : 
-            <>
-              <PseudoNavbar
-                isDark={this.state.isDarkMode}
-                changeTheme={this.handleClick}
-                />
-              <Header />
-              <ModalProvider >
-                <div style={{textAlign: 'center'}}>
-                  <TourButton
-                    showModal={() => this.onOpenModal()}
-                  />
-                  <SignInButton/>
-                </div>
-              </ModalProvider>
-              <SoundBars/>
-            </>
-          }
+        {this.state.serverData.user.display_name ? (
+          <>
+            <Dashboard
+              userData={this.state.serverData.user}
+              accessToken={this.state.accessToken}
+            />
+          </>
+        ) : (
+          <>
+            <PseudoNavbar
+              isDark={this.state.isDarkMode}
+              changeTheme={this.handleClick}
+            />
+            <LandingContainer>
+              <HeaderContainer>
+                <Header />
+                <ModalProvider>
+                  <ButtonsContainer>
+                    <TourButton showModal={() => this.onOpenModal()} />
+                    <SignInButton />
+                  </ButtonsContainer>
+                </ModalProvider>
+              </HeaderContainer>
+              <SoundBarsContainer>
+                <SoundBars />
+              </SoundBarsContainer>
+            </LandingContainer>
+          </>
+        )}
       </ThemeProvider>
     );
   }
