@@ -18,47 +18,57 @@ function UserPlaylists( { userPlaylists,
         }
     }
     
-    const isSelectedPlaylist = id => {
+    const isSelectedPlaylist = ( id, img ) => {
         if ( selected.includes( id ) ) {
-            return { padding: '5px 10px', backgroundColor: 'gray' }
+            return { border: '2px solid #2DD760', backgroundImage: `url(${img}` }
+        } else {
+            return { backgroundImage: `url(${img}` }
         }
     }
     
     return (
         <SelectPlaylistsContainer>
+            {console.log(featuredPlaylists)}
             <SelectPlaylists>Select Playlists</SelectPlaylists>
             <BackButton onClick={ () => setView( 'home' ) }>Back</BackButton>
             <Button disabled={ selected.length ? false : true }
                     onClick={ () => setView( 'playlistSettings' ) }>Next</Button>
+            <PlaylistTabs>
+                <UserTab 
+                    style={ playlistView === 'user' ? { textDecoration: 'underline', fontWeight: 'bold' } : { textDecoration: 'none' } } 
+                    onClick={ () => setPlaylistView( 'user' ) }>
+                    Your Playlists
+                </UserTab>
+                <FeaturedTab 
+                    style={ playlistView === 'spotify' ? { textDecoration: 'underline', fontWeight: 'bold' } : { textDecoration: 'none' } }
+                    onClick={ () => setPlaylistView( 'spotify' ) }>
+                    Spotify Featured Playlists
+                </FeaturedTab>
+            </PlaylistTabs>
             <UsersPlaylists>
-                <PlaylistTabs>
-                    <UserTab 
-                        style={ playlistView === 'user' ? { textDecoration: 'underline', fontWeight: 'bold' } : { textDecoration: 'none' } } 
-                        onClick={ () => setPlaylistView( 'user' ) }>
-                        Your Playlists
-                    </UserTab>
-                    <FeaturedTab 
-                        style={ playlistView === 'spotify' ? { textDecoration: 'underline', fontWeight: 'bold' } : { textDecoration: 'none' } }
-                        onClick={ () => setPlaylistView( 'spotify' ) }>
-                        Spotify Featured Playlists
-                    </FeaturedTab>
-                </PlaylistTabs>
                 { userPlaylists === 'fetching' ? 
                     <span>Loading...</span>
                     :
                     ( playlistView === 'user' ? 
                         ( userPlaylists.map( ( playlist, id ) => {
-                            return <Playlist 
-                                        key={ 'playlist-' + id }
-                                        onClick={ () => addToSelectedPlaylists( playlist.id ) }
-                                        style={ isSelectedPlaylist( playlist.id ) }>{ playlist.name }</Playlist>
+                            return (
+                                <PlaylistContainer>
+                                    <Playlist 
+                                                key={ 'playlist-' + id }
+                                                onClick={ () => addToSelectedPlaylists( playlist.id ) }
+                                                style={ isSelectedPlaylist( playlist.id, playlist.images[0].url ) }>
+                                                { playlist.name }
+                                    </Playlist>
+                                    <PlaylistName>{ playlist.name }</PlaylistName>
+                                </PlaylistContainer>
+                            )
                         } ) )
                         :
                         ( featuredPlaylists.map( ( playlist, id ) => {
                             return <Playlist 
                                         key={ 'playlists-' + id }
                                         onClick={ () => addToSelectedPlaylists( playlist.id ) } 
-                                        style={ isSelectedPlaylist( playlist.id ) }>{ playlist.name }</Playlist>
+                                        style={ isSelectedPlaylist( playlist.id, playlist.images[0].url ) }></Playlist>
                         } ) )
                     )
                     
@@ -103,7 +113,8 @@ const Button = styled.button`
 
 const UsersPlaylists = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
 `;
 
 const PlaylistTabs = styled.div`
@@ -124,9 +135,38 @@ const FeaturedTab = styled.span`
   cursor: pointer;
 `;
 
+const PlaylistContainer = styled.div`
+  position: relative;
+`;
+
 const Playlist = styled.span`
   color: white;
   font-weight: bold;
-  margin: 10px 0;
-  width: fit-content
+  margin: 10px 10px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: 200px;
+  height: 200px;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  box-shadow: 7px 7px 19px -5px rgb(18, 28, 37);
+  border: 2px solid transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+`;
+
+const PlaylistName = styled.span`
+  color: white;
+  font-weight: bold;
+  padding: 12px;
+  border: 1px solid white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.7);
+  text-align: center;
 `;

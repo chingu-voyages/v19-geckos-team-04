@@ -76,7 +76,7 @@ const DashboardContainer = styled.div`
   width: calc(100vw - 4rem);
 
   @media screen and (min-width: 990px) {
-    width: calc(100vw - 20rem);
+    width: calc(100vw - 25rem);
   }
 `;
 
