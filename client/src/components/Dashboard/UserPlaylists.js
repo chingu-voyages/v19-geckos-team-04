@@ -57,12 +57,10 @@ function UserPlaylists( { userPlaylists,
                     ( playlistView === 'user' ? 
                         ( userPlaylists.map( ( playlist, id ) => {
                             return (
-                                <PlaylistContainer>
+                                <PlaylistContainer onClick={ () => addToSelectedPlaylists( playlist.id ) }>
                                     <Playlist 
                                                 key={ 'playlist-' + id }
-                                                onClick={ () => addToSelectedPlaylists( playlist.id ) }
                                                 style={ isSelectedPlaylist( playlist.id, playlist.images[0].url ) }>
-                                                { playlist.name }
                                     </Playlist>
                                     <PlaylistName>{ playlist.name }</PlaylistName>
                                 </PlaylistContainer>
@@ -70,10 +68,14 @@ function UserPlaylists( { userPlaylists,
                         } ) )
                         :
                         ( featuredPlaylists.map( ( playlist, id ) => {
-                            return <Playlist 
-                                        key={ 'playlists-' + id }
-                                        onClick={ () => addToSelectedPlaylists( playlist.id ) } 
-                                        style={ isSelectedPlaylist( playlist.id, playlist.images[0].url ) }></Playlist>
+                            return (
+                                <PlaylistContainer>
+                                    <Playlist 
+                                                key={ 'playlists-' + id }
+                                                onClick={ () => addToSelectedPlaylists( playlist.id ) } 
+                                                style={ isSelectedPlaylist( playlist.id, playlist.images[0].url ) }></Playlist>
+                                </PlaylistContainer>
+                            )
                         } ) )
                     )
                     
@@ -103,6 +105,7 @@ const BackButton = styled.button`
   border: none;
   box-shadow: 7px 7px 19px -5px rgb(18, 28, 37);
   margin-bottom: 30px;
+  cursor: pointer;
 `;
 
 const Button = styled.button`
@@ -114,6 +117,7 @@ const Button = styled.button`
   font-weight: bold;
   border: none;
   box-shadow: 7px 7px 19px -5px rgb(18, 28, 37);
+  cursor: pointer;
 `;
 
 const UsersPlaylists = styled.div`
@@ -142,25 +146,32 @@ const FeaturedTab = styled.span`
 
 const PlaylistContainer = styled.div`
   position: relative;
-`;
-
-const Playlist = styled.span`
-  color: white;
-  font-weight: bold;
-  margin: 10px 10px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
+  cursor: pointer;
   width: 200px;
   height: 200px;
+  margin: 20px 10px;
+  box-shadow: 7px 7px 19px -5px rgb(18, 28, 37);
+  top: 0;
+  transition: top ease .2s;
+  
+  &:hover {
+      top: -5px;
+  }
+`;
+
+const Playlist = styled.div`
+  height: 100%;
+  width: 100%;
+  color: white;
+  font-weight: bold;
   background-color: black;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 8px;
-  box-shadow: 7px 7px 19px -5px rgb(18, 28, 37);
-  border: 2px solid transparent;
   background-repeat: no-repeat;
   background-position: center;
+  border: 2px solid transparent;
 `;
 
 const PlaylistName = styled.span`
