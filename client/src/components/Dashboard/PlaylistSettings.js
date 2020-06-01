@@ -91,6 +91,7 @@ const BackButton = styled.button`
   border: none;
   box-shadow: 7px 7px 19px -5px rgb(18, 28, 37);
   margin-bottom: 30px;
+  cursor: pointer;
 `;
 
 const Button = styled.button`
@@ -102,6 +103,7 @@ const Button = styled.button`
   font-weight: bold;
   border: none;
   box-shadow: 7px 7px 19px -5px rgb(18, 28, 37);
+  cursor: pointer;
 `;
 
 const RangeContainer = styled.div`
