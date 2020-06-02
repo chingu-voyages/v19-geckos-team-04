@@ -85,22 +85,34 @@ const PlaylistSettings = ({ setView, selected, token }) => {
           <>
             <SongContainer style={{ borderTop: 'none', borderBottom: 'none' }}>
               <SongName
-                style={{ color: 'rgba(225,225,225,.6', fontSize: '12px' }}
+                style={{
+                  color: 'rgba(225,225,225,.6',
+                  fontSize: '1rem'
+                }}
               >
                 Title
               </SongName>
               <SongArtist
-                style={{ color: 'rgba(225,225,225,.6', fontSize: '12px' }}
+                style={{
+                  color: 'rgba(225,225,225,.6',
+                  fontSize: '1rem'
+                }}
               >
                 Artist
               </SongArtist>
               <SongAlbum
-                style={{ color: 'rgba(225,225,225,.6', fontSize: '12px' }}
+                style={{
+                  color: 'rgba(225,225,225,.6',
+                  fontSize: '1rem'
+                }}
               >
                 Album
               </SongAlbum>
               <SongDuration
-                style={{ color: 'rgba(225,225,225,.6', fontSize: '12px' }}
+                style={{
+                  color: 'rgba(225,225,225,.6',
+                  fontSize: '1rem'
+                }}
               >
                 Time
               </SongDuration>
@@ -151,6 +163,10 @@ const CustomRange = ({ title, min, max, step, defaultValue }) => {
 const PlaylistSettingsContainer = styled.div`
   position: relative;
   margin: 30px;
+
+  @media screen and (max-width: 768px) {
+    margin: 15px;
+  }
 `;
 
 const SettingsHeader = styled.h1`
@@ -188,11 +204,16 @@ const RangeControlsContainer = styled.div`
   display: grid;
   grid-template-columns: 47.5% 5% 47.5%;
   grid-template-rows: repeat(3, 3.5rem);
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: auto;
+    grid-template-rows: repeat(5, 3.5rem);
+  }
 `;
 
 const RangeHeader = styled.span`
   color: white;
-  font-size: 1rem;
+  :1.1rem ;
 `;
 
 const BPMContainer = styled.div`
@@ -209,6 +230,11 @@ const DanceabilityContainer = styled.div`
   display: grid;
   grid-column: 60% 40%;
   grid-row: auto;
+
+  @media screen and (max-width: 768px) {
+    grid-column: 1/2;
+    grid-row: 2/3;
+  }
 `;
 
 const EnergyContainer = styled.div`
@@ -217,6 +243,10 @@ const EnergyContainer = styled.div`
   display: grid;
   grid-column: 60% 40%;
   grid-row: auto;
+
+  @media screen and (max-width: 768px) {
+    grid-row: 3/4;
+  }
 `;
 
 const InstrumentalnessContainer = styled.div`
@@ -225,6 +255,11 @@ const InstrumentalnessContainer = styled.div`
   display: grid;
   grid-column: 60% 40%;
   grid-row: auto;
+
+  @media screen and (max-width: 768px) {
+    grid-column: 1/2;
+    grid-row: 4/5;
+  }
 `;
 
 const ValenceContainer = styled.div`
@@ -233,6 +268,10 @@ const ValenceContainer = styled.div`
   display: grid;
   grid-column: 60% 40%;
   grid-row: auto;
+
+  @media screen and (max-width: 768px) {
+    grid-row: 5/6;
+  }
 `;
 
 const PlaylistSongs = styled.div`

@@ -8,63 +8,66 @@ import UserPlaylists from './UserPlaylists';
 import PlaylistSettings from './PlaylistSettings';
 
 const Dashboard = ({ userData, accessToken }) => {
-    
-  const [ view, setView ] = useState( 'home' );
-  const [ userPlaylists, setUserPlaylists ] = useState( 'fetching' );
-  const [ featuredPlaylists, setFeaturedPlaylists ] = useState( 'fetching' );
-  const [ selected, setSelected ] = useState( [] );
-  
-  useEffect( () => {
-      fetch(`https://api.spotify.com/v1/users/${ userData.id }/playlists`, {
-        headers: { Authorization: 'Bearer ' + accessToken }
-      })
-        .then(res => res.json())
-        .then(data => {
-            setUserPlaylists( data.items )}
-        ) 
-        
+  const [view, setView] = useState('home');
+  const [userPlaylists, setUserPlaylists] = useState('fetching');
+  const [featuredPlaylists, setFeaturedPlaylists] = useState('fetching');
+  const [selected, setSelected] = useState([]);
+
+  useEffect(() => {
+    fetch(`https://api.spotify.com/v1/users/${userData.id}/playlists`, {
+      headers: { Authorization: 'Bearer ' + accessToken }
+    })
+      .then(res => res.json())
+      .then(data => {
+        setUserPlaylists(data.items);
+      });
+
     fetch(`https://api.spotify.com/v1/browse/featured-playlists`, {
       headers: { Authorization: 'Bearer ' + accessToken }
     })
       .then(res => res.json())
       .then(data => {
-          console.log( data )
-          setFeaturedPlaylists( data.playlists )}
-      )   
-  }, [] )
-  
+        console.log(data);
+        setFeaturedPlaylists(data.playlists);
+      });
+  }, []);
+
   return (
     <Fragment>
-          <DashboardContainer>
-            <DashboardHeader>
-              <Brand>
-                <Logo>LOGO</Logo>
-                <AppName>BPM Workout</AppName>
-              </Brand>
-              {/* CurrentView will be set conditionally in the future */}
-              <CurrentView>My Playlists</CurrentView>
-              {/* <CurrentView>Create Playlist</CurrentView> */}
-            </DashboardHeader>
-            <Menu userData={userData} />
-            { view === 'home' &&
-                <ViewsContainer>
-                  <MyPlaylistsView setPlaylists={ () => setView( 'selectPlaylists' ) }/>
-                  {/* <CreatePlaylistView /> */}
-                </ViewsContainer>
-            }
-            { view === 'selectPlaylists' && 
-                <UserPlaylists userPlaylists={ userPlaylists } 
-                               featuredPlaylists={ featuredPlaylists.items }
-                               selected={ selected }
-                               setSelected={ setSelected }
-                               setView={ setView } />
-            }
-            { view === 'playlistSettings' && 
-                <PlaylistSettings setView={ setView }
-                                  selected={ selected }
-                                  token={ accessToken } />
-            }
-          </DashboardContainer>  
+      <DashboardContainer>
+        <DashboardHeader>
+          <Brand>
+            <Logo>LOGO</Logo>
+            <AppName>BPM Workout</AppName>
+          </Brand>
+          {/* CurrentView will be set conditionally in the future */}
+          <CurrentView>My Playlists</CurrentView>
+          {/* <CurrentView>Create Playlist</CurrentView> */}
+        </DashboardHeader>
+        <Menu userData={userData} />
+        {view === 'home' && (
+          <ViewsContainer>
+            <MyPlaylistsView setPlaylists={() => setView('selectPlaylists')} />
+            {/* <CreatePlaylistView /> */}
+          </ViewsContainer>
+        )}
+        {view === 'selectPlaylists' && (
+          <UserPlaylists
+            userPlaylists={userPlaylists}
+            featuredPlaylists={featuredPlaylists.items}
+            selected={selected}
+            setSelected={setSelected}
+            setView={setView}
+          />
+        )}
+        {view === 'playlistSettings' && (
+          <PlaylistSettings
+            setView={setView}
+            selected={selected}
+            token={accessToken}
+          />
+        )}
+      </DashboardContainer>
     </Fragment>
   );
 };
