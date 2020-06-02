@@ -10,8 +10,10 @@ export default class TourButton extends React.Component {
     super(props);
     this.onOpenModal = this.onOpenModal.bind(this);
     this.onCloseModal = this.onCloseModal.bind(this);
+    // 😨😨 i'm testing stuff. default is...
+    // isOpen: false,
     this.state = {
-      isOpen: false,
+      isOpen: true,
       firstModalOpen: true,
       secondModalOpen: false,
       thirdModalOpen: false,
@@ -96,6 +98,10 @@ const ModalTourDiv = styled.div`
   flex-shrink: 30; 
   justify-content: space-evenly;
   padding: 15px 0;
+
+  @media screen and (max-width: 600px) {
+    justify-content: center;
+  }
 `;
 
 const ModalTourNumber = styled.span`
@@ -116,8 +122,11 @@ const ModalNumberLine = styled.span`
   display: flex;
   align-items: center;
   margin: 0 0 10px 0;
-`;
 
+  @media screen and (max-width: 600px) {
+    padding: 0 15px;
+  }
+`;
 
 const ModalContainer = styled.div`
   justify-content: center;
@@ -167,27 +176,27 @@ const ModalContent = styled.div`
 `;
 
 const CloseButton = styled.span`
+  border-radius: 50%;
   cursor: pointer;
   color: #777;
   font-size: 2rem;
   position: absolute;
-  right: 1.5rem;
-  top: 1.5rem;
-  line-height: 18px;
+  right: 0.5rem;
+  top: 1rem;
+  padding: 3px 15px;
+  ${'' /* line-height: 18px; */}
   @media screen and (max-width: 1200px) {
     font-size: 1.8rem;
-    right: 1.2rem;
+    right: 1rem;
     top: 1.2rem;
   }
-  @media screen and (max-width: 480px) {
-    font-size: 1.2rem;
-    right: 0.7rem;
-    top: 0.7rem;
+  @media screen and (max-width: 1080px) {
+    right: 0.3rem;
   }
-  @media screen and (max-width: 320px) {
-    font-size: 1rem;
-    right: 0.5rem;
-    top: 0.5rem;
+  @media screen and (max-width: 420px) {
+    background-color: #d1d1d1;
+    right: 0rem;
+    top: -3.5rem;
   }
 `;
 
