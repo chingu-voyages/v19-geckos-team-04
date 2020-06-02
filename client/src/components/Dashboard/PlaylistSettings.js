@@ -1,75 +1,151 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import styled from 'styled-components';
 import Slider, { Range } from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
-const PlaylistSettings = ( { setView, selected, token } ) => {
-    
-    const [ songs, setSongs ] = useState( [] );
-    
-    useEffect( () => {
-        
-        selected.forEach( id => {
-            fetch(`https://api.spotify.com/v1/playlists/${ id }/tracks`, {
-              headers: { Authorization: 'Bearer ' + token }
-            })
-              .then(res => res.json())
-              .then(data => {
-                  data.items.forEach( song => {
-                      setSongs( songs => [ ...songs, song ] );
-                  })  
-              } );
-        } )
-         
-    }, [] )
-    
-    const msToMinAndSec = ms => {
-      var minutes = Math.floor(ms / 60000);
-      var seconds = ((ms % 60000) / 1000).toFixed(0);
-      return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
-    }
-    
-  return (
-      <PlaylistSettingsContainer>
-          <SettingsHeader>Playlist Settings</SettingsHeader>
-          <BackButton onClick={ () => setView( 'selectPlaylists' ) }>Back</BackButton>
-          <Button onClick={ () => setView( 'playlistSettings' ) }>Next</Button>
-          <RangeContainer>
-              <RangeHeader>BPM</RangeHeader>
-              <Range min={ 30 } max={ 130 } step={ 5 } defaultValue={ [ 65, 105 ] } minimumTrackStyle={ { marginTop: '10px' } } />
-          </RangeContainer>
-          <PlaylistSongs>
-              { !songs.length ? 
-                  <span>Loading...</span>
-                  :
-                  <>
-                  <SongContainer style={ { borderTop: 'none', borderBottom: 'none' } }>
-                      <SongName style={ { color: 'rgba(225,225,225,.6', fontSize: '12px' } }>Title</SongName>
-                      <SongArtist style={ { color: 'rgba(225,225,225,.6', fontSize: '12px' } }>Artist</SongArtist>
-                      <SongAlbum style={ { color: 'rgba(225,225,225,.6', fontSize: '12px' } }>Album</SongAlbum>
-                      <SongDuration style={ { color: 'rgba(225,225,225,.6', fontSize: '12px' } }>Time</SongDuration>
-                  </SongContainer>
-                  { songs.map( ( song, id ) => {
-                      return (
-                          <SongContainer>
-                              <SongName key={ 'song-' + id }>{ song.track.name }</SongName>
-                              <SongArtist>{ song.track.album.artists[0].name}</SongArtist>
-                              <SongAlbum>{ song.track.album.name }</SongAlbum>
-                              <SongDuration>{ msToMinAndSec( song.track.duration_ms ) }</SongDuration>
-                          </SongContainer>
-                      )
-                  } ) }
-                  </>
-                  
-              }
-          </PlaylistSongs>
-      </PlaylistSettingsContainer>
+const PlaylistSettings = ({ setView, selected, token }) => {
+  const [songs, setSongs] = useState([]);
 
-        
+  useEffect(() => {
+    selected.forEach(id => {
+      fetch(`https://api.spotify.com/v1/playlists/${id}/tracks`, {
+        headers: { Authorization: 'Bearer ' + token }
+      })
+        .then(res => res.json())
+        .then(data => {
+          data.items.forEach(song => {
+            setSongs(songs => [...songs, song]);
+          });
+        });
+    });
+  }, []);
+
+  const msToMinAndSec = ms => {
+    var minutes = Math.floor(ms / 60000);
+    var seconds = ((ms % 60000) / 1000).toFixed(0);
+    return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+  };
+
+  return (
+    <PlaylistSettingsContainer>
+      <SettingsHeader>Playlist Settings</SettingsHeader>
+      <BackButton onClick={() => setView('selectPlaylists')}>Back</BackButton>
+      <Button onClick={() => setView('playlistSettings')}>Next</Button>
+      <RangeControlsContainer>
+        <BPMContainer>
+          <CustomRange
+            title={'BPM'}
+            min={30}
+            max={130}
+            step={5}
+            defaultValue={[65, 105]}
+          />
+        </BPMContainer>
+        <DanceabilityContainer>
+          <CustomRange
+            title={'Danceability'}
+            min={0.0}
+            max={1.0}
+            step={0.1}
+            defaultValue={[0.1, 0.9]}
+          />
+        </DanceabilityContainer>
+        <EnergyContainer>
+          <CustomRange
+            title={'Energy'}
+            min={0.0}
+            max={1.0}
+            step={0.1}
+            defaultValue={[0.1, 0.9]}
+          />
+        </EnergyContainer>
+        <InstrumentalnessContainer>
+          <CustomRange
+            title={'Instrumentalness'}
+            min={0.0}
+            max={1.0}
+            step={0.1}
+            defaultValue={[0.1, 0.9]}
+          />
+        </InstrumentalnessContainer>
+        <ValenceContainer>
+          <CustomRange
+            title={'Valence'}
+            min={0.0}
+            max={1.0}
+            step={0.1}
+            defaultValue={[0.1, 0.9]}
+          />
+        </ValenceContainer>
+      </RangeControlsContainer>
+      <PlaylistSongs>
+        {!songs.length ? (
+          <span>Loading...</span>
+        ) : (
+          <>
+            <SongContainer style={{ borderTop: 'none', borderBottom: 'none' }}>
+              <SongName
+                style={{ color: 'rgba(225,225,225,.6', fontSize: '12px' }}
+              >
+                Title
+              </SongName>
+              <SongArtist
+                style={{ color: 'rgba(225,225,225,.6', fontSize: '12px' }}
+              >
+                Artist
+              </SongArtist>
+              <SongAlbum
+                style={{ color: 'rgba(225,225,225,.6', fontSize: '12px' }}
+              >
+                Album
+              </SongAlbum>
+              <SongDuration
+                style={{ color: 'rgba(225,225,225,.6', fontSize: '12px' }}
+              >
+                Time
+              </SongDuration>
+            </SongContainer>
+            {songs.map((song, id) => {
+              return (
+                <SongContainer>
+                  <SongName key={'song-' + id}>{song.track.name}</SongName>
+                  <SongArtist>{song.track.album.artists[0].name}</SongArtist>
+                  <SongAlbum>{song.track.album.name}</SongAlbum>
+                  <SongDuration>
+                    {msToMinAndSec(song.track.duration_ms)}
+                  </SongDuration>
+                </SongContainer>
+              );
+            })}
+          </>
+        )}
+      </PlaylistSongs>
+    </PlaylistSettingsContainer>
   );
 };
 
 export default PlaylistSettings;
+
+const CustomRange = ({ title, min, max, step, defaultValue }) => {
+  return (
+    <Fragment>
+      <RangeHeader>{title}</RangeHeader>
+      <Range
+        min={min}
+        max={max}
+        step={step}
+        defaultValue={defaultValue}
+        minimumTrackStyle={{ marginTop: '10px' }}
+        railStyle={{ backgroundColor: 'gray' }}
+        trackStyle={[{ backgroundColor: 'orange' }]}
+        handleStyle={[
+          { backgroundColor: 'orange', border: 'none' },
+          { backgroundColor: 'orange', border: 'none' }
+        ]}
+      />
+    </Fragment>
+  );
+};
 
 const PlaylistSettingsContainer = styled.div`
   position: relative;
@@ -95,7 +171,7 @@ const BackButton = styled.button`
 `;
 
 const Button = styled.button`
-  background-color: #2DD760;
+  background-color: #2dd760;
   border-radius: 3px;
   color: black;
   padding: 10px 15px;
@@ -106,15 +182,56 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const RangeContainer = styled.div`
-  width: 40%;
+const RangeControlsContainer = styled.div`
   padding: 20px 0;
+  display: grid;
+  grid-template-columns: 47.5% 5% 47.5%;
+  grid-template-rows: repeat(3, 3.5rem);
 `;
 
 const RangeHeader = styled.span`
-  color: rgba(255,255,255, .5);
-  font-size: 14px;
-  margin-bottom: 15px;
+  color: white;
+  font-size: 1rem;
+`;
+
+const BPMContainer = styled.div`
+  grid-column: 1/2;
+  grid-row: 1/2;
+  display: grid;
+  grid-column: 60% 40%;
+  grid-row: auto;
+`;
+
+const DanceabilityContainer = styled.div`
+  grid-column: 3/4;
+  grid-row: 1/2;
+  display: grid;
+  grid-column: 60% 40%;
+  grid-row: auto;
+`;
+
+const EnergyContainer = styled.div`
+  grid-column: 1/2;
+  grid-row: 2/3;
+  display: grid;
+  grid-column: 60% 40%;
+  grid-row: auto;
+`;
+
+const InstrumentalnessContainer = styled.div`
+  grid-column: 3/4;
+  grid-row: 2/3;
+  display: grid;
+  grid-column: 60% 40%;
+  grid-row: auto;
+`;
+
+const ValenceContainer = styled.div`
+  grid-columm: 1/2;
+  grid-row: 3/4;
+  display: grid;
+  grid-column: 60% 40%;
+  grid-row: auto;
 `;
 
 const PlaylistSongs = styled.div`
@@ -127,8 +244,8 @@ const SongContainer = styled.div`
   width: 100%;
   justify-content: space-between;
   padding: 15px 0;
-  border-top: 1px solid rgba(255,255,255, .3);
-  border-bottom: 1px solid rgba(255,255,255, .3);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 `;
 
 const SongName = styled.div`
