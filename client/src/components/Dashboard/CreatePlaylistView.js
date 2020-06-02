@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { DarkTheme } from '../Shared/Styles/DarkTheme';
-import CollapseUpArrow from '../../images/collapse-up-arrow.svg';
-import ExpandDownArrow from '../../images/expand-down-arrow.svg';
+import CollapseUpArrow from '../../images/collapse-up-arrow.png';
+import ExpandDownArrow from '../../images/expand-down-arrow.png';
 
 const CreatePlaylistView = () => {
   const [collapse, setCollapse] = useState(false);
@@ -28,6 +28,11 @@ const CreatePlaylistView = () => {
         </Category>
         <BPM>
           <FilterLabel>BPM</FilterLabel>
+          <RangeSlider type="range" min="10" max="240" />
+          <RangeValueLabels>
+            <span>10</span>
+            <span>240</span>
+          </RangeValueLabels>
         </BPM>
         <Genre>
           <FilterLabel>Genre</FilterLabel>
@@ -124,6 +129,44 @@ const RadioButtons = styled.div`
 const BPM = styled.div`
   grid-row: 2/3;
   grid-column: 1/2;
+  display: grid;
+`;
+
+const RangeSlider = styled.input`
+  -webkit-appearance: none;
+  width: 80%;
+  height: 0.2rem;
+  border-radius: 5px;
+  background: ${DarkTheme.orange};
+  outline: none;
+  float: right;
+  margin-right: 3rem;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: ${DarkTheme.orange};
+    cursor: pointer;
+  }
+
+  &::-moz-range-thumb {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: #4caf50;
+    cursor: pointer;
+  }
+`;
+
+const RangeValueLabels = styled.div`
+  span {
+    flex-flow: row;
+    justify-self: space-between;
+    color: ${DarkTheme.orange};
+  }
 `;
 
 const Genre = styled.div`

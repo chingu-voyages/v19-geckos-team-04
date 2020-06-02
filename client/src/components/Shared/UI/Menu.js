@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import styled from 'styled-components';
-import ListIcon from '../../../images/list-icon.svg';
-import MenuPlusIcon from '../../../images/menu-plus-icon.svg';
+import ListIcon from '../../../images/list-icon.png';
+import MenuPlusIcon from '../../../images/menu-plus-icon.png';
 import { DarkTheme } from '../Styles/DarkTheme';
 import Burger from '../UI/Burger';
 
