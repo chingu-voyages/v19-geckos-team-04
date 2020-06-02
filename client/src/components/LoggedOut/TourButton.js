@@ -10,10 +10,8 @@ export default class TourButton extends React.Component {
     super(props);
     this.onOpenModal = this.onOpenModal.bind(this);
     this.onCloseModal = this.onCloseModal.bind(this);
-    // 😨😨 i'm testing stuff. default is...
-    // isOpen: false,
     this.state = {
-      isOpen: true,
+      isOpen: false,
       firstModalOpen: true,
       secondModalOpen: false,
       thirdModalOpen: false,
@@ -61,23 +59,38 @@ export default class TourButton extends React.Component {
           <ModalContainer style={{display: this.state.isOpen ? 'flex' : 'none'}}>
             <ModalContent>
               <ModalTourDiv>
-                <ModalTourNumber onClick={() => this.setState({
-                  firstModalOpen: true,
-                  secondModalOpen: false,
-                  thirdModalOpen: false,
-                })}>1</ModalTourNumber>
+
+                <ModalTourNumber 
+                  onClick={() => this.setState({
+                    firstModalOpen: true,
+                    secondModalOpen: false,
+                    thirdModalOpen: false,
+                  })}
+                  style={{backgroundColor: this.state.firstModalOpen ? '#2dd760' : '#444'}}>
+                    1
+                </ModalTourNumber>
                 <ModalNumberLine>_____</ModalNumberLine>
-                <ModalTourNumber onClick={() => this.setState({
-                  firstModalOpen: false,
-                  secondModalOpen: true,
-                  thirdModalOpen: false,
-                })}>2</ModalTourNumber>
+
+                <ModalTourNumber 
+                  onClick={() => this.setState({
+                    firstModalOpen: false,
+                    secondModalOpen: true,
+                    thirdModalOpen: false,
+                  })}
+                  style={{backgroundColor: this.state.secondModalOpen ? '#2dd760' : '#444'}}>
+                    2
+                </ModalTourNumber>
                 <ModalNumberLine>_____</ModalNumberLine>
-                <ModalTourNumber onClick={() => this.setState({
-                  firstModalOpen: false,
-                  secondModalOpen: false,
-                  thirdModalOpen: true,
-                })}>3</ModalTourNumber>
+
+                <ModalTourNumber 
+                  onClick={() => this.setState({
+                    firstModalOpen: false,
+                    secondModalOpen: false,
+                    thirdModalOpen: true,
+                  })}
+                  style={{backgroundColor: this.state.thirdModalOpen ? '#2dd760' : '#444'}}>
+                    3
+                </ModalTourNumber>
               </ModalTourDiv>
                 <CloseButton onClick={this.onCloseModal}>&times;</CloseButton>
               {modalConditional}
@@ -105,7 +118,6 @@ const ModalTourDiv = styled.div`
 `;
 
 const ModalTourNumber = styled.span`
-  background-color: #444;
   border-radius: 50%;
   color: #fff;
   cursor: pointer;
