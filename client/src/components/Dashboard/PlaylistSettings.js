@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import styled from 'styled-components';
-import Slider, { Range } from 'rc-slider';
+import Slider, { Range, createSliderWithTooltip } from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
 const PlaylistSettings = ({ setView, selected, token }) => {
@@ -127,10 +127,11 @@ const PlaylistSettings = ({ setView, selected, token }) => {
 export default PlaylistSettings;
 
 const CustomRange = ({ title, min, max, step, defaultValue }) => {
+  const RangeWithSlider = createSliderWithTooltip(Range);
   return (
     <Fragment>
       <RangeHeader>{title}</RangeHeader>
-      <Range
+      <RangeWithSlider
         min={min}
         max={max}
         step={step}
