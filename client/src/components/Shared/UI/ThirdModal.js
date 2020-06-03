@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const ThirdModal = () => {
   return (
     <ModuleDiv>
-      <ModuleText>Third and last modal. No more images, right?</ModuleText>
+      <ModuleText>Third and last modal. No more images.</ModuleText>
       <ModuleButton>Sign Up Now</ModuleButton>
     </ModuleDiv>
   )
@@ -19,6 +19,10 @@ const ModuleDiv = styled.div`
   flex-direction: column;
   margin: 0 auto;
   width: 50%;
+
+  @media screen and (max-width: 600px) {
+    width: 80%;
+  }
 `;
 
 const ModuleText = styled.p`

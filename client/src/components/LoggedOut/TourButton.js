@@ -166,7 +166,7 @@ const ModalContainer = styled.div`
 const ModalContent = styled.div`
   position: relative;
   width: 50vw;
-  min-height: 55vh;
+  min-height: 57vh;
   background-color: #e5e5e5;
   box-sizing: border-box;
   border-radius: 40px;
