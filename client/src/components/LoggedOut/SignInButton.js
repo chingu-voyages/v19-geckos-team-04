@@ -5,7 +5,7 @@ const SignInButton = () => {
   return (
     <SignInStyle
       className="spotify-login" 
-      onClick={ () => window.location = 'http://geckos4-backend.herokuapp.com/login' }>
+      onClick={ () => window.location = 'http://localhost:8888/' }>
         Login with Spotify
     </SignInStyle>
   )
