@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "express": "^4.15.4",
+    "passport": "^0.4.1",
+    "passport-spotify": "^1.1.0",
     "querystring": "^0.2.0",
     "request": "^2.81.0"
   }

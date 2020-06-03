@@ -1,6 +1,9 @@
 const express = require('express');
+const authRoutes = require('./routes/auth-routes');
 
 const app = express();
+
+app.get('/', authRoutes);
 
 const port = 8888;
 
