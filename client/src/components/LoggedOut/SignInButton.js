@@ -5,7 +5,7 @@ const SignInButton = () => {
   return (
     <SignInStyle
       className="spotify-login" 
-      onClick={ () => window.location = 'http://localhost:8888/' }>
+      onClick={ () => window.location = 'http://localhost:8888/auth/spotify' }>
         Login with Spotify
     </SignInStyle>
   )
