@@ -5,7 +5,9 @@ const ThirdModal = () => {
   return (
     <ModuleDiv>
       <ModuleText>Third and last modal. No more images.</ModuleText>
-      <ModuleButton>Sign Up Now</ModuleButton>
+      <ModuleButton>
+        Sign Up Now
+      </ModuleButton>
     </ModuleDiv>
   )
 }
