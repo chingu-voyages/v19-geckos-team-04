@@ -3,8 +3,14 @@ import styled from 'styled-components';
 import Slider, { Range, createSliderWithTooltip } from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
+
 const PlaylistSettings = ({ setView, selected, token }) => {
   const [songs, setSongs] = useState([]);
+  const [bpmValues, setBpmValues] = useState([65, 105]);
+
+  const onBpmValuesChangedHandler = values => {
+    setBpmValues(values);
+  };
 
   useEffect(() => {
     selected.forEach(id => {
@@ -38,7 +44,8 @@ const PlaylistSettings = ({ setView, selected, token }) => {
             min={30}
             max={130}
             step={5}
-            defaultValue={[65, 105]}
+            defaultValue={bpmValues}
+            onRangeValuesChanged={onBpmValuesChangedHandler}
           />
         </BPMContainer>
         <DanceabilityContainer>
@@ -138,7 +145,7 @@ const PlaylistSettings = ({ setView, selected, token }) => {
 
 export default PlaylistSettings;
 
-const CustomRange = ({ title, min, max, step, defaultValue }) => {
+const CustomRange = ({ title, min, max, step, defaultValue, onRangeValuesChanged}) => {
   const RangeWithSlider = createSliderWithTooltip(Range);
   return (
     <Fragment>
@@ -155,6 +162,7 @@ const CustomRange = ({ title, min, max, step, defaultValue }) => {
           { backgroundColor: 'orange', border: 'none' },
           { backgroundColor: 'orange', border: 'none' }
         ]}
+        onAfterChange={onRangeValuesChanged}
       />
     </Fragment>
   );
