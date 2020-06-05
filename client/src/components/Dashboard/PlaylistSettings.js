@@ -3,14 +3,52 @@ import styled from 'styled-components';
 import Slider, { Range, createSliderWithTooltip } from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
-
 const PlaylistSettings = ({ setView, selected, token }) => {
-  const [songs, setSongs] = useState([]);
+  const [allSongs, setAllSongs] = useState([]);
+  const [filteredSongs, setFilteredSongs] = useState(allSongs);
   const [bpmValues, setBpmValues] = useState([65, 105]);
+  const [danceabilityValues, setDanceabilityValues] = useState([0.0, 1.0]);
+  const [energyValues, setEnergyValues] = useState([0.0, 1.0]);
+  const [instrumentalnessValues, setInstrumentalnessValues] = useState([0.0, 1.0]);
+  const [valenceValues, setValenceValues] = useState([0.0, 1.0]);
 
   const onBpmValuesChangedHandler = values => {
     setBpmValues(values);
   };
+
+  const onDanceabilityValuesChangedHandler = values => {
+    setDanceabilityValues(values);
+  };
+
+  const onEnergyValuesChangedHandler = values => {
+    setEnergyValues(values);
+  };
+
+  const onInstrumentalnessValuesChangedHandler = values => {
+    setInstrumentalnessValues(values);
+  };
+
+  const onValenceValuesChangedHandler = values => {
+    setValenceValues(values);
+  };
+
+  useEffect(() => {
+    setFilteredSongs(
+      allSongs.filter(
+        ({ features: { tempo, danceability, energy, instrumentalness, valence } }) =>
+          tempo >= bpmValues[0] &&
+          tempo <= bpmValues[1] &&
+          danceability >= danceabilityValues[0] &&
+          danceability <= danceabilityValues[1] &&
+          energy >= energyValues[0] &&
+          energy <= energyValues[1] &&
+          instrumentalness >= instrumentalnessValues[0] &&
+          instrumentalness <= instrumentalnessValues[1] &&
+          valence >= valenceValues[0] &&
+          valence <= valenceValues[1]
+      )
+    );
+  }, [bpmValues, danceabilityValues, energyValues, instrumentalnessValues, valenceValues]);
 
   useEffect(() => {
     selected.forEach(id => {
@@ -19,9 +57,25 @@ const PlaylistSettings = ({ setView, selected, token }) => {
       })
         .then(res => res.json())
         .then(data => {
-          data.items.forEach(song => {
-            setSongs(songs => [...songs, song]);
-          });
+          const songIds = data.items.map(x => x.track.id).join(',');
+          fetch(`https://api.spotify.com/v1/audio-features/?ids=${songIds}`, {
+            headers: { Authorization: 'Bearer ' + token }
+          })
+            .then(res => res.json())
+            .then(features => {
+              const featuresDictionary = {};
+              features.audio_features.forEach(
+                feature => (featuresDictionary[feature.id] = feature)
+              );
+              data.items.forEach(song => {
+                const features = featuresDictionary[song.track.id];
+                setAllSongs(allSongs => [...allSongs, { ...song, features }]);
+                setFilteredSongs(allSongs => [
+                  ...allSongs,
+                  { ...song, features }
+                ]);
+              });
+            });
         });
     });
   }, []);
@@ -54,7 +108,8 @@ const PlaylistSettings = ({ setView, selected, token }) => {
             min={0.0}
             max={1.0}
             step={0.1}
-            defaultValue={[0.1, 0.9]}
+            defaultValue={danceabilityValues}
+            onRangeValuesChanged={onDanceabilityValuesChangedHandler}
           />
         </DanceabilityContainer>
         <EnergyContainer>
@@ -63,7 +118,8 @@ const PlaylistSettings = ({ setView, selected, token }) => {
             min={0.0}
             max={1.0}
             step={0.1}
-            defaultValue={[0.1, 0.9]}
+            defaultValue={energyValues}
+            onRangeValuesChanged={onEnergyValuesChangedHandler}
           />
         </EnergyContainer>
         <InstrumentalnessContainer>
@@ -72,7 +128,8 @@ const PlaylistSettings = ({ setView, selected, token }) => {
             min={0.0}
             max={1.0}
             step={0.1}
-            defaultValue={[0.1, 0.9]}
+            defaultValue={instrumentalnessValues}
+            onRangeValuesChanged={onInstrumentalnessValuesChangedHandler}
           />
         </InstrumentalnessContainer>
         <ValenceContainer>
@@ -81,12 +138,13 @@ const PlaylistSettings = ({ setView, selected, token }) => {
             min={0.0}
             max={1.0}
             step={0.1}
-            defaultValue={[0.1, 0.9]}
+            defaultValue={valenceValues}
+            onRangeValuesChanged={onValenceValuesChangedHandler}
           />
         </ValenceContainer>
       </RangeControlsContainer>
       <PlaylistSongs>
-        {!songs.length ? (
+        {!filteredSongs.length ? (
           <span>Loading...</span>
         ) : (
           <>
@@ -124,7 +182,7 @@ const PlaylistSettings = ({ setView, selected, token }) => {
                 Time
               </SongDuration>
             </SongContainer>
-            {songs.map((song, id) => {
+            {filteredSongs.map((song, id) => {
               return (
                 <SongContainer>
                   <SongName key={'song-' + id}>{song.track.name}</SongName>
@@ -145,7 +203,14 @@ const PlaylistSettings = ({ setView, selected, token }) => {
 
 export default PlaylistSettings;
 
-const CustomRange = ({ title, min, max, step, defaultValue, onRangeValuesChanged}) => {
+const CustomRange = ({
+  title,
+  min,
+  max,
+  step,
+  defaultValue,
+  onRangeValuesChanged
+}) => {
   const RangeWithSlider = createSliderWithTooltip(Range);
   return (
     <Fragment>
