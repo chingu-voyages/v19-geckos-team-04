@@ -31,4 +31,5 @@ const SignInStyle = styled.button`
   margin: 0 15px;
   box-shadow: 7px 7px 19px -5px rgb(18, 28, 37);
   border: none;
+  white-space: nowrap;
 `;
