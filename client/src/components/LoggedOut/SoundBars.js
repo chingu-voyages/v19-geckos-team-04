@@ -153,12 +153,27 @@ export default SoundBars;
 
 const SoundBarContainer = styled.div`
   margin: 0 auto;
-  width: min-content;
+  opacity: 0.8;
+  width: 800px;
+  
+  @media screen and (max-width: 990px) {
+    width: 660px;
+  }
+  @media screen and (max-width: 768px) {
+    width: 450px;
+    opacity: 0.7;
+    overflow: hidden;
+  }
+  @media screen and (max-width: 480px) {
+    width: 300px;
+    opacity: 0.6;
+  }
 `;
 
 const BlockWrapper = styled.div`
   display: table-cell;
   height: 69vh;
+  width: 8.333%; /* 12 columns total. 100 / 12 = 8.333~ */
   vertical-align: bottom;
 `;
 
@@ -172,8 +187,9 @@ const PTag = styled.p`
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
+  display: inline-block;
   height: 17px;
-  margin: 13px;
-  width: 50px;
+  margin: 5px;
+  width: 80%;
   z-index: -999;
 `;
