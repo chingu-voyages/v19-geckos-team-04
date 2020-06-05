@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import queryString from 'query-string';
@@ -43,19 +42,23 @@ const SoundBarsContainer = styled.div`
 const GlobalStyle = createGlobalStyle`
   body, html {
     background-color: ${props => (props.theme.mode ? '#212e3a' : '#fffde9')};
-    }
+  }
   .logo-text-TEMPORARY {
-    color: ${props => (props.theme.mode ? '#fff' : '#000')}
+    color: ${props => (props.theme.mode ? '#fff' : '#000')};
   }
   .header-text {
-    color: ${props => (props.theme.mode ? '#0df0ff' : '#088f99')}
+    color: ${props => (props.theme.mode ? '#0df0ff' : '#088f99')};
   }
   .tour-btn {
+    /* Tour button has two color sets: one for dark, one for light. */
+    /* For :hover, the first val is for dark mode, and the second val is for light mode. */
     background-color: ${props => (props.theme.mode ? '#e5e5e5' : '#b6b6b6')};
+    &:hover {
+      background-color: ${props => (props.theme.mode ? '#b6b6b6' : '#e2e2e2')}
     }
+  }
   .subhead-text {
-    color: ${props => (props.theme.mode ? '#fff' : '#444')}
-    }
+    color: ${props => (props.theme.mode ? '#fff' : '#444')};
   }
 `;
 

@@ -164,6 +164,11 @@ const SoundBarContainer = styled.div`
     opacity: 0.7;
     overflow: hidden;
   }
+  @media screen and (max-width: 676px) {
+    /* Helps correct the push-down in TourButton.js. */
+    margin-top: -20px;
+  }
+
   @media screen and (max-width: 480px) {
     width: 300px;
     opacity: 0.6;

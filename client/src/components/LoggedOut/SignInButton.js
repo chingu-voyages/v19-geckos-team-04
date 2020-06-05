@@ -31,5 +31,15 @@ const SignInStyle = styled.button`
   margin: 0 15px;
   box-shadow: 7px 7px 19px -5px rgb(18, 28, 37);
   border: none;
+  transition-duration: 0.5s;
   white-space: nowrap;
+
+  &:hover {
+    background-color: #14ff5b;
+  }
+
+  @media screen and (max-width: 676px) {
+    display: block;
+    margin: 0 auto;
+  }
 `;
