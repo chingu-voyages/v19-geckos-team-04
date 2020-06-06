@@ -5,8 +5,15 @@ const passport = require('passport');
 
 const app = express();
 
+// initialize passport
 app.use(passport.initialize());
 
+// connect to mongoDB
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedParser: true }, () => {
+    console.log('Connected to mongoDB.')
+})
+
+//set up routes
 app.use("/auth", authRoutes);
 
 const port = 8888;
