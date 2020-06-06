@@ -4,8 +4,8 @@
 
 // let app = express()
 
-// let redirect_uri = 
-//   process.env.REDIRECT_URI || 
+// let redirect_uri =
+//   process.env.REDIRECT_URI ||
 //   'http://localhost:8888/callback'
 
 // app.get('/login', function(req, res) {
@@ -44,5 +44,3 @@
 // let port = process.env.PORT || 8888
 // console.log(`Listening on port ${port}. Go /login to initiate authentication flow.`)
 // app.listen(port)
-
-
