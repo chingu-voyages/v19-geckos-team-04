@@ -3,6 +3,15 @@ const SpotifyStrategy = require("passport-spotify").Strategy;
 const dotenv = require("dotenv").config();
 const User = require('../models/user-models');
 
+// serialize user for cookie session
+passport.serializeUser((user, done) => {
+    done(null, user.id);
+  });
+  
+  passport.deserializeUser((id, done) => {
+    User.findById(id).then((user) => done(null, user));
+  });
+
 passport.use(
   new SpotifyStrategy(
     {
