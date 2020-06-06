@@ -1,6 +1,7 @@
 const passport = require("passport");
 const SpotifyStrategy = require("passport-spotify").Strategy;
 const dotenv = require("dotenv").config();
+const User = require('../models/user-models');
 
 passport.use(
   new SpotifyStrategy(
@@ -10,7 +11,22 @@ passport.use(
       clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
     },
     (accessToken, refreshToken, profile, done) => {
-      return done(null, profile)
+        // check if user already exists in database
+        console.log(profile);
+        User.findOne({ spotifyID: profile.id }).then((currentUser) => {
+            currentUser
+            ? done(null, currentUser)
+            : new User({
+                username: profile.username,
+                spotifyID: profile.id,
+                email: profile.email,
+                })
+                .save()
+                .then((newUser) => {
+                    console.log(`new user created: ${newUser}`);
+                    done(null, newUser);
+                });
+        });
     }
   )
 );

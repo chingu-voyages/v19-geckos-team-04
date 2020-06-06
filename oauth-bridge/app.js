@@ -2,6 +2,7 @@ const express = require("express");
 const authRoutes = require("./routes/auth-routes");
 const passportSetup = require("./config/passport-setup");
 const passport = require('passport');
+const mongoose = require('mongoose');
 
 const app = express();
 
@@ -9,7 +10,7 @@ const app = express();
 app.use(passport.initialize());
 
 // connect to mongoDB
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedParser: true }, () => {
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
     console.log('Connected to mongoDB.')
 })
 
