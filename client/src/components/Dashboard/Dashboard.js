@@ -27,7 +27,6 @@ const Dashboard = ({ userData, accessToken }) => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         setFeaturedPlaylists(data.playlists);
       });
   }, []);

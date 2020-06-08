@@ -4,6 +4,7 @@ import Slider, { Range, createSliderWithTooltip } from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
 const PlaylistSettings = ({ setView, selected, token }) => {
+  const [isFetching, setIsFetching] = useState( true );
   const [allSongs, setAllSongs] = useState([]);
   const [filteredSongs, setFilteredSongs] = useState(allSongs);
   const [bpmValues, setBpmValues] = useState([65, 105]);
@@ -31,6 +32,11 @@ const PlaylistSettings = ({ setView, selected, token }) => {
   const onValenceValuesChangedHandler = values => {
     setValenceValues(values);
   };
+  
+  const removeFromPlaylist = id => {
+    let updatedPlaylist = filteredSongs.filter( song => song.track.id !== id );
+    setFilteredSongs( updatedPlaylist );
+  }
 
   useEffect(() => {
     setFilteredSongs(
@@ -74,6 +80,7 @@ const PlaylistSettings = ({ setView, selected, token }) => {
                   ...allSongs,
                   { ...song, features }
                 ]);
+                setIsFetching( false );
               });
             });
         });
@@ -90,7 +97,7 @@ const PlaylistSettings = ({ setView, selected, token }) => {
     <PlaylistSettingsContainer>
       <SettingsHeader>Playlist Settings</SettingsHeader>
       <BackButton onClick={() => setView('selectPlaylists')}>Back</BackButton>
-      <Button onClick={() => setView('playlistSettings')}>Next</Button>
+      <Button onClick={() => setView('playlistSettings')}>Save Playlist</Button>
       <RangeControlsContainer>
         <BPMContainer>
           <CustomRange
@@ -144,58 +151,73 @@ const PlaylistSettings = ({ setView, selected, token }) => {
         </ValenceContainer>
       </RangeControlsContainer>
       <PlaylistSongs>
-        {!filteredSongs.length ? (
-          <span>Loading...</span>
-        ) : (
-          <>
-            <SongContainer style={{ borderTop: 'none', borderBottom: 'none' }}>
-              <SongName
-                style={{
-                  color: 'rgba(225,225,225,.6',
-                  fontSize: '1rem'
-                }}
-              >
-                Title
-              </SongName>
-              <SongArtist
-                style={{
-                  color: 'rgba(225,225,225,.6',
-                  fontSize: '1rem'
-                }}
-              >
-                Artist
-              </SongArtist>
-              <SongAlbum
-                style={{
-                  color: 'rgba(225,225,225,.6',
-                  fontSize: '1rem'
-                }}
-              >
-                Album
-              </SongAlbum>
-              <SongDuration
-                style={{
-                  color: 'rgba(225,225,225,.6',
-                  fontSize: '1rem'
-                }}
-              >
-                Time
-              </SongDuration>
-            </SongContainer>
-            {filteredSongs.map((song, id) => {
-              return (
-                <SongContainer>
-                  <SongName key={'song-' + id}>{song.track.name}</SongName>
-                  <SongArtist>{song.track.album.artists[0].name}</SongArtist>
-                  <SongAlbum>{song.track.album.name}</SongAlbum>
-                  <SongDuration>
-                    {msToMinAndSec(song.track.duration_ms)}
+        { isFetching ? 
+            <span>Loading...</span>
+            :
+            ( !filteredSongs.length ?
+              <span>No matching songs. Please reset your filters</span>
+              :
+              <>
+                <SongContainer style={{ borderTop: 'none', borderBottom: 'none' }}>
+                  <SongName
+                    style={{
+                      color: 'rgba(225,225,225,.6',
+                      fontSize: '1rem'
+                    }}
+                  >
+                    Title
+                  </SongName>
+                  <SongArtist
+                    style={{
+                      color: 'rgba(225,225,225,.6',
+                      fontSize: '1rem'
+                    }}
+                  >
+                    Artist
+                  </SongArtist>
+                  <SongAlbum
+                    style={{
+                      color: 'rgba(225,225,225,.6',
+                      fontSize: '1rem'
+                    }}
+                  >
+                    Album
+                  </SongAlbum>
+                  <SongDuration
+                    style={{
+                      color: 'rgba(225,225,225,.6',
+                      fontSize: '1rem'
+                    }}
+                  >
+                    Time
                   </SongDuration>
+                  <SongDelete style={{
+                    color: 'rgba(225,225,225,.6',
+                    fontSize: '1rem'
+                  }}
+                  >
+                  </SongDelete>
                 </SongContainer>
-              );
-            })}
-          </>
-        )}
+                {filteredSongs.map((song, id) => {
+                  return (
+                    <SongContainer>
+                      <SongName key={'song-' + id}>{song.track.name}</SongName>
+                      <SongArtist>{song.track.album.artists[0].name}</SongArtist>
+                      <SongAlbum>{song.track.album.name}</SongAlbum>
+                      <SongDuration>
+                        {msToMinAndSec(song.track.duration_ms)}
+                      </SongDuration>
+                      <SongDelete onClick={ () => removeFromPlaylist( song.track.id ) }>
+                          <svg width="15" height="15" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M9.69048 6.66667L9.69048 15.5714M12.9269 6.70331L12.1174 15.6081M6.45072 6.63002L7.26024 15.5348M2.80952 4.2381H16.5714L14.8512 18H4.52976L2.80952 4.2381ZM2 2.61905H17.381V4.2381H2V2.61905ZM7.66667 1H11.7143V2.61905H7.66667V1Z" stroke="#FDFAFF" strokeWidth="0.809524"/>
+                          </svg>
+                      </SongDelete>
+                    </SongContainer>
+                  );
+                })}
+              </>
+            )
+        }
       </PlaylistSongs>
     </PlaylistSettingsContainer>
   );
@@ -392,4 +414,11 @@ const SongDuration = styled.div`
   color: white;
   width: 10%;
   text-align: right;
+`;
+
+const SongDelete = styled.div`
+  color: white;
+  width: 5%;
+  text-align: right;
+  cursor: pointer;
 `;
