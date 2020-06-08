@@ -22,7 +22,7 @@ const Dashboard = ({ userData, accessToken }) => {
         setUserPlaylists(data.items);
       });
 
-    fetch(`https://api.spotify.com/v1/browse/featured-playlists`, {
+    fetch(`https://api.spotify.com/v1/browse/categories/workout/playlists`, {
       headers: { Authorization: 'Bearer ' + accessToken }
     })
       .then(res => res.json())

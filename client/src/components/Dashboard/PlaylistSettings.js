@@ -1,6 +1,7 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import styled from 'styled-components';
 import Slider, { Range, createSliderWithTooltip } from 'rc-slider';
+import PlaylistName from './PlaylistName';
 import 'rc-slider/assets/index.css';
 
 const PlaylistSettings = ({ setView, selected, token }) => {
@@ -98,6 +99,7 @@ const PlaylistSettings = ({ setView, selected, token }) => {
       <SettingsHeader>Playlist Settings</SettingsHeader>
       <BackButton onClick={() => setView('selectPlaylists')}>Back</BackButton>
       <Button onClick={() => setView('playlistSettings')}>Save Playlist</Button>
+      <PlaylistName songs={ allSongs } />
       <RangeControlsContainer>
         <BPMContainer>
           <CustomRange
