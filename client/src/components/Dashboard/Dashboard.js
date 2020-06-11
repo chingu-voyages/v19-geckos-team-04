@@ -44,8 +44,8 @@ const Dashboard = ({ userData, accessToken }) => {
           <Brand>
             <Logo className="logo-text-TEMPORARY">LOGO</Logo>
             <AppName className="logo-text-TEMPORARY">BPM Workout</AppName>
-            <SunMoonIcon 
-              isDark={themeType} 
+            <SunMoonIcon
+              isDark={themeType}
               changeTheme={() => setThemeType(!themeType)}
             />
           </Brand>
@@ -53,7 +53,10 @@ const Dashboard = ({ userData, accessToken }) => {
           <CurrentView className="my-playlist-text">My Playlists</CurrentView>
           {/* <CurrentView>Create Playlist</CurrentView> */}
         </DashboardHeader>
-        <Menu userData={userData} />
+        <Menu
+          isDark={themeType}
+          userData={userData}
+        />
         {view === 'home' && (
           <ViewsContainer>
             <MyPlaylistsView setPlaylists={() => setView('selectPlaylists')} />
@@ -140,17 +143,36 @@ const CurrentView = styled.div`
   margin-right: 4rem;
 `;
 
+
 const GlobalStyleDashboard = createGlobalStyle`
   body, html {
-    background-color: ${props => (props.theme.mode ? DarkTheme.gunmetal : LightTheme.lightCream )};
+    background-color: ${props => (props.theme.mode ? DarkTheme.gunmetal : LightTheme.lightcream )};
   }
   .logo-text-TEMPORARY {
     color: ${props => (props.theme.mode ? DarkTheme.lightgray : LightTheme.black )};
   }
   .large-text {
-    color: ${props => (props.theme.mode ? '#fff' : LightTheme.black )}
+    color: ${props => (props.theme.mode ? DarkTheme.white : LightTheme.black )}
   }
   .my-playlist-text {
     color: ${props => (props.theme.mode ? DarkTheme.agua : LightTheme.agua )}
+  }
+  .burger-lines {
+    background: ${props => (props.theme.mode ? DarkTheme.white : LightTheme.black )}
+  }
+  .menu-bg {
+    background-color: ${props => (props.theme.mode ? DarkTheme.charcoal : LightTheme.lightblue )}
+  }
+  .menu-greeting {
+    color: ${props => (props.theme.mode ? DarkTheme.green : LightTheme.darkgreen )}
+  }
+  .menu-logout-text {
+    color: ${props => (props.theme.mode ? DarkTheme.mediumgray : LightTheme.darkgray )}
+  }
+  .menu-my-playlists {
+    color: ${props => (props.theme.mode ? DarkTheme.white : LightTheme.black )}
+  }
+  .menu-create {
+    color: ${props => (props.theme.mode ? DarkTheme.white : LightTheme.black )}
   }
 `;

@@ -137,7 +137,7 @@ const StyledDivContainer = styled.div`
 // Styles for dark and light modes, respectively.
 const GlobalStyle = createGlobalStyle`
   body, html {
-    background-color: ${props => (props.theme.mode ? DarkTheme.gunmetal : LightTheme.lightCream )};
+    background-color: ${props => (props.theme.mode ? DarkTheme.gunmetal : LightTheme.lightcream )};
   }
   .logo-text-TEMPORARY {
     color: ${props => (props.theme.mode ? DarkTheme.lightgray : LightTheme.black)};
@@ -147,12 +147,12 @@ const GlobalStyle = createGlobalStyle`
   }
   .tour-btn {
     /* Tour button has two color sets. */
-    background-color: ${props => (props.theme.mode ? '#e5e5e5' : LightTheme.lightGray)};
+    background-color: ${props => (props.theme.mode ? DarkTheme.tourbtn : LightTheme.lightgray)};
     &:hover {
-      background-color: ${props => (props.theme.mode ? DarkTheme.mediumGray : '#e2e2e2')}
+      background-color: ${props => (props.theme.mode ? DarkTheme.mediumgray : LightTheme.tourbtnhover )}
     }
   }
   .subhead-text {
-    color: ${props => (props.theme.mode ? DarkTheme.lightgray : LightTheme.darkGray )};
+    color: ${props => (props.theme.mode ? DarkTheme.lightgray : LightTheme.darkgray )};
   }
 `;
