@@ -9,58 +9,10 @@ import SignInButton from '../LoggedOut/SignInButton';
 import SoundBars from '../LoggedOut/SoundBars';
 import PseudoNavbar from '../LoggedOut/PseudoNavbar';
 import Dashboard from '../Dashboard/Dashboard';
+import { DarkTheme } from '../../components/Shared/Styles/DarkTheme';
+import { LightTheme } from '../../components/Shared/Styles/LightTheme';
 import { ModalProvider } from 'styled-react-modal';
 import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
-
-const LandingContainer = styled.div`
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  z-index: -1;
-`;
-
-const HeaderContainer = styled.div`
-  position: relative;
-  top: 20%;
-  z-index: 1000;
-`;
-
-const ButtonsContainer = styled.div`
-  text-align: center;
-`;
-
-const SoundBarsContainer = styled.div`
-  position: relative;
-  align-self: center;
-  z-index: 999;
-  bottom: 0;
-`;
-
-// Styles for dark and light modes, respectively.
-const GlobalStyle = createGlobalStyle`
-  body, html {
-    background-color: ${props => (props.theme.mode ? '#212e3a' : '#fffde9')};
-  }
-  .logo-text-TEMPORARY {
-    color: ${props => (props.theme.mode ? '#fff' : '#000')};
-  }
-  .header-text {
-    color: ${props => (props.theme.mode ? '#0df0ff' : '#088f99')};
-  }
-  .tour-btn {
-    /* Tour button has two color sets: one for dark, one for light. */
-    /* For :hover, the first val is for dark mode, and the second val is for light mode. */
-    background-color: ${props => (props.theme.mode ? '#e5e5e5' : '#b6b6b6')};
-    &:hover {
-      background-color: ${props => (props.theme.mode ? '#b6b6b6' : '#e2e2e2')}
-    }
-  }
-  .subhead-text {
-    color: ${props => (props.theme.mode ? '#fff' : '#444')};
-  }
-`;
 
 class App extends Component {
   constructor(props) {
@@ -143,3 +95,53 @@ class App extends Component {
 }
 
 export default App;
+
+
+const LandingContainer = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+`;
+
+const HeaderContainer = styled.div`
+  position: relative;
+  top: 20%;
+  z-index: 1000;
+`;
+
+const ButtonsContainer = styled.div`
+  text-align: center;
+`;
+
+const SoundBarsContainer = styled.div`
+  position: relative;
+  align-self: center;
+  z-index: 999;
+  bottom: 0;
+`;
+
+// Styles for dark and light modes, respectively.
+const GlobalStyle = createGlobalStyle`
+  body, html {
+    background-color: ${props => (props.theme.mode ? DarkTheme.gunmetal : LightTheme.lightCream )};
+  }
+  .logo-text-TEMPORARY {
+    color: ${props => (props.theme.mode ? DarkTheme.lightgray : LightTheme.black)};
+  }
+  .header-text {
+    color: ${props => (props.theme.mode ? DarkTheme.agua : LightTheme.agua )};
+  }
+  .tour-btn {
+    /* Tour button has two color sets. */
+    background-color: ${props => (props.theme.mode ? '#e5e5e5' : LightTheme.lightGray)};
+    &:hover {
+      background-color: ${props => (props.theme.mode ? DarkTheme.mediumGray : '#e2e2e2')}
+    }
+  }
+  .subhead-text {
+    color: ${props => (props.theme.mode ? DarkTheme.lightgray : LightTheme.darkGray )};
+  }
+`;
