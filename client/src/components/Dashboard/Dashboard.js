@@ -2,6 +2,8 @@ import React, { Fragment, useState, useEffect } from 'react';
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { DarkTheme } from '../Shared/Styles/DarkTheme';
 import { LightTheme } from '../Shared/Styles/LightTheme';
+import SunMoonIcon from '../LoggedOut/SunMoonIcon';
+
 import Menu from './../Shared/UI/Menu';
 import MyPlaylistsView from './MyPlaylistsView';
 import CreatePlaylistView from './CreatePlaylistView';
@@ -42,6 +44,10 @@ const Dashboard = ({ userData, accessToken }) => {
           <Brand>
             <Logo>LOGO</Logo>
             <AppName>BPM Workout</AppName>
+            <SunMoonIcon 
+              isDark={themeType} 
+              changeTheme={() => setThemeType(!themeType)}
+            />
           </Brand>
           {/* CurrentView will be set conditionally in the future */}
           <CurrentView>My Playlists</CurrentView>
