@@ -6,7 +6,7 @@ const MyPlaylistsView = ( { setPlaylists }) => {
   return (
     <MyPlaylistsViewContainer>
       {/* Below text needs to be set to disappear if playlist(s) exist */}
-      <EmptyPlaylistText>
+      <EmptyPlaylistText className="large-text">
         Get started on a new playlist now
       </EmptyPlaylistText>
       <CreatePlaylistButton

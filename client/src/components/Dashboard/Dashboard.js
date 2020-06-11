@@ -42,15 +42,15 @@ const Dashboard = ({ userData, accessToken }) => {
       <DashboardContainer>
         <DashboardHeader>
           <Brand>
-            <Logo>LOGO</Logo>
-            <AppName>BPM Workout</AppName>
+            <Logo className="logo-text-TEMPORARY">LOGO</Logo>
+            <AppName className="logo-text-TEMPORARY">BPM Workout</AppName>
             <SunMoonIcon 
               isDark={themeType} 
               changeTheme={() => setThemeType(!themeType)}
             />
           </Brand>
           {/* CurrentView will be set conditionally in the future */}
-          <CurrentView>My Playlists</CurrentView>
+          <CurrentView className="my-playlist-text">My Playlists</CurrentView>
           {/* <CurrentView>Create Playlist</CurrentView> */}
         </DashboardHeader>
         <Menu userData={userData} />
@@ -137,7 +137,6 @@ const ViewsContainer = styled.div`
 `;
 
 const CurrentView = styled.div`
-  color: ${DarkTheme.agua};
   margin-right: 4rem;
 `;
 
@@ -146,6 +145,12 @@ const GlobalStyleDashboard = createGlobalStyle`
     background-color: ${props => (props.theme.mode ? DarkTheme.gunmetal : LightTheme.lightCream )};
   }
   .logo-text-TEMPORARY {
-    color: ${props => (props.theme.mode ? DarkTheme.lightgray : LightTheme.black)};
+    color: ${props => (props.theme.mode ? DarkTheme.lightgray : LightTheme.black )};
+  }
+  .large-text {
+    color: ${props => (props.theme.mode ? '#fff' : LightTheme.black )}
+  }
+  .my-playlist-text {
+    color: ${props => (props.theme.mode ? DarkTheme.agua : LightTheme.agua )}
   }
 `;
