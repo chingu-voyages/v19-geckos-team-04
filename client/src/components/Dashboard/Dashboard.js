@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { DarkTheme } from '../Shared/Styles/DarkTheme';
+import { LightTheme } from '../Shared/Styles/LightTheme';
 import Menu from './../Shared/UI/Menu';
 import MyPlaylistsView from './MyPlaylistsView';
 import CreatePlaylistView from './CreatePlaylistView';
@@ -12,6 +13,7 @@ const Dashboard = ({ userData, accessToken }) => {
   const [userPlaylists, setUserPlaylists] = useState('fetching');
   const [featuredPlaylists, setFeaturedPlaylists] = useState('fetching');
   const [selected, setSelected] = useState([]);
+  const [themeType, setThemeType] = useState('dark');
 
   useEffect(() => {
     fetch(`https://api.spotify.com/v1/users/${userData.id}/playlists`, {
@@ -32,6 +34,8 @@ const Dashboard = ({ userData, accessToken }) => {
   }, []);
 
   return (
+    <ThemeProvider theme={{ mode: themeType }}>
+      <GlobalStyleDashboard />
     <Fragment>
       <DashboardContainer>
         <DashboardHeader>
@@ -68,6 +72,7 @@ const Dashboard = ({ userData, accessToken }) => {
         )}
       </DashboardContainer>
     </Fragment>
+    </ThemeProvider>
   );
 };
 
@@ -128,4 +133,13 @@ const ViewsContainer = styled.div`
 const CurrentView = styled.div`
   color: ${DarkTheme.agua};
   margin-right: 4rem;
+`;
+
+const GlobalStyleDashboard = createGlobalStyle`
+  body, html {
+    background-color: ${props => (props.theme.mode ? DarkTheme.gunmetal : LightTheme.lightCream )};
+  }
+  .logo-text-TEMPORARY {
+    color: ${props => (props.theme.mode ? DarkTheme.lightgray : LightTheme.black)};
+  }
 `;

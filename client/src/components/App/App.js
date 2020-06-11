@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 
-import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import queryString from 'query-string';
 import './App.scss';
 import Header from './../LoggedOut/Header';
 import TourButton from '../LoggedOut/TourButton';
 import SignInButton from '../LoggedOut/SignInButton';
 import SoundBars from '../LoggedOut/SoundBars';
-import PseudoNavbar from '../LoggedOut/PseudoNavbar';
+import Logo from '../LoggedOut/Logo';
+import SunMoonIcon from '../LoggedOut/SunMoonIcon';
 import Dashboard from '../Dashboard/Dashboard';
+import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { DarkTheme } from '../../components/Shared/Styles/DarkTheme';
 import { LightTheme } from '../../components/Shared/Styles/LightTheme';
 import { ModalProvider } from 'styled-react-modal';
@@ -69,10 +70,13 @@ class App extends Component {
           </>
         ) : (
           <>
-            <PseudoNavbar
+          <StyledDivContainer>
+            <Logo />
+            <SunMoonIcon
               isDark={this.state.isDarkMode}
               changeTheme={this.handleClick}
             />
+          </StyledDivContainer>
             <LandingContainer>
               <HeaderContainer>
                 <Header />
@@ -121,6 +125,13 @@ const SoundBarsContainer = styled.div`
   align-self: center;
   z-index: 999;
   bottom: 0;
+`;
+
+const StyledDivContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 40px;
 `;
 
 // Styles for dark and light modes, respectively.
