@@ -22,4 +22,10 @@ const AdjustableColorTheme = styled.img`
   cursor: pointer;
   width: 2rem;
   height: 2rem;
+
+  @media screen and (max-width: 768px) {
+    display: block;
+    margin: 0 auto;
+    transform: translateY(-32px); /* Pushes the icon up by 32 pixels. */
+  }
 `;

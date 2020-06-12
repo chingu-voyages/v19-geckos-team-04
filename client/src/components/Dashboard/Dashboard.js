@@ -48,12 +48,12 @@ const Dashboard = ({ userData, accessToken }) => {
           <Brand>
             <Logo className="logo-text-TEMPORARY">LOGO</Logo>
             <AppName className="logo-text-TEMPORARY">BPM Workout</AppName>
-            <SunMoonIcon
+          </Brand>
+          {/* CurrentView will be set conditionally in the future */}
+          <SunMoonIcon
               isDark={themeType}
               changeTheme={() => setThemeType(!themeType)}
             />
-          </Brand>
-          {/* CurrentView will be set conditionally in the future */}
           <CurrentView className="my-playlist-text">My Playlists</CurrentView>
           {/* <CurrentView>Create Playlist</CurrentView> */}
         </DashboardHeader>
