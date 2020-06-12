@@ -6,12 +6,15 @@ import MyPlaylistsView from './MyPlaylistsView';
 import CreatePlaylistView from './CreatePlaylistView';
 import UserPlaylists from './UserPlaylists';
 import PlaylistSettings from './PlaylistSettings';
+import PlaylistView from './PlaylistView';
 
 const Dashboard = ({ userData, accessToken }) => {
   const [view, setView] = useState('home');
   const [userPlaylists, setUserPlaylists] = useState('fetching');
   const [featuredPlaylists, setFeaturedPlaylists] = useState('fetching');
   const [selected, setSelected] = useState([]);
+  const [playlistId, setPlaylistId] = useState('');
+  const [playlist, setPlaylist] = useState([]);
 
   useEffect(() => {
     fetch(`https://api.spotify.com/v1/users/${userData.id}/playlists`, {
@@ -48,7 +51,10 @@ const Dashboard = ({ userData, accessToken }) => {
               goHome={ () => setView( 'home' ) } />
         {view === 'home' && (
           <ViewsContainer>
-            <MyPlaylistsView setPlaylists={() => setView('selectPlaylists')} />
+            <MyPlaylistsView setPlaylists={() => setView('selectPlaylists')}
+                             setViewPlaylist={() => setView('playlist')}
+                             setPlaylistId={(id) => setPlaylistId(id)} 
+                             setPlaylist={setPlaylist} />
             {/* <CreatePlaylistView /> */}
           </ViewsContainer>
         )}
@@ -68,6 +74,13 @@ const Dashboard = ({ userData, accessToken }) => {
             token={accessToken}
           />
         )}
+        {view === 'playlist' && playlistId !== '' ? (
+          <PlaylistView
+              setView={setView}
+              token={accessToken}
+              playlist={playlist}
+          />
+        ) : ''}
       </DashboardContainer>
     </Fragment>
   );

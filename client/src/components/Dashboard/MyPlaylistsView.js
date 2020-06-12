@@ -4,17 +4,25 @@ import PlusIcon from '../../images/plus-icon.png';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from 'react-loader-spinner';
 
-const MyPlaylistsView = ( { setPlaylists }) => {
+const MyPlaylistsView = ( { setPlaylists, setViewPlaylist, setPlaylistId, setPlaylist } ) => {
     
     const [ userPlaylists, setUserPlaylists ] = useState( 'fetching' );
     useEffect(() => {
+        // test function for loading states and playlist view
         setTimeout( () => {
-            setUserPlaylists( [ { title: 'test1', songs: [ 'song1', 'song2' ] }, { title: 'test2', songs: [ 'song3', 'song4' ] },])
+            setUserPlaylists( [ { id: 1, title: 'test1', songs: [ 'song1', 'song2' ] }, { id: 2, title: 'test2', songs: [ 'song3', 'song4' ] }, { id: 3, title: 'test3', songs: [ 'song5', 'song6' ] } ])
             // setUserPlaylists( [] );
         }, 3000 )
         
-      // fetch user's saved playlists and setUserPlaylists to array of playlist objects
+      // fetch user's saved playlists and setUserPlaylists to array of playlist objects - title, songs array, playlist ID
     }, []);
+    
+    const viewPlaylist = id => {
+        let selectedPlaylist = userPlaylists.filter( playlist => playlist.id === id );
+        setViewPlaylist();
+        setPlaylistId( id );
+        setPlaylist( selectedPlaylist )
+    }
     
   return (
     <MyPlaylistsViewContainer style={ { marginTop: ( userPlaylists === 'fetching' || !userPlaylists.length ? '20%' : '8%' ) } }>
@@ -28,6 +36,7 @@ const MyPlaylistsView = ( { setPlaylists }) => {
                           <UserPlaylistContainer>
                               <UserPlaylistTitle>{ playlist.title }</UserPlaylistTitle>
                               <AddToSpotify>{ playlist.songs[1]}</AddToSpotify>
+                              <ViewPlaylistButton onClick={ () => viewPlaylist( playlist.id ) }>View Playlist</ViewPlaylistButton>
                           </UserPlaylistContainer>
                       ) ) }
                   </UserPlaylistsContainer>
@@ -64,7 +73,7 @@ const MyPlaylistsViewContainer = styled.div`
 `;
 
 const UserPlaylistsContainer = styled.div`
-  padding: 20px 0;
+  padding: 20px 0 30px 0;
   display: flex;
   flex-direction: column;
 `;
@@ -72,6 +81,9 @@ const UserPlaylistsContainer = styled.div`
 const UserPlaylistContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  width: 600px;
+  padding: 20px 0;
+  border-top: 1px solid white;
 `;
 
 const UserPlaylistTitle = styled.span`
@@ -79,6 +91,10 @@ const UserPlaylistTitle = styled.span`
 `;
 
 const AddToSpotify = styled.span`
+`;
+
+const ViewPlaylistButton = styled.span`
+  cursor: pointer;
 `;
 
 const EmptyPlaylistText = styled.div`

@@ -98,10 +98,13 @@ const PlaylistSettings = ({ setView, selected, token }) => {
   };
   
   const savePlaylist = () => {
+      
       const savedPlaylist = { title: title, songs: filteredSongs }
       console.log( 'playlist', savedPlaylist )
       
       //Function to save playlist object to backend
+      
+      setView( 'home' );
   }
 
   return (
