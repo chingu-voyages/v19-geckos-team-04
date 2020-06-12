@@ -20,14 +20,6 @@ const Menu = props => {
     }
   }
 
-  const onMyPlaylistsClickedHandler = () => {
-    alert('This will need to route to MyPlaylistsView');
-  };
-
-  const onCreateClickedHandler = () => {
-    alert('This will need to route to CreatePlaylistsView');
-  };
-
   return (
     <Fragment>
       <Burger open={open} setOpen={setOpen} />
@@ -40,10 +32,10 @@ const Menu = props => {
           </div>
         </UserProfile>
         <MenuItems>
-          <Item onClick={onMyPlaylistsClickedHandler}>
+          <Item onClick={ props.goHome }>
             <Icon src={ListIcon} /> My Playlists
           </Item>
-          <Item onClick={onCreateClickedHandler}>
+          <Item onClick={ props.setPlaylists }>
             <Icon src={MenuPlusIcon} /> Create
           </Item>
         </MenuItems>
@@ -90,8 +82,8 @@ const UserProfile = styled.div`
 `;
 
 const ProfilePic = styled.img`
-  width: 3rem;
-  height: 3rem;
+  width: 6rem;
+  height: 6rem;
   border-radius: 100%;
   margin-right: 1rem;
 

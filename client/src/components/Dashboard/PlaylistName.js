@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-const PlaylistName = ( { songs } ) => {
-    console.log( songs.length && songs[0].track.name)
-  const [ title, setTitle ] = useState( "Playlist1" );
+const PlaylistName = ( { songs, title, setTitle } ) => {
   const [ isEditting, setIsEditting ] = useState( false );
 
   return (

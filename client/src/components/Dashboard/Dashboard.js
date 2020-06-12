@@ -43,7 +43,9 @@ const Dashboard = ({ userData, accessToken }) => {
           <CurrentView>My Playlists</CurrentView>
           {/* <CurrentView>Create Playlist</CurrentView> */}
         </DashboardHeader>
-        <Menu userData={userData} />
+        <Menu userData={userData}
+              setPlaylists={ () => setView( 'selectPlaylists' ) }
+              goHome={ () => setView( 'home' ) } />
         {view === 'home' && (
           <ViewsContainer>
             <MyPlaylistsView setPlaylists={() => setView('selectPlaylists')} />
