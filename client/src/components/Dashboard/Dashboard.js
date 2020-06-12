@@ -165,12 +165,21 @@ const GlobalStyleDashboard = createGlobalStyle`
   .logo-text-TEMPORARY {
     color: ${props => (props.theme.mode ? DarkTheme.lightgray : LightTheme.black )};
   }
+  
   .large-text {
     color: ${props => (props.theme.mode ? DarkTheme.white : LightTheme.black )}
   }
   .my-playlist-text {
     color: ${props => (props.theme.mode ? DarkTheme.agua : LightTheme.agua )}
   }
+  .my-playlist-view-text {
+    color: ${props => (props.theme.mode ? DarkTheme.white : LightTheme.darkgray )}
+  }
+  .user-playlist-container {
+    border-color: ${props => (props.theme.mode ? DarkTheme.white : LightTheme.darkgray )}
+  }
+
+  ${'' /* MENU ITEMS */}
   .burger-lines {
     background: ${props => (props.theme.mode ? DarkTheme.white : LightTheme.black )}
   }

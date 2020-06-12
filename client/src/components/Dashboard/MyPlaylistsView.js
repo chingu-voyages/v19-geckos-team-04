@@ -25,7 +25,10 @@ const MyPlaylistsView = ( { setPlaylists, setViewPlaylist, setPlaylistId, setPla
     }
     
   return (
-    <MyPlaylistsViewContainer style={ { marginTop: ( userPlaylists === 'fetching' || !userPlaylists.length ? '20%' : '8%' ) } }>
+    <MyPlaylistsViewContainer 
+      style={ { marginTop: ( userPlaylists === 'fetching' || !userPlaylists.length ? '20%' : '8%' ) } }
+      className="my-playlist-view-text"
+      >
       { userPlaylists === 'fetching' ?
           <Loader type="Bars" color="orange" height={80} width={250} />
           :
@@ -33,7 +36,7 @@ const MyPlaylistsView = ( { setPlaylists, setViewPlaylist, setPlaylistId, setPla
               <>
                   <UserPlaylistsContainer>
                       { userPlaylists.map( playlist => (
-                          <UserPlaylistContainer>
+                          <UserPlaylistContainer className="user-playlist-container">
                               <UserPlaylistTitle>{ playlist.title }</UserPlaylistTitle>
                               <AddToSpotify>{ playlist.songs[1]}</AddToSpotify>
                               <ViewPlaylistButton onClick={ () => viewPlaylist( playlist.id ) }>View Playlist</ViewPlaylistButton>
@@ -67,7 +70,7 @@ const MyPlaylistsViewContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: white;
+  ${'' /* color: white; */}
   text-align: left;
   height: 100vh;
 `;
@@ -76,18 +79,22 @@ const UserPlaylistsContainer = styled.div`
   padding: 20px 0 30px 0;
   display: flex;
   flex-direction: column;
+  width: 600px;
+
+  @media screen and (max-width: 660px) {
+    width: 100%;
+  }
 `;
 
 const UserPlaylistContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 600px;
   padding: 20px 0;
-  border-top: 1px solid white;
+  border-top: 1px solid;
 `;
 
 const UserPlaylistTitle = styled.span`
-  color: white;
+  ${'' /* color: white; */}
 `;
 
 const AddToSpotify = styled.span`
