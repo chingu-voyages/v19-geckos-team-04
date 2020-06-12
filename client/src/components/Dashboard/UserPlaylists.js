@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from 'react-loader-spinner';
 
 export default UserPlaylists;
 
@@ -48,8 +50,8 @@ function UserPlaylists({
         <UserTab
           style={
             playlistView === 'user'
-              ? { textDecoration: 'underline', fontWeight: 'bold' }
-              : { textDecoration: 'none' }
+                ? { border: '1px solid white', padding: '10px 23px', fontWeight: 'bold' }
+                : { padding: '10px 23px' }
           }
           onClick={() => setPlaylistView('user')}
         >
@@ -58,8 +60,8 @@ function UserPlaylists({
         <FeaturedTab
           style={
             playlistView === 'spotify'
-              ? { textDecoration: 'underline', fontWeight: 'bold' }
-              : { textDecoration: 'none' }
+              ? { border: '1px solid white', padding: '10px 23px', fontWeight: 'bold' }
+              : { padding: '10px 23px' }
           }
           onClick={() => setPlaylistView('spotify')}
         >
@@ -68,7 +70,7 @@ function UserPlaylists({
       </PlaylistTabs>
       <UsersPlaylists>
         {userPlaylists === 'fetching' ? (
-          <span>Loading...</span>
+            <Loader type="Bars" color="orange" height={80} width={250} />
         ) : playlistView === 'user' ? (
           userPlaylists.map((playlist, id) => {
             return (

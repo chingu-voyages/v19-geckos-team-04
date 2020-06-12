@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import Slider, { Range, createSliderWithTooltip } from 'rc-slider';
 import PlaylistName from './PlaylistName';
 import 'rc-slider/assets/index.css';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from 'react-loader-spinner';
 
 const PlaylistSettings = ({ setView, selected, token }) => {
   const [isFetching, setIsFetching] = useState( true );
@@ -13,6 +15,7 @@ const PlaylistSettings = ({ setView, selected, token }) => {
   const [energyValues, setEnergyValues] = useState([0.0, 1.0]);
   const [instrumentalnessValues, setInstrumentalnessValues] = useState([0.0, 1.0]);
   const [valenceValues, setValenceValues] = useState([0.0, 1.0]);
+  const [title, setTitle] = useState( 'My Playlist' );
 
   const onBpmValuesChangedHandler = values => {
     setBpmValues(values);
@@ -93,13 +96,23 @@ const PlaylistSettings = ({ setView, selected, token }) => {
     var seconds = ((ms % 60000) / 1000).toFixed(0);
     return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
   };
+  
+  const savePlaylist = () => {
+      
+      const savedPlaylist = { title: title, songs: filteredSongs }
+      console.log( 'playlist', savedPlaylist )
+      
+      //Function to save playlist object to backend
+      
+      setView( 'home' );
+  }
 
   return (
     <PlaylistSettingsContainer>
       <SettingsHeader>Playlist Settings</SettingsHeader>
-      <BackButton onClick={() => setView('selectPlaylists')}>Back</BackButton>
-      <Button onClick={() => setView('playlistSettings')}>Save Playlist</Button>
-      <PlaylistName songs={ allSongs } />
+      <BackButton onClick={ () => setView('selectPlaylists') }>Back</BackButton>
+      <Button onClick={ () => savePlaylist() }>Save Playlist</Button>
+      <PlaylistName title={ title } setTitle={ setTitle} />
       <RangeControlsContainer>
         <BPMContainer>
           <CustomRange
@@ -154,7 +167,9 @@ const PlaylistSettings = ({ setView, selected, token }) => {
       </RangeControlsContainer>
       <PlaylistSongs>
         { isFetching ? 
-            <span>Loading...</span>
+            <LoaderContainer>
+                <Loader type="Bars" color="orange" height={80} width={250} />
+            </LoaderContainer>
             :
             ( !filteredSongs.length ?
               <span>No matching songs. Please reset your filters</span>
@@ -374,6 +389,14 @@ const ValenceContainer = styled.div`
 const PlaylistSongs = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const LoaderContainer = styled.div`
+  width: 100vw - 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 60px;
 `;
 
 const SongContainer = styled.div`
