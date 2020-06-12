@@ -1,8 +1,9 @@
 import React, { Fragment, useState } from 'react';
 import styled from 'styled-components';
 import ListIcon from '../../../images/list-icon.png';
+import ListIconLightMode from '../../../images/list-icon-light-mode.png';
 import MenuPlusIcon from '../../../images/menu-plus-icon.png';
-import { DarkTheme } from '../Styles/DarkTheme';
+import MenuPlusIconLightMode from '../../../images/menu-plus-icon-light-mode.png';
 import Burger from '../UI/Burger';
 
 const Menu = props => {
@@ -23,20 +24,20 @@ const Menu = props => {
   return (
     <Fragment>
       <Burger open={open} setOpen={setOpen} />
-      <MenuContainer open={open}>
+      <MenuContainer open={open} className="menu-bg">
         <UserProfile>
           <ProfilePic src={profilePic} />
           <div>
-            <Greeting>{greeting}</Greeting>
-            <Logout>Logout</Logout>
+            <Greeting className="menu-greeting">{greeting}</Greeting>
+            <Logout className="menu-logout-text">Logout</Logout>
           </div>
         </UserProfile>
         <MenuItems>
-          <Item onClick={ props.goHome }>
-            <Icon src={ListIcon} /> My Playlists
+          <Item onClick={props.goHome} className="menu-my-playlists">
+            <Icon src={props.isDark ? ListIcon : ListIconLightMode} /> My Playlists
           </Item>
-          <Item onClick={ props.setPlaylists }>
-            <Icon src={MenuPlusIcon} /> Create
+          <Item onClick={props.setPlaylists} className="menu-create">
+            <Icon src={props.isDark ? MenuPlusIcon : MenuPlusIconLightMode} /> Create
           </Item>
         </MenuItems>
       </MenuContainer>
@@ -53,7 +54,7 @@ const MenuContainer = styled.div`
   bottom: 0;
   right: 0;
   width: 20rem;
-  background-color: ${DarkTheme.charcoal};
+  ${'' /* background-color: ${DarkTheme.charcoal}; */}
   font-size: 1rem;
   z-index: 1;
 
@@ -100,13 +101,13 @@ const ProfilePic = styled.img`
 `;
 
 const Greeting = styled.div`
-  color: ${DarkTheme.green};
+  ${'' /* color: ${DarkTheme.green}; */}
   font-weight: 700;
 `;
 
 const Logout = styled.div`
   cursor: pointer;
-  color: #999;
+  ${'' /* color: #999; */}
   text-align: right;
 `;
 

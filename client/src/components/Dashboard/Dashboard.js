@@ -1,6 +1,9 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { DarkTheme } from '../Shared/Styles/DarkTheme';
+import { LightTheme } from '../Shared/Styles/LightTheme';
+import SunMoonIcon from '../LoggedOut/SunMoonIcon';
+
 import Menu from './../Shared/UI/Menu';
 import MyPlaylistsView from './MyPlaylistsView';
 import CreatePlaylistView from './CreatePlaylistView';
@@ -15,6 +18,8 @@ const Dashboard = ({ userData, accessToken }) => {
   const [selected, setSelected] = useState([]);
   const [playlistId, setPlaylistId] = useState('');
   const [playlist, setPlaylist] = useState([]);
+  const [themeType, setThemeType] = useState('dark');
+
 
   useEffect(() => {
     fetch(`https://api.spotify.com/v1/users/${userData.id}/playlists`, {
@@ -35,20 +40,27 @@ const Dashboard = ({ userData, accessToken }) => {
   }, []);
 
   return (
+    <ThemeProvider theme={{ mode: themeType }}>
+      <GlobalStyleDashboard />
     <Fragment>
       <DashboardContainer>
         <DashboardHeader>
           <Brand>
-            <Logo>LOGO</Logo>
-            <AppName>BPM Workout</AppName>
+            <Logo className="logo-text-TEMPORARY">LOGO</Logo>
+            <AppName className="logo-text-TEMPORARY">BPM Workout</AppName>
+            <SunMoonIcon
+              isDark={themeType}
+              changeTheme={() => setThemeType(!themeType)}
+            />
           </Brand>
           {/* CurrentView will be set conditionally in the future */}
-          <CurrentView>My Playlists</CurrentView>
+          <CurrentView className="my-playlist-text">My Playlists</CurrentView>
           {/* <CurrentView>Create Playlist</CurrentView> */}
         </DashboardHeader>
         <Menu userData={userData}
               setPlaylists={ () => setView( 'selectPlaylists' ) }
-              goHome={ () => setView( 'home' ) } />
+              goHome={ () => setView( 'home' ) }
+              isDark={themeType} />
         {view === 'home' && (
           <ViewsContainer>
             <MyPlaylistsView setPlaylists={() => setView('selectPlaylists')}
@@ -83,6 +95,7 @@ const Dashboard = ({ userData, accessToken }) => {
         ) : ''}
       </DashboardContainer>
     </Fragment>
+    </ThemeProvider>
   );
 };
 
@@ -141,6 +154,39 @@ const ViewsContainer = styled.div`
 `;
 
 const CurrentView = styled.div`
-  color: ${DarkTheme.agua};
   margin-right: 4rem;
+`;
+
+
+const GlobalStyleDashboard = createGlobalStyle`
+  body, html {
+    background-color: ${props => (props.theme.mode ? DarkTheme.gunmetal : LightTheme.lightcream )};
+  }
+  .logo-text-TEMPORARY {
+    color: ${props => (props.theme.mode ? DarkTheme.lightgray : LightTheme.black )};
+  }
+  .large-text {
+    color: ${props => (props.theme.mode ? DarkTheme.white : LightTheme.black )}
+  }
+  .my-playlist-text {
+    color: ${props => (props.theme.mode ? DarkTheme.agua : LightTheme.agua )}
+  }
+  .burger-lines {
+    background: ${props => (props.theme.mode ? DarkTheme.white : LightTheme.black )}
+  }
+  .menu-bg {
+    background-color: ${props => (props.theme.mode ? DarkTheme.charcoal : LightTheme.lightblue )}
+  }
+  .menu-greeting {
+    color: ${props => (props.theme.mode ? DarkTheme.green : LightTheme.darkgreen )}
+  }
+  .menu-logout-text {
+    color: ${props => (props.theme.mode ? DarkTheme.mediumgray : LightTheme.darkgray )}
+  }
+  .menu-my-playlists {
+    color: ${props => (props.theme.mode ? DarkTheme.white : LightTheme.black )}
+  }
+  .menu-create {
+    color: ${props => (props.theme.mode ? DarkTheme.white : LightTheme.black )}
+  }
 `;
