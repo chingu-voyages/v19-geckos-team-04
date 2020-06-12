@@ -166,6 +166,7 @@ const GlobalStyleDashboard = createGlobalStyle`
     color: ${props => (props.theme.mode ? DarkTheme.lightgray : LightTheme.black )};
   }
   
+  ${'' /* Dashboard viewing area. */}
   .large-text {
     color: ${props => (props.theme.mode ? DarkTheme.white : LightTheme.black )}
   }
@@ -177,6 +178,12 @@ const GlobalStyleDashboard = createGlobalStyle`
   }
   .user-playlist-container {
     border-color: ${props => (props.theme.mode ? DarkTheme.white : LightTheme.darkgray )}
+  }
+  .playlist-title {
+    color: ${props => (props.theme.mode ? DarkTheme.white : LightTheme.black )}
+  }
+  .song {
+    color: ${props => (props.theme.mode ? DarkTheme.white : LightTheme.darkgray )}
   }
 
   ${'' /* MENU ITEMS */}

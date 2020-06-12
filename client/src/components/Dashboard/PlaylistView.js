@@ -7,9 +7,9 @@ const PlaylistView = ( { playlist, setView } ) => {
     <PlaylistViewContainer>
         <HomeButton onClick={() => setView('home') }>Back to playlists</HomeButton>
         {/*<span>Add to Spotify</span>*/}
-        <PlaylistTitle>{ playlist[0].title }</PlaylistTitle>
+        <PlaylistTitle className="playlist-title">{ playlist[0].title }</PlaylistTitle>
         { playlist[0].songs.map( song => (
-            <Song>{song}</Song>
+            <Song className="song">{song}</Song>
         ) ) }
     </PlaylistViewContainer>
   );
@@ -36,10 +36,10 @@ const HomeButton = styled.button`
 `;
 
 const PlaylistTitle = styled.h2`
-    color: white;
+    ${'' /* color: white; */}
     font-weight: bold;
 `;
 
 const Song = styled.div`
-    color: white;
+    ${'' /* color: white; */}
 `;
