@@ -20,7 +20,6 @@ const Dashboard = ({ userData, accessToken }) => {
   const [playlist, setPlaylist] = useState([]);
   const [themeType, setThemeType] = useState('dark');
 
-
   useEffect(() => {
     fetch(`https://api.spotify.com/v1/users/${userData.id}/playlists`, {
       headers: { Authorization: 'Bearer ' + accessToken }
@@ -91,6 +90,7 @@ const Dashboard = ({ userData, accessToken }) => {
               setView={setView}
               token={accessToken}
               playlist={playlist}
+              userId={userData.id}
           />
         ) : ''}
       </DashboardContainer>

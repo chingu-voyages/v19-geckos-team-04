@@ -35,8 +35,8 @@ const MyPlaylistsView = ( { setPlaylists, setViewPlaylist, setPlaylistId, setPla
           ( userPlaylists !== 'fetching' && userPlaylists.length ? 
               <>
                   <UserPlaylistsContainer>
-                      { userPlaylists.map( playlist => (
-                          <UserPlaylistContainer className="user-playlist-container">
+                      { userPlaylists.map( ( playlist, i ) => (
+                          <UserPlaylistContainer className="user-playlist-container" key={ 'playlist-' + i }>
                               <UserPlaylistTitle>{ playlist.title }</UserPlaylistTitle>
                               <AddToSpotify>{ playlist.songs[1]}</AddToSpotify>
                               <ViewPlaylistButton onClick={ () => viewPlaylist( playlist.id ) }>View Playlist</ViewPlaylistButton>

@@ -217,7 +217,7 @@ const PlaylistSettings = ({ setView, selected, token }) => {
                 </SongContainer>
                 {filteredSongs.map((song, id) => {
                   return (
-                    <SongContainer>
+                    <SongContainer key={ 'filteredSong-' + id }>
                       <SongName key={'song-' + id}>{song.track.name}</SongName>
                       <SongArtist>{song.track.album.artists[0].name}</SongArtist>
                       <SongAlbum>{song.track.album.name}</SongAlbum>

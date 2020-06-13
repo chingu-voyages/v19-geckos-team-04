@@ -75,10 +75,10 @@ function UserPlaylists({
           userPlaylists.map((playlist, id) => {
             return (
               <PlaylistContainer
+                key={'playlist-' + id}
                 onClick={() => addToSelectedPlaylists(playlist.id)}
               >
                 <Playlist
-                  key={'playlist-' + id}
                   style={isSelectedPlaylist(
                     playlist.id,
                     playlist.images[0].url
