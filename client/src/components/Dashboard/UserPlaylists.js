@@ -78,12 +78,16 @@ function UserPlaylists({
                 key={'playlist-' + id}
                 onClick={() => addToSelectedPlaylists(playlist.id)}
               >
-                <Playlist
-                  style={isSelectedPlaylist(
-                    playlist.id,
-                    playlist.images[0].url
-                  )}
-                ></Playlist>
+                { playlist.images[0] ?
+                    <Playlist
+                      style={isSelectedPlaylist(
+                        playlist.id,
+                        playlist.images[0].url
+                      )}
+                    ></Playlist>
+                    :
+                    <PlaylistPlaceholder />
+                }
                 <PlaylistName>{playlist.name}</PlaylistName>
               </PlaylistContainer>
             );
@@ -196,6 +200,14 @@ const Playlist = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   border: 2px solid transparent;
+`;
+
+const PlaylistPlaceholder = styled.div`
+    height: 100%;
+    width: 100%;
+    background-color: grey;
+    border-radius: 8px;
+    border: 2px solid transparent;
 `;
 
 const PlaylistName = styled.span`
