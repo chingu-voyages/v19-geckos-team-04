@@ -20,22 +20,10 @@ passport.use(
       clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
     },
     (accessToken, refreshToken, profile, done) => {
-        // check if user already exists in database
-        console.log(profile);
-        User.findOne({ spotifyID: profile.id }).then((currentUser) => {
-            currentUser
-            ? done(null, currentUser)
-            : new User({
-                username: profile.username,
-                spotifyID: profile.id,
-                email: profile.email,
-                })
-                .save()
-                .then((newUser) => {
-                    console.log(`new user created: ${newUser}`);
-                    done(null, newUser);
-                });
-        });
+      User.findOneAndUpdate({ spotifyID: profile.id, username: profile.username, email: profile._json.email }, 
+        { accessToken: accessToken },  
+        { upsert: true, new: true, setDefaultsOnInsert: true })
+        .then(currentUser => done(null, currentUser))
     }
   )
 );

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Route } from 'react-router-dom'
 
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import queryString from 'query-string';
@@ -10,34 +11,35 @@ import SignInButton from '../LoggedOut/SignInButton';
 import SoundBars from '../LoggedOut/SoundBars';
 import PseudoNavbar from '../LoggedOut/PseudoNavbar';
 import Dashboard from '../Dashboard/Dashboard';
+import SignIn from '../LoggedOut/SignIn';
 import { ModalProvider } from 'styled-react-modal';
 import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
 
-const LandingContainer = styled.div`
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  z-index: -1;
-`;
+// const LandingContainer = styled.div`
+//   position: absolute;
+//   left: 0;
+//   top: 0;
+//   bottom: 0;
+//   right: 0;
+//   z-index: -1;
+// `;
 
-const HeaderContainer = styled.div`
-  position: relative;
-  top: 20%;
-  z-index: 1000;
-`;
+// const HeaderContainer = styled.div`
+//   position: relative;
+//   top: 20%;
+//   z-index: 1000;
+// `;
 
-const ButtonsContainer = styled.div`
-  text-align: center;
-`;
+// const ButtonsContainer = styled.div`
+//   text-align: center;
+// `;
 
-const SoundBarsContainer = styled.div`
-  position: relative;
-  align-self: center;
-  z-index: 999;
-  bottom: 0;
-`;
+// const SoundBarsContainer = styled.div`
+//   position: relative;
+//   align-self: center;
+//   z-index: 999;
+//   bottom: 0;
+// `;
 
 // Styles for dark and light modes, respectively.
 const GlobalStyle = createGlobalStyle`
@@ -62,8 +64,8 @@ const GlobalStyle = createGlobalStyle`
 class App extends Component {
   constructor(props) {
     super(props);
-    this.onOpenModal = this.onOpenModal.bind(this);
-    this.onCloseModal = this.onCloseModal.bind(this);
+    // this.onOpenModal = this.onOpenModal.bind(this);
+    // this.onCloseModal = this.onCloseModal.bind(this);
     this.handleClick = this.handleClick.bind(this);
 
     this.state = {
@@ -88,13 +90,13 @@ class App extends Component {
       .then(data => this.setState({ serverData: { user: data } }));
   }
 
-  onOpenModal() {
-    this.setState({ isModalOpen: true });
-  }
+  // onOpenModal() {
+  //   this.setState({ isModalOpen: true });
+  // }
 
-  onCloseModal() {
-    this.setState({ isModalOpen: false });
-  }
+  // onCloseModal() {
+  //   this.setState({ isModalOpen: false });
+  // }
 
   handleClick() {
     const toggle = this.state.isDarkMode;
@@ -103,38 +105,48 @@ class App extends Component {
 
   render() {
     return (
-      <ThemeProvider theme={{ mode: this.state.isDarkMode }}>
-        <GlobalStyle />
-        {this.state.serverData.user.display_name ? (
-          <>
-            <Dashboard
-              userData={this.state.serverData.user}
-              accessToken={this.state.accessToken}
-            />
-          </>
-        ) : (
-          <>
-            <PseudoNavbar
-              isDark={this.state.isDarkMode}
-              changeTheme={this.handleClick}
-            />
-            <LandingContainer>
-              <HeaderContainer>
-                <Header />
-                <ModalProvider>
-                  <ButtonsContainer>
-                    <TourButton showModal={() => this.onOpenModal()} />
-                    <SignInButton />
-                  </ButtonsContainer>
-                </ModalProvider>
-              </HeaderContainer>
-              <SoundBarsContainer>
-                <SoundBars />
-              </SoundBarsContainer>
-            </LandingContainer>
-          </>
-        )}
-      </ThemeProvider>
+      <BrowserRouter>
+        <ThemeProvider theme={{ mode: this.state.isDarkMode }}>
+          <GlobalStyle />
+          {/* {this.state.serverData.user.display_name ? ( */}
+            <>
+              <Route 
+                path='/dashboard'
+                render={(props) => <Dashboard { ...props } userData={ this.state.serverData.user } accessToken={ this.state.accessToken } />}
+              />
+              {/* <Dashboard
+                userData={this.state.serverData.user}
+                accessToken={this.state.accessToken}
+              /> */}
+            </>
+          {/* ) : ( */}
+            <>
+              <Route 
+                path='/'
+                render={(props) => <SignIn { ...props } isDark={ this.state.isDarkMode } changeTheme={ this.handleClick } />}
+              />
+              {/* <PseudoNavbar
+                isDark={this.state.isDarkMode}
+                changeTheme={this.handleClick}
+              />
+              <LandingContainer>
+                <HeaderContainer>
+                  <Header />
+                  <ModalProvider>
+                    <ButtonsContainer>
+                      <TourButton showModal={() => this.onOpenModal()} />
+                      <SignInButton />
+                    </ButtonsContainer>
+                  </ModalProvider>
+                </HeaderContainer>
+                <SoundBarsContainer>
+                  <SoundBars />
+                </SoundBarsContainer>
+              </LandingContainer> */}
+            </>
+          {/* )} */}
+        </ThemeProvider>
+      </BrowserRouter>
     );
   }
 }

@@ -18,9 +18,11 @@ router.get(
 router.get(
   "/spotify/callback",
   passport.authenticate("spotify", {
-    successRedirect: "http://localhost:3000/",
     failureRedirect: "/spotify",
-  })
+  }), (req, res) => {
+    console.log(res.req.user)
+    res.redirect(`http://localhost:3000/dashboard?access_token=${res.req.user.accessToken}`)
+  }
 );
 
 module.exports = router;
