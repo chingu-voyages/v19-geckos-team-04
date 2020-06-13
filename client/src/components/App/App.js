@@ -26,14 +26,18 @@ class App extends Component {
   componentDidMount() {
     let parsed = queryString.parse(window.location.search);
     let urlAccessToken = parsed.access_token;
-
-    this.setState({ accessToken: urlAccessToken });
-
-    fetch('https://api.spotify.com/v1/me', {
-      headers: { Authorization: 'Bearer ' + urlAccessToken }
-    })
-      .then(res => res.json())
-      .then(data => this.setState({ serverData: { user: data } }));
+    
+    if ( urlAccessToken ) {
+        this.setState({ accessToken: urlAccessToken });
+      
+        fetch('https://api.spotify.com/v1/me', {
+          headers: { Authorization: 'Bearer ' + urlAccessToken }
+        })
+          .then(res => res.json())
+          .then(data => this.setState({ serverData: { user: data } }));
+    } else {
+        this.setState({ serverData: { user: '' } });
+    }
   }
 
   render() {
