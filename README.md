@@ -10,6 +10,17 @@
 * Create, update, and delete playlists according to beats per minute (and other song data).
 * Backend programming: user authentication with OAuth, MongoDB, Express.js, and cookies.
 <br><br><br>
+
+# Preview
+**Mobile**
+<br>
+![mobile image](https://user-images.githubusercontent.com/17715289/84580074-39d3ba00-ad99-11ea-8b1e-442bfed1f1d6.png)
+<br><br>
+**Desktop**
+<br>
+![desktop image](https://user-images.githubusercontent.com/17715289/84580073-393b2380-ad99-11ea-9f75-be9ba5750110.png)
+<br><br><br>
+
 # Running The App
 This project was started with [create-react-app](https://reactjs.org/docs/create-a-new-react-app.html).
 
@@ -44,6 +55,7 @@ In addition to a Spotify account, the app requires two unique IDs:
 
 Further details are in [the official Spotify documentation](https://developer.spotify.com/documentation/web-api/quick-start/).
 <br><br><br>
+
 # Other Tools Used
 * ZenHub
 * Figma
