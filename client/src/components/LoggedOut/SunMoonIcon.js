@@ -1,22 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import SunIcon from '../../images/sun-icon.png';
 import MoonIcon from '../../images/moon-icon.png';
+import { ThemeContext } from '../../context/ThemeContext';
 
-export default function SunMoonIcon(props) {
+const SunMoonIcon = () => {
+
+  const { dark, onChangeTheme } =  useContext(ThemeContext);
+
   return (
     <>
       <AdjustableColorTheme
         role="img" 
         alt="icon" 
         aria-label="theme-icon"
-        onClick={props.changeTheme}
-        src={props.isDark ? SunIcon : MoonIcon}
+        onClick={ onChangeTheme }
+        src={ dark.isDarkMode ? SunIcon : MoonIcon }
       >
       </AdjustableColorTheme>
     </>
   )
 }
+
+export default SunMoonIcon;
 
 const AdjustableColorTheme = styled.img`
   cursor: pointer;

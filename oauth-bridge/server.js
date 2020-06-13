@@ -1,46 +1,36 @@
-let express = require('express')
-let request = require('request')
-let querystring = require('querystring')
+const express = require("express");
+const authRoutes = require("./routes/auth-routes");
+const passportSetup = require("./config/passport-setup");
+const passport = require('passport');
+const cookieSession = require('cookie-session');
+const mongoose = require('mongoose');
 
-let app = express()
+const app = express();
 
-let redirect_uri = 
-  process.env.REDIRECT_URI || 
-  'http://localhost:8888/callback'
+// set up cookies session
+app.use(cookieSession({
+    maxAge: process.env.COOKIE_AGE,
+    keys: [process.env.COOKIE_KEY],
+}))
 
-app.get('/login', function(req, res) {
-  res.redirect('https://accounts.spotify.com/authorize?' +
-    querystring.stringify({
-      response_type: 'code',
-      client_id: process.env.SPOTIFY_CLIENT_ID,
-      scope: 'user-read-private user-read-email',
-      redirect_uri
-    }))
+// initialize passport
+app.use(passport.initialize());
+
+// passport cookie
+app.use(passport.session());
+
+// connect to mongoDB
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
+    console.log('Connected to mongoDB.')
 })
 
-app.get('/callback', function(req, res) {
-  let code = req.query.code || null
-  let authOptions = {
-    url: 'https://accounts.spotify.com/api/token',
-    form: {
-      code: code,
-      redirect_uri,
-      grant_type: 'authorization_code'
-    },
-    headers: {
-      'Authorization': 'Basic ' + (new Buffer(
-        process.env.SPOTIFY_CLIENT_ID + ':' + process.env.SPOTIFY_CLIENT_SECRET
-      ).toString('base64'))
-    },
-    json: true
-  }
-  request.post(authOptions, function(error, response, body) {
-    var access_token = body.access_token
-    let uri = process.env.FRONTEND_URI || 'http://localhost:3000'
-    res.redirect(uri + '?access_token=' + access_token)
-  })
-})
+//set up routes
+app.use("/auth", authRoutes);
 
-let port = process.env.PORT || 8888
-console.log(`Listening on port ${port}. Go /login to initiate authentication flow.`)
-app.listen(port)
+const port = 8888;
+
+app.listen(port, () =>
+  console.log(
+    `Listening on port ${port}. Go to /login to initiate authentication.`
+  )
+);
