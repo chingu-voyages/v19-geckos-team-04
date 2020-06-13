@@ -25,6 +25,9 @@ const Dashboard = ({ userData, accessToken }) => {
     fetch(`https://api.spotify.com/v1/users/${userData.id}/playlists`, {
       headers: { Authorization: 'Bearer ' + accessToken }
     })
+      .catch(error => {
+        console.log(error);
+      })
       .then(res => res.json())
       .then(data => {
         setUserPlaylists(data.items);
@@ -42,62 +45,68 @@ const Dashboard = ({ userData, accessToken }) => {
   return (
     <ThemeProvider theme={{ mode: themeType }}>
       <GlobalStyleDashboard />
-    <Fragment>
-      <DashboardContainer>
-        <DashboardHeader>
-          <Brand>
-            <Logo className="logo-text-TEMPORARY">LOGO</Logo>
-            <AppName className="logo-text-TEMPORARY">BPM Workout</AppName>
-          </Brand>
-          {/* CurrentView will be set conditionally in the future */}
-          <SunMoonIcon
+      <Fragment>
+        <DashboardContainer>
+          <DashboardHeader>
+            <Brand>
+              <Logo className="logo-text-TEMPORARY">LOGO</Logo>
+              <AppName className="logo-text-TEMPORARY">BPM Workout</AppName>
+            </Brand>
+            {/* CurrentView will be set conditionally in the future */}
+            <SunMoonIcon
               isDark={themeType}
               changeTheme={() => setThemeType(!themeType)}
             />
-          <CurrentView className="my-playlist-text">My Playlists</CurrentView>
-          {/* <CurrentView>Create Playlist</CurrentView> */}
-        </DashboardHeader>
-        <Menu userData={userData}
-              setPlaylists={ () => setView( 'selectPlaylists' ) }
-              goHome={ () => setView( 'home' ) }
-              isDark={themeType} />
-        {view === 'home' && (
-          <ViewsContainer>
-            <MyPlaylistsView setPlaylists={() => setView('selectPlaylists')}
-                             setViewPlaylist={() => setView('playlist')}
-                             setPlaylistId={(id) => setPlaylistId(id)} 
-                             setPlaylist={setPlaylist} />
-            {/* <CreatePlaylistView /> */}
-          </ViewsContainer>
-        )}
-        {view === 'selectPlaylists' && (
-          <UserPlaylists
-            userPlaylists={userPlaylists}
-            featuredPlaylists={featuredPlaylists.items}
-            selected={selected}
-            setSelected={setSelected}
-            setView={setView}
+            <CurrentView className="my-playlist-text">My Playlists</CurrentView>
+            {/* <CurrentView>Create Playlist</CurrentView> */}
+          </DashboardHeader>
+          <Menu
+            userData={userData}
+            setPlaylists={() => setView('selectPlaylists')}
+            goHome={() => setView('home')}
+            isDark={themeType}
           />
-        )}
-        {view === 'playlistSettings' && (
-          <PlaylistSettings
-            setView={setView}
-            selected={selected}
-            token={accessToken}
-            setSongs={setSongs}
-          />
-        )}
-        {view === 'playlist' && playlistId !== '' ? (
-          <PlaylistView
+          {view === 'home' && (
+            <ViewsContainer>
+              <MyPlaylistsView
+                setPlaylists={() => setView('selectPlaylists')}
+                setViewPlaylist={() => setView('playlist')}
+                setPlaylistId={id => setPlaylistId(id)}
+                setPlaylist={setPlaylist}
+              />
+              {/* <CreatePlaylistView /> */}
+            </ViewsContainer>
+          )}
+          {view === 'selectPlaylists' && (
+            <UserPlaylists
+              userPlaylists={userPlaylists}
+              featuredPlaylists={featuredPlaylists.items}
+              selected={selected}
+              setSelected={setSelected}
+              setView={setView}
+            />
+          )}
+          {view === 'playlistSettings' && (
+            <PlaylistSettings
+              setView={setView}
+              selected={selected}
+              token={accessToken}
+              setSongs={setSongs}
+            />
+          )}
+          {view === 'playlist' && playlistId !== '' ? (
+            <PlaylistView
               setView={setView}
               token={accessToken}
               playlist={playlist}
               userId={userData.id}
               songs={songs}
-          />
-        ) : ''}
-      </DashboardContainer>
-    </Fragment>
+            />
+          ) : (
+            ''
+          )}
+        </DashboardContainer>
+      </Fragment>
     </ThemeProvider>
   );
 };
@@ -160,52 +169,60 @@ const CurrentView = styled.div`
   margin-right: 4rem;
 `;
 
-
 const GlobalStyleDashboard = createGlobalStyle`
   body, html {
-    background-color: ${props => (props.theme.mode ? DarkTheme.gunmetal : LightTheme.lightcream )};
+    background-color: ${props =>
+      props.theme.mode ? DarkTheme.gunmetal : LightTheme.lightcream};
   }
   .logo-text-TEMPORARY {
-    color: ${props => (props.theme.mode ? DarkTheme.lightgray : LightTheme.black )};
+    color: ${props =>
+      props.theme.mode ? DarkTheme.lightgray : LightTheme.black};
   }
   
   ${'' /* Dashboard viewing area. */}
   .large-text {
-    color: ${props => (props.theme.mode ? DarkTheme.white : LightTheme.black )}
+    color: ${props => (props.theme.mode ? DarkTheme.white : LightTheme.black)}
   }
   .my-playlist-text {
-    color: ${props => (props.theme.mode ? DarkTheme.agua : LightTheme.agua )}
+    color: ${props => (props.theme.mode ? DarkTheme.agua : LightTheme.agua)}
   }
   .my-playlist-view-text {
-    color: ${props => (props.theme.mode ? DarkTheme.white : LightTheme.darkgray )}
+    color: ${props =>
+      props.theme.mode ? DarkTheme.white : LightTheme.darkgray}
   }
   .user-playlist-container {
-    border-color: ${props => (props.theme.mode ? DarkTheme.white : LightTheme.darkgray )}
+    border-color: ${props =>
+      props.theme.mode ? DarkTheme.white : LightTheme.darkgray}
   }
   .playlist-title {
-    color: ${props => (props.theme.mode ? DarkTheme.white : LightTheme.black )}
+    color: ${props => (props.theme.mode ? DarkTheme.white : LightTheme.black)}
   }
   .song {
-    color: ${props => (props.theme.mode ? DarkTheme.white : LightTheme.darkgray )}
+    color: ${props =>
+      props.theme.mode ? DarkTheme.white : LightTheme.darkgray}
   }
 
   ${'' /* MENU ITEMS */}
   .burger-lines {
-    background: ${props => (props.theme.mode ? DarkTheme.white : LightTheme.black )}
+    background: ${props =>
+      props.theme.mode ? DarkTheme.white : LightTheme.black}
   }
   .menu-bg {
-    background-color: ${props => (props.theme.mode ? DarkTheme.charcoal : LightTheme.lightblue )}
+    background-color: ${props =>
+      props.theme.mode ? DarkTheme.charcoal : LightTheme.lightblue}
   }
   .menu-greeting {
-    color: ${props => (props.theme.mode ? DarkTheme.green : LightTheme.darkgreen )}
+    color: ${props =>
+      props.theme.mode ? DarkTheme.green : LightTheme.darkgreen}
   }
   .menu-logout-text {
-    color: ${props => (props.theme.mode ? DarkTheme.mediumgray : LightTheme.darkgray )}
+    color: ${props =>
+      props.theme.mode ? DarkTheme.mediumgray : LightTheme.darkgray}
   }
   .menu-my-playlists {
-    color: ${props => (props.theme.mode ? DarkTheme.white : LightTheme.black )}
+    color: ${props => (props.theme.mode ? DarkTheme.white : LightTheme.black)}
   }
   .menu-create {
-    color: ${props => (props.theme.mode ? DarkTheme.white : LightTheme.black )}
+    color: ${props => (props.theme.mode ? DarkTheme.white : LightTheme.black)}
   }
 `;
