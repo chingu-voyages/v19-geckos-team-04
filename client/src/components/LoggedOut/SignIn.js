@@ -4,7 +4,8 @@ import Header from './Header';
 import TourButton from './TourButton';
 import SignInButton from './SignInButton';
 import SoundBars from './SoundBars';
-import PseudoNavbar from './PseudoNavbar';
+import Logo from './Logo';
+import SunMoonIcon from './SunMoonIcon';
 import { ModalProvider } from 'styled-react-modal';
 import styled from 'styled-components';
 
@@ -36,16 +37,24 @@ const SoundBarsContainer = styled.div`
   bottom: 0;
 `;
 
+const StyledDivContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 40px;
+`;
+
+
 const SignIn = () => {
 
   const onOpenModal = useContext(ModalContext);
 
   return (
     <>
-      <PseudoNavbar
-        // isDark={this.state.isDarkMode}
-        // changeTheme={this.handleClick}
-      />
+      <StyledDivContainer>
+        <Logo />
+        <SunMoonIcon />
+      </StyledDivContainer>
       <LandingContainer>
         <HeaderContainer>
           <Header />
