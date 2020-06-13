@@ -8,7 +8,7 @@ const FirstModal = () => {
 
   return (
     <ModuleDiv>
-      <ModuleText>Here we would list some sort of benefit or Unique Selling Point. A picture would go below:</ModuleText>
+      <ModuleText>Generate your own Spotify playlists and match music to <i>your</i> pace.</ModuleText>
       <CenterDiv>
         {opened
           ? <SmallModalImage alt="pic-1" src={TestImage1} onClick={() => setOpened(!opened)}></SmallModalImage>

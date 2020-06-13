@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const ThirdModal = () => {
   return (
     <ModuleDiv>
-      <ModuleText>Third and last modal. No more images.</ModuleText>
+      <ModuleText>Connect with your Spotify account now to get started!</ModuleText>
       <ModuleButton
         className="spotify-login"
         onClick={ () => window.location = 'http://geckos4-backend.herokuapp.com/login' }>

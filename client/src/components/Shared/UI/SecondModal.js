@@ -8,7 +8,7 @@ const SecondModal = () => {
 
   return (
     <ModuleDiv>
-      <ModuleText>Yet another benefit or curiosity point for the user. Another picture would go below:</ModuleText>
+      <ModuleText>Warm up, fire up, then cool down -- adapt your playlists however you like.</ModuleText>
       <CenterDiv>
         {opened
           ? <SmallModalImage alt="pic-2" src={TestImage2} onClick={() => setOpened(!opened)}></SmallModalImage>
