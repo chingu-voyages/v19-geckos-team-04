@@ -28,7 +28,7 @@ const PlaylistView = ( { playlist, setView, userId, token, songs } ) => {
     <PlaylistViewContainer>
         <ButtonContainer>
             <HomeButton onClick={() => setView('home') }>Back to playlists</HomeButton>
-            <AddToSpotify onClick={ () => addToSpotify() }>Open in Sotify</AddToSpotify>
+            <AddToSpotify onClick={ () => addToSpotify() }>Open in Spotify</AddToSpotify>
         </ButtonContainer>
         <PlaylistTitle className="playlist-title">{ playlist[0].title }</PlaylistTitle>
         { playlist[0].songs.map( ( song, i ) => (
