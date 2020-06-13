@@ -1,9 +1,13 @@
+// I put all the names to lowercase. ~gitb
 export const DarkTheme = {
-  gunmetal: '#212E3A',
-  charcoal: '#36434E',
-  lightgray: '#C4C4C4',
-  green: '#2DD760',
-  mediumGray: '#999',
   agua: '#0DF0FF',
-  orange: '#FEBF39'
+  charcoal: '#36434E',
+  green: '#2DD760',
+  darkgreen: '#115d28',
+  gunmetal: '#212E3A',
+  lightgray: '#C4C4C4',
+  mediumgray: '#999',
+  orange: '#FEBF39',
+  tourbtn: '#e5e5e5',
+  white: '#fff',
 };

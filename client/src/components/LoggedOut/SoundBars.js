@@ -4,185 +4,197 @@ import styled from 'styled-components';
 const SoundBars = () => {
   return (
     <SoundBarContainer>
-      <GridContainer>
-        {/* <!-- Bar #1 --> */}
-        {/* <!-- 2 bars --> */}
-        <Block>
-          <Block></Block>
-          <Block></Block>
-        </Block>
+      {/* <!-- Bar #1 --> */}
+      {/* <!-- 2 bars --> */}
+      <BlockWrapper>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+      </BlockWrapper>
 
-        {/* <!-- Bar #2 --> */}
-        {/* <!-- 4 bars --> */}
-        <Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-        </Block>
+      {/* <!-- Bar #2 --> */}
+      {/* <!-- 4 bars --> */}
+      <BlockWrapper>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+      </BlockWrapper>
 
-        {/* <!-- Bar #3 --> */}
-        {/* <!-- 8 bars --> */}
-        <Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-        </Block>
+      {/* <!-- Bar #3 --> */}
+      {/* <!-- 8 bars --> */}
+      <BlockWrapper>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+      </BlockWrapper>
 
-        {/* <!-- Bar #4 --> */}
-        {/* <!-- 6 bars --> */}
-        <Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-        </Block>
+      {/* <!-- Bar #4 --> */}
+      {/* <!-- 6 bars --> */}
+      <BlockWrapper>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+      </BlockWrapper>
 
-        {/* <!-- Bar #5 --> */}
-        {/* <!-- 10 bars --> */}
-        <Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-        </Block>
+      {/* <!-- Bar #5 --> */}
+      {/* <!-- 10 bars --> */}
+      <BlockWrapper>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+      </BlockWrapper>
 
-        {/* <!-- Bar #6 --> */}
-        {/* <!-- 11 bars --> */}
-        <Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-        </Block>
+      {/* <!-- Bar #6 --> */}
+      {/* <!-- 11 bars --> */}
+      <BlockWrapper>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+      </BlockWrapper>
 
-        {/* <!-- Bar #7 --> */}
-        {/* <!-- 7 bars --> */}
-        <Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-        </Block>
+      {/* <!-- Bar #7 --> */}
+      {/* <!-- 7 bars --> */}
+      <BlockWrapper>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+      </BlockWrapper>
 
-        {/* <!-- Bar #8 --> */}
-        {/* <!-- 5 bars --> */}
-        <Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-        </Block>
+      {/* <!-- Bar #8 --> */}
+      {/* <!-- 5 bars --> */}
+      <BlockWrapper>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+      </BlockWrapper>
 
-        {/* <!-- Bar #9 --> */}
-        {/* <!-- 9 bars --> */}
-        <Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-        </Block>
+      {/* <!-- Bar #9 --> */}
+      {/* <!-- 9 bars --> */}
+      <BlockWrapper>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+      </BlockWrapper>
 
-        {/* <!-- Bar #10 --> */}
-        {/* <!-- 10 bars --> */}
-        <Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-        </Block>
+      {/* <!-- Bar #10 --> */}
+      {/* <!-- 10 bars --> */}
+      <BlockWrapper>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+      </BlockWrapper>
 
-        {/* <!-- Bar #11 --> */}
-        {/* <!-- 6 bars --> */}
-        <Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-        </Block>
+      {/* <!-- Bar #11 --> */}
+      {/* <!-- 6 bars --> */}
+      <BlockWrapper>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+      </BlockWrapper>
 
-        {/* <!-- Bar #12 --> */}
-        {/* <!-- 3 bars --> */}
-        <Block>
-          <Block></Block>
-          <Block></Block>
-          <Block></Block>
-        </Block>
-      </GridContainer>
+      {/* <!-- Bar #12 --> */}
+      {/* <!-- 3 bars --> */}
+      <BlockWrapper>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+        <PTag>&nbsp;</PTag>
+      </BlockWrapper>
     </SoundBarContainer>
   );
 };
 
 export default SoundBars;
 
+
 const SoundBarContainer = styled.div`
-  transform: scale(1, -1);
-   {
-    /* Flips bars upside-down. By default the rows are built DOWNWARD. */
-  }
-  -webkit-transform: scale(1, -1);
-  -moz-transform: scale(1, -1);
-  -ms-transform: scale(1, -1);
-  -o-transform: scale(1, -1);
-  width: min-content;
   margin: 0 auto;
+  opacity: 0.8;
+  width: 800px;
+  
+  @media screen and (max-width: 990px) {
+    width: 660px;
+  }
+  @media screen and (max-width: 768px) {
+    width: 450px;
+    opacity: 0.7;
+    overflow: hidden;
+  }
+  @media screen and (max-width: 676px) {
+    /* Helps correct the push-down in TourButton.js. */
+    margin-top: -20px;
+  }
+
+  @media screen and (max-width: 480px) {
+    width: 300px;
+    opacity: 0.6;
+  }
+`;
+
+const BlockWrapper = styled.div`
+  display: table-cell;
   height: 69vh;
+  width: 8.333%; /* 12 columns total. 100 / 12 = 8.333~ */
+  vertical-align: bottom;
 `;
 
-const GridContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(12, 80px);
-`;
-
-const Block = styled.div`
+const PTag = styled.p`
   background: linear-gradient(
-    0deg,
+    180deg,
     rgba(2, 0, 36, 1) 0%,
-    rgba(0, 212, 255, 1) 40%,
-    rgba(255, 230, 0, 0.897) 80%,
-    rgb(255, 244, 141) 100%
+    rgba(0, 212, 255, 1) 65%,
+    rgba(255, 230, 0, 0.897) 100%
   );
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
-  height: 15px;
-  margin-bottom: 14px;
-  width: 50px;
+  display: inline-block;
+  height: 17px;
+  margin: 5px;
+  width: 80%;
+  z-index: -999;
 `;

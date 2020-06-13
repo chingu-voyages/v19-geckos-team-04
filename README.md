@@ -1,9 +1,51 @@
-# v19-geckos-team-04
-Chingu project for Geckos 04.
+[![ForTheBadge uses-js](http://ForTheBadge.com/images/badges/uses-js.svg)](http://ForTheBadge.com) [![ForTheBadge uses-git](http://ForTheBadge.com/images/badges/uses-git.svg)](https://GitHub.com/) [![ForTheBadge built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://GitHub.com/Naereen/)
 
-### Description
-Add-project-description-here | Voyage-19 | https://chingu.io/
+# Overview
+**BPM Workout** is a [Chingu](https://chingu.io/) project by team "Geckos 04." Made in just five weeks, and done entirely remote.
+<br><br><br>
+# Features
+* The Spotify Web API and [audio analysis](https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-analysis/).
+* Responsive web design via Styled Components.
+* Color switching 🎨
+* Create, update, and delete playlists according to beats per minute (and other song data).
+* Backend programming: user authentication with OAuth, MongoDB, Express.js, and cookies.
+<br><br><br>
+# Running The App
+This project was started with [create-react-app](https://reactjs.org/docs/create-a-new-react-app.html).
 
-**Link to Figma Design** : https://www.figma.com/file/9ldSiikBuURak9E6PcNibG/BPM-Workout?node-id=3%3A12
+In Node Package Manager, run...
 
-**Link to original Google doc**: https://docs.google.com/document/d/1GeyDWiqxcmG2cKXGrne0ZNNXKLeVZm5psupTM556aOY/edit
+`npx create-react-app bpm-workout`
+<br>
+`cd bpm-workout`
+
+## Dependencies
+Before running `npm start`, you will need these dependencies in the client folder:
+
+* Node Sass
+* RC Slider
+* React Loader Spinner
+* React Modal
+* Styled Components
+* Styled React Modal
+
+And these dependencies will need to be installed in the oauth-bridge folder:
+
+* Express
+* Querystring
+* Request
+
+## Spotify
+In addition to a Spotify account, the app requires two unique IDs:
+
+`Client ID`
+<br>
+`Client Secret ID`
+
+Further details are in [the official Spotify documentation](https://developer.spotify.com/documentation/web-api/quick-start/).
+<br><br><br>
+# Other Tools Used
+* ZenHub
+* Figma
+* Google Docs
+* Discord
