@@ -108,43 +108,21 @@ class App extends Component {
       <BrowserRouter>
         <ThemeProvider theme={{ mode: this.state.isDarkMode }}>
           <GlobalStyle />
-          {/* {this.state.serverData.user.display_name ? ( */}
+          { this.state.serverData.user.display_name ? (
             <>
               <Route 
                 path='/dashboard'
                 render={(props) => <Dashboard { ...props } userData={ this.state.serverData.user } accessToken={ this.state.accessToken } />}
               />
-              {/* <Dashboard
-                userData={this.state.serverData.user}
-                accessToken={this.state.accessToken}
-              /> */}
             </>
-          {/* ) : ( */}
+          ) : (
             <>
               <Route 
                 path='/'
                 render={(props) => <SignIn { ...props } isDark={ this.state.isDarkMode } changeTheme={ this.handleClick } />}
               />
-              {/* <PseudoNavbar
-                isDark={this.state.isDarkMode}
-                changeTheme={this.handleClick}
-              />
-              <LandingContainer>
-                <HeaderContainer>
-                  <Header />
-                  <ModalProvider>
-                    <ButtonsContainer>
-                      <TourButton showModal={() => this.onOpenModal()} />
-                      <SignInButton />
-                    </ButtonsContainer>
-                  </ModalProvider>
-                </HeaderContainer>
-                <SoundBarsContainer>
-                  <SoundBars />
-                </SoundBarsContainer>
-              </LandingContainer> */}
             </>
-          {/* )} */}
+          )}
         </ThemeProvider>
       </BrowserRouter>
     );
