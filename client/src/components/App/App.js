@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route } from 'react-router-dom'
 
-import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import queryString from 'query-string';
 import './App.scss';
 import Header from './../LoggedOut/Header';
 import TourButton from '../LoggedOut/TourButton';
 import SignInButton from '../LoggedOut/SignInButton';
 import SoundBars from '../LoggedOut/SoundBars';
-import PseudoNavbar from '../LoggedOut/PseudoNavbar';
+import Logo from '../LoggedOut/Logo';
+import SunMoonIcon from '../LoggedOut/SunMoonIcon';
 import Dashboard from '../Dashboard/Dashboard';
 import SignIn from '../LoggedOut/SignIn';
 import { ModalProvider } from 'styled-react-modal';
@@ -130,3 +130,60 @@ class App extends Component {
 }
 
 export default App;
+
+
+const LandingContainer = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+`;
+
+const HeaderContainer = styled.div`
+  position: relative;
+  top: 20%;
+  z-index: 1000;
+`;
+
+const ButtonsContainer = styled.div`
+  text-align: center;
+`;
+
+const SoundBarsContainer = styled.div`
+  position: relative;
+  align-self: center;
+  z-index: 999;
+  bottom: 0;
+`;
+
+const StyledDivContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 40px;
+`;
+
+// Styles for dark and light modes, respectively.
+const GlobalStyle = createGlobalStyle`
+  body, html {
+    background-color: ${props => (props.theme.mode ? DarkTheme.gunmetal : LightTheme.lightcream )};
+  }
+  .logo-text-TEMPORARY {
+    color: ${props => (props.theme.mode ? DarkTheme.lightgray : LightTheme.black)};
+  }
+  .header-text {
+    color: ${props => (props.theme.mode ? DarkTheme.agua : LightTheme.agua )};
+  }
+  .tour-btn {
+    /* Tour button has two color sets. */
+    background-color: ${props => (props.theme.mode ? DarkTheme.tourbtn : LightTheme.lightgray)};
+    &:hover {
+      background-color: ${props => (props.theme.mode ? DarkTheme.mediumgray : LightTheme.tourbtnhover )}
+    }
+  }
+  .subhead-text {
+    color: ${props => (props.theme.mode ? DarkTheme.lightgray : LightTheme.darkgray )};
+  }
+`;

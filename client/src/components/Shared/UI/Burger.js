@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { DarkTheme } from '../Styles/DarkTheme';
 
 const Burger = ({ open, setOpen }) => {
   return (
     <StyledBurger open={open} onClick={() => setOpen(!open)}>
-      <div />
-      <div />
-      <div />
+      <div className="burger-lines"/>
+      <div className="burger-lines"/>
+      <div className="burger-lines"/>
     </StyledBurger>
   );
 };
@@ -37,7 +36,7 @@ const StyledBurger = styled.button`
   div {
     width: 1.9rem;
     height: 0.2rem;
-    background: white;
+    ${'' /* background: white; */}
     transition: transform 0.25s, opacity 0.25s;
     position: relative;
     transform-origin: 1px;

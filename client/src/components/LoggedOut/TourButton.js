@@ -166,7 +166,7 @@ const ModalContainer = styled.div`
 const ModalContent = styled.div`
   position: relative;
   width: 50vw;
-  min-height: 55vh;
+  min-height: 57vh;
   background-color: #e5e5e5;
   box-sizing: border-box;
   border-radius: 40px;
@@ -230,4 +230,10 @@ const TourStyle = styled.button`
   margin: 0 15px;
   box-shadow: 7px 7px 19px -5px rgb(18, 28, 37);
   border: none;
+  transition-duration: 0.5s;
+  
+  @media screen and (max-width: 676px) {
+    display: block;
+    margin: 0 auto 20px auto; /* Centers button. Adds space to bottom of button. */
+  }
 `;

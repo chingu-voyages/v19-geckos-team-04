@@ -1,88 +1,112 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from 'react-loader-spinner';
 
 export default UserPlaylists;
 
-function UserPlaylists( { userPlaylists, 
-                          featuredPlaylists, 
-                          selected, 
-                          setSelected, 
-                          setView } ) {
-    const [ playlistView, setPlaylistView ] = useState( 'user' );
-    
-    const addToSelectedPlaylists = id => {
-        if ( !selected.includes( id ) ) {
-            setSelected( selected => [ ...selected, id ] );
-        } else {
-            setSelected( selected.filter( el => el !== id ) );
-        }
+function UserPlaylists({
+  userPlaylists,
+  featuredPlaylists,
+  selected,
+  setSelected,
+  setView
+}) {
+  const [playlistView, setPlaylistView] = useState('user');
+
+  const addToSelectedPlaylists = id => {
+    if (!selected.includes(id)) {
+      setSelected(selected => [...selected, id]);
+    } else {
+      setSelected(selected.filter(el => el !== id));
     }
-    
-    const isSelectedPlaylist = ( id, img ) => {
-        if ( selected.includes( id ) ) {
-            return { border: '2px solid #2DD760', backgroundImage: `url(${img}` }
-        } else {
-            return { backgroundImage: `url(${img}` }
-        }
+  };
+
+  const isSelectedPlaylist = (id, img) => {
+    if (selected.includes(id)) {
+      return { border: '2px solid #2DD760', backgroundImage: `url(${img}` };
+    } else {
+      return { backgroundImage: `url(${img}` };
     }
-    
-    const backToHome = () => {
-        setView( 'home' );
-        setPlaylistView( 'user' );
-        setSelected( [] );
-    }
-    
-    return (
-        <SelectPlaylistsContainer>
-            <SelectPlaylists>Select Playlists</SelectPlaylists>
-            <BackButton onClick={ () => backToHome() }>Back</BackButton>
-            <Button disabled={ selected.length ? false : true }
-                    onClick={ () => setView( 'playlistSettings' ) }>Next</Button>
-            <PlaylistTabs>
-                <UserTab 
-                    style={ playlistView === 'user' ? { textDecoration: 'underline', fontWeight: 'bold' } : { textDecoration: 'none' } } 
-                    onClick={ () => setPlaylistView( 'user' ) }>
-                    Your Playlists
-                </UserTab>
-                <FeaturedTab 
-                    style={ playlistView === 'spotify' ? { textDecoration: 'underline', fontWeight: 'bold' } : { textDecoration: 'none' } }
-                    onClick={ () => setPlaylistView( 'spotify' ) }>
-                    Spotify Featured Playlists
-                </FeaturedTab>
-            </PlaylistTabs>
-            <UsersPlaylists>
-                { userPlaylists === 'fetching' ? 
-                    <span>Loading...</span>
-                    :
-                    ( playlistView === 'user' ? 
-                        ( userPlaylists.map( ( playlist, id ) => {
-                            return (
-                                <PlaylistContainer onClick={ () => addToSelectedPlaylists( playlist.id ) }>
-                                    <Playlist 
-                                                key={ 'playlist-' + id }
-                                                style={ isSelectedPlaylist( playlist.id, playlist.images[0].url ) }>
-                                    </Playlist>
-                                    <PlaylistName>{ playlist.name }</PlaylistName>
-                                </PlaylistContainer>
-                            )
-                        } ) )
-                        :
-                        ( featuredPlaylists.map( ( playlist, id ) => {
-                            return (
-                                <PlaylistContainer>
-                                    <Playlist 
-                                                key={ 'playlists-' + id }
-                                                onClick={ () => addToSelectedPlaylists( playlist.id ) } 
-                                                style={ isSelectedPlaylist( playlist.id, playlist.images[0].url ) }></Playlist>
-                                </PlaylistContainer>
-                            )
-                        } ) )
-                    )
-                    
-                }
-            </UsersPlaylists>
-        </SelectPlaylistsContainer>
-    )
+  };
+
+  const backToHome = () => {
+    setView('home');
+    setPlaylistView('user');
+    setSelected([]);
+  };
+
+  return (
+    <SelectPlaylistsContainer>
+      <SelectPlaylists>Select Playlists</SelectPlaylists>
+      <BackButton onClick={() => backToHome()}>Back</BackButton>
+      <Button
+        disabled={selected.length ? false : true}
+        onClick={() => setView('playlistSettings')}
+      >
+        Next
+      </Button>
+      <PlaylistTabs>
+        <UserTab
+          style={
+            playlistView === 'user'
+                ? { border: '1px solid white', padding: '10px 23px', fontWeight: 'bold' }
+                : { padding: '10px 23px' }
+          }
+          onClick={() => setPlaylistView('user')}
+        >
+          Your Playlists
+        </UserTab>
+        <FeaturedTab
+          style={
+            playlistView === 'spotify'
+              ? { border: '1px solid white', padding: '10px 23px', fontWeight: 'bold' }
+              : { padding: '10px 23px' }
+          }
+          onClick={() => setPlaylistView('spotify')}
+        >
+          Spotify Featured Playlists
+        </FeaturedTab>
+      </PlaylistTabs>
+      <UsersPlaylists>
+        {userPlaylists === 'fetching' ? (
+            <Loader type="Bars" color="orange" height={80} width={250} />
+        ) : playlistView === 'user' ? (
+          userPlaylists.map((playlist, id) => {
+            return (
+              <PlaylistContainer
+                key={'playlist-' + id}
+                onClick={() => addToSelectedPlaylists(playlist.id)}
+              >
+                <Playlist
+                  style={isSelectedPlaylist(
+                    playlist.id,
+                    playlist.images[0].url
+                  )}
+                ></Playlist>
+                <PlaylistName>{playlist.name}</PlaylistName>
+              </PlaylistContainer>
+            );
+          })
+        ) : (
+          featuredPlaylists.map((playlist, id) => {
+            return (
+              <PlaylistContainer>
+                <Playlist
+                  key={'playlists-' + id}
+                  onClick={() => addToSelectedPlaylists(playlist.id)}
+                  style={isSelectedPlaylist(
+                    playlist.id,
+                    playlist.images[0].url
+                  )}
+                ></Playlist>
+              </PlaylistContainer>
+            );
+          })
+        )}
+      </UsersPlaylists>
+    </SelectPlaylistsContainer>
+  );
 }
 
 const SelectPlaylistsContainer = styled.div`
@@ -109,7 +133,7 @@ const BackButton = styled.button`
 `;
 
 const Button = styled.button`
-  background-color: #2DD760;
+  background-color: #2dd760;
   border-radius: 3px;
   color: black;
   padding: 10px 15px;
@@ -152,10 +176,10 @@ const PlaylistContainer = styled.div`
   margin: 20px 10px;
   box-shadow: 7px 7px 19px -5px rgb(18, 28, 37);
   top: 0;
-  transition: top ease .2s;
-  
+  transition: top ease 0.2s;
+
   &:hover {
-      top: -5px;
+    top: -5px;
   }
 `;
 
