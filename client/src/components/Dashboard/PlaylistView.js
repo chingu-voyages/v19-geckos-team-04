@@ -1,33 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-const PlaylistView = ( { playlist, setView, userId, token } ) => {
-    console.log(playlist)
+const PlaylistView = ( { playlist, setView, userId, token, songs } ) => {
     
   const addToSpotify = () => {
     fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
                 headers: { Authorization: `Bearer ${token}` },
                 method: 'POST',
-                body: JSON.stringify( { name: playlist[0].title })
-            }).then(response => response.json()
+                body: JSON.stringify( { name: playlist[0].title } )
+            }).then(response => {
+                response.json()
+                console.log('response', response.json())
+            }
             ).then(jsonResponse => {
+                console.log('jsonresponse', jsonResponse )
                 const playlistId = jsonResponse.id;
-                return fetch(`­https://api.spotify.com/v1/playlists/${playlist[0].id}/tracks`,
-                    {
-                        headers: { Authorization: `Bearer ${token}` },
-                        method: 'POST',
-                        body: JSON.stringify({ uris: playlist[0].songs }) 
-                    })
-            })
-            
-    // save playlist, then open new spotify tab
+                return fetch(`­https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
+                {
+                    headers: { Authorization: `Bearer ${token}` },
+                    method: 'POST',
+                    body: JSON.stringify({ uris: songs }) 
+                }).then( window.open("https://open.spotify.com/playlist/" + playlistId, "_blank") )
+            })    
   }
   
   return (
     <PlaylistViewContainer>
         <ButtonContainer>
             <HomeButton onClick={() => setView('home') }>Back to playlists</HomeButton>
-            <AddToSpotify>Open in Sotify</AddToSpotify>
+            <AddToSpotify onClick={ () => addToSpotify() }>Open in Sotify</AddToSpotify>
         </ButtonContainer>
         <PlaylistTitle className="playlist-title">{ playlist[0].title }</PlaylistTitle>
         { playlist[0].songs.map( ( song, i ) => (

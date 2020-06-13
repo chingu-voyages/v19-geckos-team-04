@@ -19,6 +19,7 @@ const Dashboard = ({ userData, accessToken }) => {
   const [playlistId, setPlaylistId] = useState('');
   const [playlist, setPlaylist] = useState([]);
   const [themeType, setThemeType] = useState('dark');
+  const [songs, setSongs] = useState([]);
 
   useEffect(() => {
     fetch(`https://api.spotify.com/v1/users/${userData.id}/playlists`, {
@@ -83,6 +84,7 @@ const Dashboard = ({ userData, accessToken }) => {
             setView={setView}
             selected={selected}
             token={accessToken}
+            setSongs={setSongs}
           />
         )}
         {view === 'playlist' && playlistId !== '' ? (
@@ -91,6 +93,7 @@ const Dashboard = ({ userData, accessToken }) => {
               token={accessToken}
               playlist={playlist}
               userId={userData.id}
+              songs={songs}
           />
         ) : ''}
       </DashboardContainer>

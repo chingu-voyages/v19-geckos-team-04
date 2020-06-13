@@ -6,7 +6,7 @@ import 'rc-slider/assets/index.css';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from 'react-loader-spinner';
 
-const PlaylistSettings = ({ setView, selected, token }) => {
+const PlaylistSettings = ({ setView, selected, token, setSongs }) => {
   const [isFetching, setIsFetching] = useState( true );
   const [allSongs, setAllSongs] = useState([]);
   const [filteredSongs, setFilteredSongs] = useState(allSongs);
@@ -16,7 +16,7 @@ const PlaylistSettings = ({ setView, selected, token }) => {
   const [instrumentalnessValues, setInstrumentalnessValues] = useState([0.0, 1.0]);
   const [valenceValues, setValenceValues] = useState([0.0, 1.0]);
   const [title, setTitle] = useState( 'My Playlist' );
-
+  
   const onBpmValuesChangedHandler = values => {
     setBpmValues(values);
   };
@@ -105,6 +105,7 @@ const PlaylistSettings = ({ setView, selected, token }) => {
       //Function to save playlist object to backend
       
       setView( 'home' );
+      setSongs( filteredSongs )
   }
 
   return (
