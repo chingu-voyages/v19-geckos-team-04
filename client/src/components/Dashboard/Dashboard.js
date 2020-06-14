@@ -22,7 +22,7 @@ const Dashboard = ({ userData, accessToken }) => {
   const [songs, setSongs] = useState([]);
 
   useEffect(() => {
-    fetch(`https://api.spotify.com/v1/users/${userData.id}/playlists`, {
+    fetch(`https://api.spotify.com/v1/users/${userData.id}/playlists?limit=50`, {
       headers: { Authorization: 'Bearer ' + accessToken }
     })
       .catch(error => {
@@ -30,10 +30,11 @@ const Dashboard = ({ userData, accessToken }) => {
       })
       .then(res => res.json())
       .then(data => {
+          console.log('data', data)
         setUserPlaylists(data.items);
       });
 
-    fetch(`https://api.spotify.com/v1/browse/categories/workout/playlists`, {
+    fetch(`https://api.spotify.com/v1/browse/categories/workout/playlists?limit=50`, {
       headers: { Authorization: 'Bearer ' + accessToken }
     })
       .then(res => res.json())
@@ -213,7 +214,7 @@ const GlobalStyleDashboard = createGlobalStyle`
   }
   .menu-greeting {
     color: ${props =>
-      props.theme.mode ? DarkTheme.green : LightTheme.darkgreen}
+      props.theme.mode ? DarkTheme.agua : LightTheme.darkgreen}
   }
   .menu-logout-text {
     color: ${props =>

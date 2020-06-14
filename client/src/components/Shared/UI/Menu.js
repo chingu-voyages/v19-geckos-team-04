@@ -5,6 +5,7 @@ import ListIconLightMode from '../../../images/list-icon-light-mode.png';
 import MenuPlusIcon from '../../../images/menu-plus-icon.png';
 import MenuPlusIconLightMode from '../../../images/menu-plus-icon-light-mode.png';
 import Burger from '../UI/Burger';
+import bars from './../../../images/bars.png';
 
 const Menu = props => {
   const [open, setOpen] = useState(false);
@@ -41,6 +42,8 @@ const Menu = props => {
             <Icon src={props.isDark ? MenuPlusIcon : MenuPlusIconLightMode} /> Create
           </Item>
         </MenuItems>
+        <Bars src={bars}></Bars>
+
       </MenuContainer>
     </Fragment>
   );
@@ -73,6 +76,13 @@ const MenuContainer = styled.div`
   @media screen and (max-width: 500px) {
     font-size: 0.9rem;
   }
+`;
+
+const Bars = styled.img`
+  height: 90px;
+  width: 100%;
+  bottom: 0;
+  position: absolute;
 `;
 
 const UserProfile = styled.div`
@@ -109,7 +119,6 @@ const ProfilePic = styled.img`
 `;
 
 const Greeting = styled.div`
-  ${'' /* color: ${DarkTheme.green}; */}
   font-weight: 700;
   font-size: 20px;
   cursor: pointer;
