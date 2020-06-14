@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import TestImage2 from '../../../images/bruce-mars-8Xhf30pcUpw-unsplash.jpg';
-import bigtestimage2 from '../../../images/testimage2.jpg'
+import PreviewPic2 from '../../../images/previewpic2.png';
+import LargePic2 from '../../../images/pic2.png';
 
 const SecondModal = () => {
   const [opened, setOpened] = useState(true);
@@ -11,8 +11,8 @@ const SecondModal = () => {
       <ModuleText>Warm up, fire up, then cool down -- adapt your playlists however you like.</ModuleText>
       <CenterDiv>
         {opened
-          ? <SmallModalImage alt="pic-2" src={TestImage2} onClick={() => setOpened(!opened)}></SmallModalImage>
-          : <EnlargedModalImage alt="test-pic-2" src={bigtestimage2} onClick={() => setOpened(!opened)}></EnlargedModalImage>
+          ? <SmallModalImage alt="preview-pic-2" src={PreviewPic2} onClick={() => setOpened(!opened)}></SmallModalImage>
+          : <EnlargedModalImage alt="large-pic-2" src={LargePic2} onClick={() => setOpened(!opened)}></EnlargedModalImage>
         }
       </CenterDiv>
     </ModuleDiv>

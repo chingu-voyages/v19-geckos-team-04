@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import TestImage1 from '../../../images/equalizer-153212_1280.png';
-import bigtestimage1 from '../../../images/testimage1.png'
+import PreviewPic1 from '../../../images/previewpic1.png';
+import LargePic1 from '../../../images/pic1.png';
 
 const FirstModal = () => {
   const [opened, setOpened] = useState(true);
@@ -11,8 +11,8 @@ const FirstModal = () => {
       <ModuleText>Generate your own Spotify playlists and match music to <i>your</i> pace.</ModuleText>
       <CenterDiv>
         {opened
-          ? <SmallModalImage alt="pic-1" src={TestImage1} onClick={() => setOpened(!opened)}></SmallModalImage>
-          : <EnlargedModalImage alt="test-pic-1" src={bigtestimage1} onClick={() => setOpened(!opened)}></EnlargedModalImage>
+          ? <SmallModalImage alt="preview-pic-1" src={PreviewPic1} onClick={() => setOpened(!opened)}></SmallModalImage>
+          : <EnlargedModalImage alt="large-pic-1" src={LargePic1} onClick={() => setOpened(!opened)}></EnlargedModalImage>
         }
       </CenterDiv>
     </ModuleDiv>
