@@ -1,5 +1,5 @@
 import React, { Component, useContext } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom';
 
 import queryString from 'query-string';
 import './App.scss';
@@ -26,40 +26,50 @@ class App extends Component {
   componentDidMount() {
     let parsed = queryString.parse(window.location.search);
     let urlAccessToken = parsed.access_token;
-    
-    if ( urlAccessToken ) {
-        this.setState({ accessToken: urlAccessToken });
-      
-        fetch('https://api.spotify.com/v1/me', {
-          headers: { Authorization: 'Bearer ' + urlAccessToken }
+
+    if (urlAccessToken) {
+      this.setState({ accessToken: urlAccessToken });
+
+      fetch('https://api.spotify.com/v1/me', {
+        headers: { Authorization: 'Bearer ' + urlAccessToken }
+      })
+        .catch(error => {
+          console.log(error);
         })
-          .then(res => res.json())
-          .then(data => this.setState({ serverData: { user: data } }));
+        .then(res => res.json())
+        .then(data => this.setState({ serverData: { user: data } }));
     } else {
-        this.setState({ serverData: { user: '' } });
+      this.setState({ serverData: { user: '' } });
     }
   }
 
   render() {
-
     return (
       <BrowserRouter>
         <ThemeContextProvider>
-            { this.state.serverData.user.display_name ? (
-              <>
-                <Route 
-                  path='/dashboard'
-                  render={(props) => <Dashboard { ...props } userData={ this.state.serverData.user } accessToken={ this.state.accessToken } />}
-                />
-              </>
-            ) : (
-              <>
-                <Route 
-                  path='/'
-                  render={(props) => <SignIn { ...props } isDark={ this.state.isDarkMode } />}
-                />
-              </>
-            )}
+          {this.state.serverData.user.display_name ? (
+            <>
+              <Route
+                path="/dashboard"
+                render={props => (
+                  <Dashboard
+                    {...props}
+                    userData={this.state.serverData.user}
+                    accessToken={this.state.accessToken}
+                  />
+                )}
+              />
+            </>
+          ) : (
+            <>
+              <Route
+                path="/"
+                render={props => (
+                  <SignIn {...props} isDark={this.state.isDarkMode} />
+                )}
+              />
+            </>
+          )}
         </ThemeContextProvider>
       </BrowserRouter>
     );
