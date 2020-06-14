@@ -141,9 +141,10 @@ const SongInfoContainer = styled.div`
   width: 450px;
   position: absolute;
   background: #10171d;
-  top: 20%;
+  top: 15vh;
   left: 30%;
   border-radius: 10px;
+  position: fixed;
 `;
 
 const ModalExit = styled.span`
