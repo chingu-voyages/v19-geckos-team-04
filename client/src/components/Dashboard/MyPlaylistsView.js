@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PlusIcon from '../../images/plus-icon.png';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from 'react-loader-spinner';
+import placeholder from './../../images/placeholder.jpg';
 
 const MyPlaylistsView = ( { setPlaylists, setViewPlaylist, setPlaylistId, setPlaylist } ) => {
     
@@ -37,9 +38,14 @@ const MyPlaylistsView = ( { setPlaylists, setViewPlaylist, setPlaylistId, setPla
                   <UserPlaylistsContainer>
                       { userPlaylists.map( ( playlist, i ) => (
                           <UserPlaylistContainer className="user-playlist-container" key={ 'playlist-' + i }>
-                              <UserPlaylistTitle>{ playlist.title }</UserPlaylistTitle>
-                              <AddToSpotify>{ playlist.songs[1]}</AddToSpotify>
-                              <ViewPlaylistButton onClick={ () => viewPlaylist( playlist.id ) }>View Playlist</ViewPlaylistButton>
+                              <PlaylistImage>
+                                  <UserPlaylistImage src={ placeholder } />
+                              </PlaylistImage>
+                              <PlaylistInfo>
+                                  <UserPlaylistTitle>{ playlist.title }</UserPlaylistTitle>
+                                  <NumberOfSongs>{ playlist.songs.length } songs</NumberOfSongs>
+                                  <ViewPlaylistButton onClick={ () => viewPlaylist( playlist.id ) }>View Playlist</ViewPlaylistButton>
+                              </PlaylistInfo>
                           </UserPlaylistContainer>
                       ) ) }
                   </UserPlaylistsContainer>
@@ -78,30 +84,59 @@ const MyPlaylistsViewContainer = styled.div`
 const UserPlaylistsContainer = styled.div`
   padding: 20px 0 30px 0;
   display: flex;
-  flex-direction: column;
-  width: 600px;
-
-  @media screen and (max-width: 660px) {
+  flex-wrap: wrap;
+  
+  ${'' /* @media screen and (max-width: 660px) {
     width: 100%;
-  }
+  } */}
 `;
 
 const UserPlaylistContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 20px 0;
+  align-items: center;
+  padding: 15px 20px;
   border-top: 1px solid;
+  background: #f0f5f1;
+  color: #212f3a;
+  border-radius: 5px;
+  margin: 15px;
+  -webkit-box-shadow: 0px 0px 45px -15px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 45px -15px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 45px -15px rgba(0,0,0,0.75);
+  width: 225px;
+  height: 150px
+`;
+
+const PlaylistImage = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const UserPlaylistImage = styled.img`
+  height: 135px;
+  border-radius: 5px;
+`;
+
+const PlaylistInfo = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 const UserPlaylistTitle = styled.span`
-  ${'' /* color: white; */}
+  font-size: 24px;
+  font-weight: bold;
 `;
 
-const AddToSpotify = styled.span`
+const NumberOfSongs = styled.span`
+  font-size: 14px;
+  margin-bottom: 20px;
 `;
 
 const ViewPlaylistButton = styled.span`
   cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
 `;
 
 const EmptyPlaylistText = styled.div`
