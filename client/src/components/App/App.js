@@ -6,10 +6,12 @@ import './App.scss';
 import Dashboard from '../Dashboard/Dashboard';
 import SignIn from '../LoggedOut/SignIn';
 import ThemeContextProvider from '../../context/ThemeContext';
+import { DarkTheme } from '../Shared/Styles/DarkTheme';
+import { LightTheme } from '../Shared/Styles/LightTheme';
 import { ThemeContext } from '../../context/ThemeContext';
-import GlobalTheme from '../Shared/Styles/GlobalStyle';
 
-import { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
+import GlobalTheme from '../Shared/Styles/GlobalStyle';
 
 class App extends Component {
   constructor(props) {
@@ -19,6 +21,7 @@ class App extends Component {
       serverData: { user: false },
       filterString: '',
       isModalOpen: false,
+      isDarkMode: true,
       accessToken: ''
     };
   }
@@ -45,6 +48,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <ThemeContextProvider>
+            <GlobalStyle />
             { this.state.serverData.user.display_name ? (
               <>
                 <Route 
@@ -56,7 +60,7 @@ class App extends Component {
               <>
                 <Route 
                   path='/'
-                  render={(props) => <SignIn { ...props } isDark={ this.state.isDarkMode } />}
+                  render={(props) => <SignIn { ...props } />}
                 />
               </>
             )}
@@ -67,3 +71,25 @@ class App extends Component {
 }
 
 export default App;
+
+const GlobalStyle = createGlobalStyle`
+  body, html {
+    background-color: ${(props) => true ? DarkTheme.gunmetal : LightTheme.lightcream };
+  }
+  .logo-text-TEMPORARY {
+    color: ${(props) => true ? DarkTheme.lightgray : LightTheme.black};
+  }
+  .header-text {
+    color: ${(props) => true ? DarkTheme.agua : LightTheme.agua };
+  }
+  .tour-btn {
+    /* Tour button has two color sets. */
+    background-color: ${(props) => true ? DarkTheme.tourbtn : LightTheme.lightgray};
+    &:hover {
+      background-color: ${(props) => true ? DarkTheme.mediumgray : LightTheme.tourbtnhover }
+    }
+  }
+  .subhead-text {
+    color: ${(props) => true ? DarkTheme.lightgray : LightTheme.darkgray };
+  }
+`;

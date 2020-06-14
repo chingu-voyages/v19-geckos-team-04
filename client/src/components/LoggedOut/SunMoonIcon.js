@@ -14,8 +14,8 @@ const SunMoonIcon = () => {
         role="img" 
         alt="icon" 
         aria-label="theme-icon"
-        onClick={ onChangeTheme }
-        src={ dark.isDarkMode ? SunIcon : MoonIcon }
+        // onClick={ onChangeTheme }
+        src={ SunIcon }
       >
       </AdjustableColorTheme>
     </>
