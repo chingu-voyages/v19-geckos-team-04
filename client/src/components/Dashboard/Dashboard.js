@@ -58,8 +58,7 @@ const Dashboard = ({ userData, accessToken }) => {
               isDark={themeType}
               changeTheme={() => setThemeType(!themeType)}
             />
-            <CurrentView className="my-playlist-text">My Playlists</CurrentView>
-            {/* <CurrentView>Create Playlist</CurrentView> */}
+        {/*<CurrentView className="my-playlist-text">My Playlists</CurrentView>*/}
           </DashboardHeader>
           <Menu
             userData={userData}
@@ -93,6 +92,7 @@ const Dashboard = ({ userData, accessToken }) => {
               selected={selected}
               token={accessToken}
               setSongs={setSongs}
+              view={view}
             />
           )}
           {view === 'playlist' && playlistId !== '' ? (
@@ -101,7 +101,6 @@ const Dashboard = ({ userData, accessToken }) => {
               token={accessToken}
               playlist={playlist}
               userId={userData.id}
-              songs={songs}
             />
           ) : (
             ''

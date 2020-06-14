@@ -13,7 +13,7 @@ const MyPlaylistsView = ( { setPlaylists, setViewPlaylist, setPlaylistId, setPla
         setTimeout( () => {
             setUserPlaylists( [ { id: 1, title: 'test1', songs: [ 'song1', 'song2' ] }, { id: 2, title: 'test2', songs: [ 'song3', 'song4' ] }, { id: 3, title: 'test3', songs: [ 'song5', 'song6' ] } ])
             // setUserPlaylists( [] );
-        }, 3000 )
+        }, 1000 )
         
       // fetch user's saved playlists and setUserPlaylists to array of playlist objects - title, songs array, playlist ID
     }, []);
@@ -116,6 +116,9 @@ const PlaylistImage = styled.div`
 const UserPlaylistImage = styled.img`
   height: 135px;
   border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 22px -3px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 22px -3px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 22px -3px rgba(0,0,0,0.75);
 `;
 
 const PlaylistInfo = styled.div`
