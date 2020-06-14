@@ -16,8 +16,7 @@ const SunMoonIcon = () => {
         aria-label="theme-icon"
         // onClick={ onChangeTheme }
         src={ SunIcon }
-      >
-      </AdjustableColorTheme>
+      ></AdjustableColorTheme>
     </>
   )
 }

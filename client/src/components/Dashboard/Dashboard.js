@@ -3,6 +3,7 @@ import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { DarkTheme } from '../Shared/Styles/DarkTheme';
 import { LightTheme } from '../Shared/Styles/LightTheme';
 // import SunMoonIcon from '../LoggedOut/SunMoonIcon';
+import Logo from '../LoggedOut/Logo';
 
 import Menu from './../Shared/UI/Menu';
 import MyPlaylistsView from './MyPlaylistsView';
@@ -50,7 +51,7 @@ const Dashboard = ({ userData, accessToken }) => {
         <DashboardContainer>
           <DashboardHeader>
             <Brand>
-              {/* <Logo className="logo-text-TEMPORARY">LOGO</Logo> */}
+              <Logo />
               <AppName className="logo-text-TEMPORARY">BPM Workout</AppName>
             </Brand>
             {/* CurrentView will be set conditionally in the future */}
@@ -137,14 +138,6 @@ const DashboardHeader = styled.div`
 const Brand = styled.div`
   display: inline-flex;
   color: white;
-`;
-
-const Logo = styled.div`
-  padding-right: 1rem;
-
-  @media screen and (max-width: 768px) {
-    padding-bottom: 0.5rem;
-  }
 `;
 
 const AppName = styled.div`
