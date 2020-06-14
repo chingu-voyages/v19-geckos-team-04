@@ -28,8 +28,9 @@ const Menu = props => {
         <UserProfile>
           <ProfilePic src={profilePic} />
           <div>
-            <Greeting className="menu-greeting">{greeting}</Greeting>
-            <Logout className="menu-logout-text">Logout</Logout>
+            <Greeting onClick={ () => window.location = props.userData.external_urls.spotify } className="menu-greeting">{greeting}</Greeting>
+            <Followers>{ props.userData.followers.total } Followers</Followers>
+            {/*<Logout className="menu-logout-text">Logout</Logout>*/}
           </div>
         </UserProfile>
         <MenuItems>
@@ -57,6 +58,9 @@ const MenuContainer = styled.div`
   ${'' /* background-color: ${DarkTheme.charcoal}; */}
   font-size: 1rem;
   z-index: 1;
+  -webkit-box-shadow: -10px 0px 35px -18px rgba(0,0,0,1);
+  -moz-box-shadow: -10px 0px 35px -18px rgba(0,0,0,1);
+  box-shadow: -10px 0px 35px -18px rgba(0,0,0,1);
 
   @media screen and (min-width: 990px) {
     display: block;
@@ -73,6 +77,7 @@ const MenuContainer = styled.div`
 
 const UserProfile = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding-top: 4rem;
@@ -86,7 +91,10 @@ const ProfilePic = styled.img`
   width: 6rem;
   height: 6rem;
   border-radius: 100%;
-  margin-right: 1rem;
+  margin-bottom: 1rem;
+  -webkit-box-shadow: 0px 0px 33px -11px rgba(0,0,0,1);
+  -moz-box-shadow: 0px 0px 33px -11px rgba(0,0,0,1);
+  box-shadow: 0px 0px 33px -11px rgba(0,0,0,1);
 
   @media screen and (max-width: 500px) {
     width: 2rem;
@@ -103,6 +111,15 @@ const ProfilePic = styled.img`
 const Greeting = styled.div`
   ${'' /* color: ${DarkTheme.green}; */}
   font-weight: 700;
+  font-size: 20px;
+  cursor: pointer;
+`;
+
+const Followers = styled.div`
+  font-size: 14px;
+  color: grey;
+  text-align: center;
+  margin-top: 5px;
 `;
 
 const Logout = styled.div`
@@ -123,18 +140,22 @@ const Item = styled.div`
   align-items: center;
   justify-content: center;
   text-align: left;
-  padding-bottom: 2rem;
+  padding: 25px 0;
   cursor: pointer;
   font-size: 1.2rem;
 
   @media screen and (max-width: 500px) {
     font-size: 1rem;
   }
+  
+  &:hover {
+      background-color: #212E3A;
+  }
 `;
 
 const Icon = styled.img`
-  width: 2.8rem;
-  height: 2.8rem;
+  width: 2rem;
+  height: 2rem;
   padding-right: 1rem;
 
   @media screen and (max-width: 500px) {
