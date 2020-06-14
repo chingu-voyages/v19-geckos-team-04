@@ -4,7 +4,7 @@ import Header from './Header';
 import TourButton from './TourButton';
 import SignInButton from './SignInButton';
 import SoundBars from './SoundBars';
-import Logo from './Logo';
+// import Logo from './Logo';
 // import SunMoonIcon from './SunMoonIcon';
 import { ModalProvider } from 'styled-react-modal';
 import styled from 'styled-components';
@@ -52,7 +52,7 @@ const SignIn = () => {
   return (
     <>
       <StyledDivContainer>
-        <Logo />
+        {/* <Logo /> */}
         {/* <SunMoonIcon /> */}
       </StyledDivContainer>
       <LandingContainer>

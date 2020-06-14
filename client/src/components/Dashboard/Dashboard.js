@@ -50,7 +50,7 @@ const Dashboard = ({ userData, accessToken }) => {
         <DashboardContainer>
           <DashboardHeader>
             <Brand>
-              <Logo className="logo-text-TEMPORARY">LOGO</Logo>
+              {/* <Logo className="logo-text-TEMPORARY">LOGO</Logo> */}
               <AppName className="logo-text-TEMPORARY">BPM Workout</AppName>
             </Brand>
             {/* CurrentView will be set conditionally in the future */}
