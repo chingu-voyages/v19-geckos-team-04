@@ -1,7 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import SongsList from './SongsList';
+import Loader from 'react-loader-spinner';
 
-const PlaylistView = ( { playlist, setView, userId, token, songs } ) => {
+const PlaylistView = ( { playlist, setView, userId, token } ) => {
+    
+    const [songs, setSongs] = useState( 'fetching' )
+    
+    //placeholder song data
+    useEffect(() => {
+      fetch(`https://api.spotify.com/v1/playlists/2ZDyNE2eF9Ohaj1h1rDI5H/tracks`, {
+        headers: { Authorization: 'Bearer ' + token }
+      })
+        .catch(error => {
+          console.log(error);
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log('songs', data)
+          setSongs(data.items);
+        });
+    }, []);
     
   // const addToSpotify = () => {
   // //   fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
@@ -62,9 +81,13 @@ const PlaylistView = ( { playlist, setView, userId, token, songs } ) => {
             {/*<AddToSpotify onClick={ () => addToSpotify() }>Open in Spotify</AddToSpotify>*/}
         </ButtonContainer>
         <PlaylistTitle className="playlist-title">{ playlist[0].title }</PlaylistTitle>
-        { playlist[0].songs.map( ( song, i ) => (
-            <Song key={ 'song-' + i } className="song">{song}</Song>
-        ) ) }
+        { songs === 'fetching' ?
+            <LoaderContainer>
+              <Loader type="Bars" color="orange" height={80} width={250} />
+            </LoaderContainer>
+            : 
+            <SongsList songs={ songs } view='playlistView' token={token} />
+        }
     </PlaylistViewContainer>
   );
 };
@@ -112,4 +135,12 @@ const PlaylistTitle = styled.h2`
 
 const Song = styled.div`
     ${'' /* color: white; */}
+`;
+
+const LoaderContainer = styled.div`
+  width: 100vw - 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 60px;
 `;

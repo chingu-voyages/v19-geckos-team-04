@@ -95,7 +95,7 @@ function UserPlaylists({
         ) : (
           featuredPlaylists.map((playlist, id) => {
             return (
-              <PlaylistContainer>
+              <PlaylistContainer key={ 'featuredplaylist-' + id }>
                 <Playlist
                   key={'playlists-' + id}
                   onClick={() => addToSelectedPlaylists(playlist.id)}
