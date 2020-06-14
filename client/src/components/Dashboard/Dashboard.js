@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { DarkTheme } from '../Shared/Styles/DarkTheme';
 import { LightTheme } from '../Shared/Styles/LightTheme';
-import SunMoonIcon from '../LoggedOut/SunMoonIcon';
+// import SunMoonIcon from '../LoggedOut/SunMoonIcon';
 
 import Menu from './../Shared/UI/Menu';
 import MyPlaylistsView from './MyPlaylistsView';
@@ -54,10 +54,10 @@ const Dashboard = ({ userData, accessToken }) => {
               <AppName className="logo-text-TEMPORARY">BPM Workout</AppName>
             </Brand>
             {/* CurrentView will be set conditionally in the future */}
-            <SunMoonIcon
+            {/* <SunMoonIcon
               isDark={themeType}
               changeTheme={() => setThemeType(!themeType)}
-            />
+            /> */}
         {/*<CurrentView className="my-playlist-text">My Playlists</CurrentView>*/}
           </DashboardHeader>
           <Menu
