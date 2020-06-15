@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import SongPlayer from './SongPlayer';
+import play from '../../images/play.png';
+import pause from '../../images/pause.png';
 
 const SongsList = ({ songs, removeFromPlaylist, view, token }) => {
     
     const [open, setOpen] = useState( false );
     const [song, setSong] = useState( 'fetching' );
     const [albumInfo, setAlbumInfo] = useState( 'fetching' );
+    const [nowPlaying, setNowPlaying] = useState( '' );
+    const [playPause, setPlayPause] = useState( false );
 
     const msToMinAndSec = ms => {
       var minutes = Math.floor(ms / 60000);
@@ -14,23 +19,37 @@ const SongsList = ({ songs, removeFromPlaylist, view, token }) => {
     };
     
     const setModal = (song) => {
-        console.log(song)
         setOpen(true);
         fetch(`https://api.spotify.com/v1/albums/${song.track.album.id}/tracks`, {
           headers: { Authorization: 'Bearer ' + token }
         })
           .then(res => res.json())
           .then(data => {
-              console.log( 'song data', data)
             setSong(song)
             setAlbumInfo(data);
           });
     }
     
-    console.log(albumInfo)
+    const setPlaying = ( song ) => {
+        setPlayPause( true );
+        setNowPlaying( song )
+    }
     
+    const setPause = () => {
+        setPlayPause( false );
+    }
+    
+    const showPausePlay = ( song ) => {
+        if ( !nowPlaying || nowPlaying.track.preview_url !== song.track.preview_url ) {
+            return ( <PlayPause onClick={ () => setPlaying( song ) } src={ play } /> )
+        } else if ( nowPlaying.track.preview_url === song.track.preview_url ) {
+            return ( <PlayPause onClick={ () => setPause() } src={ pause } /> )
+        }
+    }
+        
     return (
         <>
+          <SongPlayer song={ nowPlaying } playPause={ playPause } />
           { open && song !== 'fetching' && 
               <SongInfoContainer>
                   <ModalExit onClick={ () => setOpen( false ) }>X</ModalExit>
@@ -98,10 +117,16 @@ const SongsList = ({ songs, removeFromPlaylist, view, token }) => {
                     fontSize: '1rem'
                 }} />
             }
+            <SongPreview
+              style={{
+                color: 'rgba(225,225,225,.6',
+                fontSize: '1rem'
+              }}
+            />
           </SongContainer>
           {songs.map((song, id) => {
             return (
-            <Container>
+            <Container key={ "song-" + id }>
               <SongContainer key={'song-' + id} onClick={ () => setModal(song) }>
                 <SongName key={'song-' + id}>{song.track.name}</SongName>
                 <SongArtist>{song.track.album.artists[0].name}</SongArtist>
@@ -127,6 +152,11 @@ const SongsList = ({ songs, removeFromPlaylist, view, token }) => {
                     </svg>
                   </SongDelete>
               }
+              <SongPreview>
+                  { song.track.preview_url && 
+                      ( showPausePlay( song ) )
+                  }
+              </SongPreview>
             </Container>
             );
           })}
@@ -135,6 +165,14 @@ const SongsList = ({ songs, removeFromPlaylist, view, token }) => {
 };
 
 export default SongsList;
+
+const PlayPause = styled.img`
+  height: 22px;
+  width: 22px;
+  cursor: pointer;
+  filter: brightness(0) invert(1);
+  margin-left: 7px;
+`;
 
 const SongInfoContainer = styled.div`
   height: fit-content;
@@ -291,4 +329,16 @@ const SongDelete = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const SongPreview = styled.div`
+    color: white;
+    width: 3%;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;

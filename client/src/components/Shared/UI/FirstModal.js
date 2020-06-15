@@ -10,10 +10,13 @@ const FirstModal = () => {
     <ModuleDiv>
       <ModuleText>Generate your own Spotify playlists and match music to <i>your</i> pace.</ModuleText>
       <CenterDiv>
-        {opened
+        {opened && 
+          <SmallModalImage alt="preview-pic-1" src={PreviewPic1}></SmallModalImage>
+        }
+        {/* {opened
           ? <SmallModalImage alt="preview-pic-1" src={PreviewPic1} onClick={() => setOpened(!opened)}></SmallModalImage>
           : <EnlargedModalImage alt="large-pic-1" src={LargePic1} onClick={() => setOpened(!opened)}></EnlargedModalImage>
-        }
+        } */}
       </CenterDiv>
     </ModuleDiv>
   )
@@ -45,6 +48,7 @@ const ModuleDiv = styled.div`
 const ModuleText = styled.p`
   font-size: 1.1rem;
   letter-spacing: 1px;
+  text-align: center;
 
   @media screen and (max-width: 600px) {
     margin-top: 0px;
@@ -53,12 +57,14 @@ const ModuleText = styled.p`
 
 const SmallModalImage = styled.img`
   position: absolute;
-  top: 140px; /* Now the small image stays in one spot (horizontally). */
+  height: 250px;
+  top: 90px; /* Now the small image stays in one spot (horizontally). */
 `;
 
 const EnlargedModalImage = styled.img`
   animation: smallToLarge 0.3s ease-in;
   position: absolute;
+  height: 250px;
   top: 0;
   max-height: 100vh;
   max-width: 100vh;

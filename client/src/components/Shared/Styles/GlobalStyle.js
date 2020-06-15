@@ -17,7 +17,7 @@ const GlobalTheme = () => {
     color: ${ dark.isDarkMode ? DarkTheme.lightgray : LightTheme.black};
   }
   .header-text {
-    color: ${ dark.isDarkMode ? DarkTheme.agua : LightTheme.agua };
+    color: ${ dark.isDarkMode ? DarkTheme.agua : LightTheme.white };
   }
   .tour-btn {
     /* Tour button has two color sets. */

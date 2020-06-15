@@ -4,10 +4,10 @@ import styled from 'styled-components';
 function Header() {
   return (
     <HeaderDiv>
-      <HeaderStyle className="header-text">BPM Workout</HeaderStyle>
-      <SubheadStyle className="subhead-text">
+      <HeaderStyle className="header-text">SweetBeats</HeaderStyle>
+      {/*<SubheadStyle className="subhead-text">
         Choose your workout by beats per minute.
-      </SubheadStyle>
+      </SubheadStyle>*/}
     </HeaderDiv>
   );
 }
@@ -19,9 +19,11 @@ const HeaderDiv = styled.div`
 `;
 
 const HeaderStyle = styled.h1`
-  font-size: 2.6rem;
+  color: white;
+  font-size: 3.1rem;
+  margin-bottom: 55px;
   font-weight: 700;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
 `;
 

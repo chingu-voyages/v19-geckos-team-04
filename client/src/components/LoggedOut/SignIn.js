@@ -23,7 +23,7 @@ const LandingContainer = styled.div`
 
 const HeaderContainer = styled.div`
   position: relative;
-  top: 20%;
+  top: 12%;
   z-index: 1000;
 `;
 
@@ -42,7 +42,7 @@ const StyledDivContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 40px;
+  margin: 20px 40px 0 40px;
 `;
 
 
@@ -52,11 +52,12 @@ const SignIn = () => {
 
   return (
     <>
-      <StyledDivContainer>
-        <Logo />
-        {/* <SunMoonIcon /> */}
-      </StyledDivContainer>
       <LandingContainer>
+          <div style={ { padding: '20px 0 0 20px' } }>
+              <Logo/>
+
+          </div>
+
         <HeaderContainer>
           <Header />
           <ModalProvider>
