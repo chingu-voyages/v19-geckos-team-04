@@ -110,10 +110,26 @@ const PlaylistSettings = ({ setView, selected, token, setSongs, view }) => {
   }, []);
 
   const savePlaylist = () => {
-    const savedPlaylist = { title: title, songs: filteredSongs };
-    console.log('playlist', savedPlaylist);
+
+    const savedPlaylist = {
+      method: 'POST',
+      mode: 'no-cors',
+      credentials: 'omit',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        title: title,
+        songs: filteredSongs
+      })
+    }
 
     //Function to save playlist object to backend
+    fetch("http://localhost:8888/api/saved-playlist", savedPlaylist)
+    .then(res => res.json())
+    .then(playlist => console.log('playlist', playlist))
+    .catch(error => console.error(`Error: ${error}`))
 
     setView('home');
     setSongs(filteredSongs);

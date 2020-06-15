@@ -1,11 +1,15 @@
 const express = require("express");
 const authRoutes = require("./routes/auth-routes");
+const apiRoutes = require('./routes/api-routes');
 const passportSetup = require("./config/passport-setup");
 const passport = require('passport');
 const cookieSession = require('cookie-session');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 const app = express();
+
+app.use(bodyParser.json());
 
 // set up cookies session
 app.use(cookieSession({
@@ -26,6 +30,8 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 
 //set up routes
 app.use("/auth", authRoutes);
+
+app.use("/api", apiRoutes);
 
 const port = 8888;
 
