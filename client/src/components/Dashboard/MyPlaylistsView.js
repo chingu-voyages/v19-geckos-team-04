@@ -127,7 +127,7 @@ const PlaylistInfo = styled.div`
 `;
 
 const UserPlaylistTitle = styled.span`
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
 `;
 
