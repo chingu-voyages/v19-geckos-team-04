@@ -90,7 +90,7 @@ const GlobalStyle = createGlobalStyle`
     color: ${(props) => true ? DarkTheme.lightgray : LightTheme.black};
   }
   .header-text {
-    color: ${(props) => true ? DarkTheme.agua : LightTheme.agua };
+    color: ${(props) => true ? DarkTheme.white : LightTheme.white };
   }
   .tour-btn {
     /* Tour button has two color sets. */

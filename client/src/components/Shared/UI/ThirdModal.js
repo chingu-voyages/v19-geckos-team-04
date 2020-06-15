@@ -32,6 +32,7 @@ const ModuleDiv = styled.div`
 const ModuleText = styled.p`
   font-size: 1.1rem;
   letter-spacing: 1px;
+  text-align: center;
 `;
 
 const ModuleButton = styled.button`
@@ -53,6 +54,7 @@ const ModuleButton = styled.button`
   text-transform: uppercase;
   transition-duration: 1s;
   width: 260px;
+  border: none;
 
   &:hover {
     background-color: #14ff5b;

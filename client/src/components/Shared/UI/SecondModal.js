@@ -8,7 +8,7 @@ const SecondModal = () => {
 
   return (
     <ModuleDiv>
-      <ModuleText>Warm up, fire up, then cool down -- adapt your playlists however you like.</ModuleText>
+      <ModuleText>Get started with songs you already love from your Spotify playlists</ModuleText>
       <CenterDiv>
         {opened
           ? <SmallModalImage alt="preview-pic-2" src={PreviewPic2} onClick={() => setOpened(!opened)}></SmallModalImage>
@@ -38,6 +38,7 @@ const ModuleDiv = styled.div`
 const ModuleText = styled.p`
   font-size: 1.1rem;
   letter-spacing: 1px;
+  text-align: center;
 
   @media screen and (max-width: 600px) {
     margin-top: 0px;
@@ -52,12 +53,14 @@ const CenterDiv = styled.div`
 
 const SmallModalImage = styled.img`
   position: absolute;
-  top: 130px; /* Now the small image stays in one spot (horizontally). */
+  height: 250px;
+  top: 90px; /* Now the small image stays in one spot (horizontally). */
 `;
 
 const EnlargedModalImage = styled.img`
   animation: smallToLarge 0.3s ease-in;
   position: absolute;
+  height: 250px;
   top: 0;
   max-height: 100vh;
   max-width: 100vh;

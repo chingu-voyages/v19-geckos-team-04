@@ -45,6 +45,7 @@ const ModuleDiv = styled.div`
 const ModuleText = styled.p`
   font-size: 1.1rem;
   letter-spacing: 1px;
+  text-align: center;
 
   @media screen and (max-width: 600px) {
     margin-top: 0px;
@@ -53,12 +54,14 @@ const ModuleText = styled.p`
 
 const SmallModalImage = styled.img`
   position: absolute;
-  top: 140px; /* Now the small image stays in one spot (horizontally). */
+  height: 250px;
+  top: 90px; /* Now the small image stays in one spot (horizontally). */
 `;
 
 const EnlargedModalImage = styled.img`
   animation: smallToLarge 0.3s ease-in;
   position: absolute;
+  height: 250px;
   top: 0;
   max-height: 100vh;
   max-width: 100vh;

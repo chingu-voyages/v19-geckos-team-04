@@ -52,7 +52,7 @@ const Dashboard = ({ userData, accessToken }) => {
           <DashboardHeader>
             <Brand>
               <Logo />
-              <AppName className="logo-text-TEMPORARY">BPM Workout</AppName>
+              <AppName className="logo-text-TEMPORARY">SweetBeats</AppName>
             </Brand>
             {/* CurrentView will be set conditionally in the future */}
             {/* <SunMoonIcon
@@ -136,11 +136,18 @@ const DashboardHeader = styled.div`
 `;
 
 const Brand = styled.div`
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   color: white;
 `;
 
 const AppName = styled.div`
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 2px;
+  margin-top: 5px;
   @media screen and (max-width: 768px) {
     display: none;
   }
