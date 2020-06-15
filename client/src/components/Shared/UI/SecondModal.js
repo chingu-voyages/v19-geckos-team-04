@@ -10,10 +10,13 @@ const SecondModal = () => {
     <ModuleDiv>
       <ModuleText>Get started with songs you already love from your Spotify playlists</ModuleText>
       <CenterDiv>
-        {opened
+        {opened &&
+          <SmallModalImage alt="preview-pic-2" src={PreviewPic2}></SmallModalImage>
+        }
+        {/* {opened
           ? <SmallModalImage alt="preview-pic-2" src={PreviewPic2} onClick={() => setOpened(!opened)}></SmallModalImage>
           : <EnlargedModalImage alt="large-pic-2" src={LargePic2} onClick={() => setOpened(!opened)}></EnlargedModalImage>
-        }
+        } */}
       </CenterDiv>
     </ModuleDiv>
   )

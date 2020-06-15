@@ -10,10 +10,13 @@ const FirstModal = () => {
     <ModuleDiv>
       <ModuleText>Generate your own Spotify playlists and match music to <i>your</i> pace.</ModuleText>
       <CenterDiv>
-        {opened
+        {opened && 
+          <SmallModalImage alt="preview-pic-1" src={PreviewPic1}></SmallModalImage>
+        }
+        {/* {opened
           ? <SmallModalImage alt="preview-pic-1" src={PreviewPic1} onClick={() => setOpened(!opened)}></SmallModalImage>
           : <EnlargedModalImage alt="large-pic-1" src={LargePic1} onClick={() => setOpened(!opened)}></EnlargedModalImage>
-        }
+        } */}
       </CenterDiv>
     </ModuleDiv>
   )
