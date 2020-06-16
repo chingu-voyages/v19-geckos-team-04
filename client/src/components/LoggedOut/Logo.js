@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import bars from '../../images/bars.png';
+import sweetbeatslogo from '../../images/sweetbeatslogo.png';
+// import bars from '../../images/bars.png';
 
 export default function Logo() {
   return (
@@ -9,7 +10,7 @@ export default function Logo() {
         role="img" 
         alt="icon" 
         aria-label="logo-icon"
-        src={ bars }
+        src={ sweetbeatslogo }
       ></LogoStyle>
     </>
   )
@@ -17,7 +18,7 @@ export default function Logo() {
 
 const LogoStyle = styled.img`
   display: inline-block;
-  height: 30px;
+  height: 50px;
   width: 50px;
 
   @media screen and (max-width: 768px) {
