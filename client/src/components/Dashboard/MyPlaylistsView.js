@@ -4,6 +4,7 @@ import PlusIcon from '../../images/plus-icon.png';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from 'react-loader-spinner';
 import placeholder from './../../images/placeholder.jpg';
+import { DarkTheme } from '../Shared/Styles/DarkTheme';
 
 const MyPlaylistsView = ( { setPlaylists, setViewPlaylist, setPlaylistId, setPlaylist } ) => {
     
@@ -86,9 +87,9 @@ const UserPlaylistsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   
-  ${'' /* @media screen and (max-width: 660px) {
-    width: 100%;
-  } */}
+  @media screen and (max-width: 660px) {
+    justify-content: center;
+  }
 `;
 
 const UserPlaylistContainer = styled.div`
@@ -140,6 +141,10 @@ const ViewPlaylistButton = styled.span`
   cursor: pointer;
   font-size: 14px;
   font-weight: bold;
+
+  &:hover {
+    color: #00ABB8;
+  }
 `;
 
 const EmptyPlaylistText = styled.div`
