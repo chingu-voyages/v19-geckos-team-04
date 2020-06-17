@@ -171,7 +171,6 @@ const PlayPause = styled.img`
   width: 22px;
   cursor: pointer;
   filter: brightness(0) invert(1);
-  margin-left: 7px;
 `;
 
 const SongInfoContainer = styled.div`
@@ -279,21 +278,16 @@ const SongContainer = styled.div`
   justify-content: space-between;
   padding: 15px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.3);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   cursor: pointer;
 
-  ${'' /* &:hover {
-    background-color: rgba(15, 22, 27, 0.5);
-  } */}
-
-  &:first-child:hover {
+  :first-child:hover {
     background-color: rgba(15, 22, 27, 0.5);
   }
 `;
 
 const SongName = styled.div`
   color: white;
-  width: 25%;
+  width: 30%;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
@@ -302,7 +296,7 @@ const SongName = styled.div`
 
 const SongArtist = styled.div`
   color: white;
-  width: 25%;
+  width: 30%;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
@@ -311,7 +305,7 @@ const SongArtist = styled.div`
 
 const SongAlbum = styled.div`
   color: white;
-  width: 25%;
+  width: 30%;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
@@ -336,7 +330,7 @@ const SongDelete = styled.div`
 
 const SongPreview = styled.div`
   color: white;
-  width: 5%;
+  width: 10%;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
