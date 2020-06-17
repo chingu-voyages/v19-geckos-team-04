@@ -121,7 +121,7 @@ export default Dashboard;
 
 const DashboardContainer = styled.div`
   padding: 2rem;
-  width: calc(100vw - 4rem);
+  width: calc(100vw - 5rem);
 
   @media screen and (min-width: 990px) {
     width: calc(100vw - 25rem);
