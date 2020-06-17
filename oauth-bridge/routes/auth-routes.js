@@ -23,7 +23,7 @@ router.get(
     failureRedirect: "/spotify",
   }), (req, res) => {
     console.log(res.req.user)
-    res.redirect(`http://localhost:3000/dashboard?access_token=${res.req.user.accessToken}`)
+    res.redirect(`http://localhost:3000/dashboard?access_token=${res.req.user.accessToken}&username=${res.req.user.username}`)
   }
 );
 

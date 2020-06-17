@@ -20,7 +20,7 @@ passport.use(
       clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
     },
     (accessToken, refreshToken, profile, done) => {
-      User.findOneAndUpdate({ spotifyID: profile.id, username: profile.username, email: profile._json.email }, 
+      User.findOneAndUpdate({ spotifyID: profile.id, username: profile.username, email: profile._json.email, playlist: [], }, 
         { accessToken: accessToken },  
         { upsert: true, new: true, setDefaultsOnInsert: true })
         .then(currentUser => done(null, currentUser))

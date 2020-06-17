@@ -5,11 +5,15 @@ const passportSetup = require("./config/passport-setup");
 const passport = require('passport');
 const cookieSession = require('cookie-session');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const app = express();
 
-app.use(bodyParser.json());
+app.use(cors());
+
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 // set up cookies session
 app.use(cookieSession({

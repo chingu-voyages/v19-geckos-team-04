@@ -9,6 +9,7 @@ import ThemeContextProvider from '../../context/ThemeContext';
 import { DarkTheme } from '../Shared/Styles/DarkTheme';
 import { LightTheme } from '../Shared/Styles/LightTheme';
 import { ThemeContext } from '../../context/ThemeContext';
+import UserContextProvider from '../../context/UserContext';
 
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import GlobalTheme from '../Shared/Styles/GlobalStyle';
@@ -22,16 +23,18 @@ class App extends Component {
       filterString: '',
       isModalOpen: false,
       isDarkMode: true,
-      accessToken: ''
+      accessToken: '',
+      username: '',
     };
   }
 
   componentDidMount() {
     let parsed = queryString.parse(window.location.search);
     let urlAccessToken = parsed.access_token;
+    let urlUsername = parsed.username;
 
     if (urlAccessToken) {
-      this.setState({ accessToken: urlAccessToken });
+      this.setState({ accessToken: urlAccessToken, username: urlUsername });
 
       fetch('https://api.spotify.com/v1/me', {
         headers: { Authorization: 'Bearer ' + urlAccessToken }
@@ -50,30 +53,33 @@ class App extends Component {
     return (
       <BrowserRouter>
         <ThemeContextProvider>
-          <GlobalStyle />
-          {this.state.serverData.user.display_name ? (
-            <>
-              <Route
-                path="/dashboard"
-                render={props => (
-                  <Dashboard
-                    {...props}
-                    userData={this.state.serverData.user}
-                    accessToken={this.state.accessToken}
-                  />
-                )}
-              />
-            </>
-          ) : (
-            <>
-              <Route
-                path="/"
-                render={props => (
-                  <SignIn {...props} isDark={this.state.isDarkMode} />
-                )}
-              />
-            </>
-          )}
+          <UserContextProvider>
+            <GlobalStyle />
+            {this.state.serverData.user.display_name ? (
+              <>
+                <Route
+                  path="/dashboard"
+                  render={props => (
+                    <Dashboard
+                      {...props}
+                      userData={this.state.serverData.user}
+                      accessToken={this.state.accessToken}
+                      username={this.state.username}
+                    />
+                  )}
+                />
+              </>
+            ) : (
+              <>
+                <Route
+                  path="/"
+                  render={props => (
+                    <SignIn {...props} isDark={this.state.isDarkMode} />
+                  )}
+                />
+              </>
+            )}
+          </UserContextProvider>
         </ThemeContextProvider>
       </BrowserRouter>
     );

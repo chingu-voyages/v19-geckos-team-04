@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useContext, useEffect, useState, Fragment } from 'react';
 import styled from 'styled-components';
 import Slider, { Range, createSliderWithTooltip } from 'rc-slider';
 import PlaylistName from './PlaylistName';
@@ -6,6 +6,7 @@ import SongsList from './SongsList';
 import 'rc-slider/assets/index.css';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import Loader from 'react-loader-spinner';
+import { UserContext } from '../../context/UserContext';
 
 const PlaylistSettings = ({ setView, selected, token, setSongs, view }) => {
   const [isFetching, setIsFetching] = useState(true);
@@ -20,6 +21,7 @@ const PlaylistSettings = ({ setView, selected, token, setSongs, view }) => {
   ]);
   const [valenceValues, setValenceValues] = useState([0.0, 1.0]);
   const [title, setTitle] = useState('My Playlist');
+  const { user } = useContext(UserContext);
 
   const onBpmValuesChangedHandler = values => {
     setBpmValues(values);
@@ -111,24 +113,19 @@ const PlaylistSettings = ({ setView, selected, token, setSongs, view }) => {
 
   const savePlaylist = () => {
 
-    const savedPlaylist = {
+    const data = { spotifyID: user.display_name, title: title, songs: filteredSongs };
+
+    const options = {
       method: 'POST',
-      mode: 'no-cors',
-      credentials: 'omit',
       headers: {
-        'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        title: title,
-        songs: filteredSongs
-      })
+      body: JSON.stringify(data)
     }
 
-    //Function to save playlist object to backend
-    fetch("http://localhost:8888/api/saved-playlist", savedPlaylist)
+    fetch("http://localhost:8888/api/saved-playlist", options)
     .then(res => res.json())
-    .then(playlist => console.log('playlist', playlist))
+    .then(data => console.log('playlist', data))
     .catch(error => console.error(`Error: ${error}`))
 
     setView('home');

@@ -1,9 +1,12 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect, useContext } from 'react';
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { DarkTheme } from '../Shared/Styles/DarkTheme';
 import { LightTheme } from '../Shared/Styles/LightTheme';
 // import SunMoonIcon from '../LoggedOut/SunMoonIcon';
 import Logo from '../LoggedOut/Logo';
+import { UserContext } from '../../context/UserContext';
+import queryString from 'query-string';
+
 
 import Menu from './../Shared/UI/Menu';
 import MyPlaylistsView from './MyPlaylistsView';
@@ -12,7 +15,7 @@ import UserPlaylists from './UserPlaylists';
 import PlaylistSettings from './PlaylistSettings';
 import PlaylistView from './PlaylistView';
 
-const Dashboard = ({ userData, accessToken }) => {
+const Dashboard = ({ userData, accessToken, username }) => {
   const [view, setView] = useState('home');
   const [userPlaylists, setUserPlaylists] = useState('fetching');
   const [featuredPlaylists, setFeaturedPlaylists] = useState('fetching');
@@ -21,6 +24,7 @@ const Dashboard = ({ userData, accessToken }) => {
   const [playlist, setPlaylist] = useState([]);
   const [themeType, setThemeType] = useState('dark');
   const [songs, setSongs] = useState([]);
+  const { updateUserContext } = useContext(UserContext);
 
   useEffect(() => {
     fetch(`https://api.spotify.com/v1/users/${userData.id}/playlists?limit=50`, {
@@ -33,6 +37,7 @@ const Dashboard = ({ userData, accessToken }) => {
       .then(data => {
           console.log('data', data)
         setUserPlaylists(data.items);
+        updateUserContext(username);
       });
 
     fetch(`https://api.spotify.com/v1/browse/categories/workout/playlists?limit=50`, {
