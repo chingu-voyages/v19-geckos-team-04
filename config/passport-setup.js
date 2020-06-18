@@ -15,7 +15,7 @@ passport.serializeUser((user, done) => {
 passport.use(
   new SpotifyStrategy(
     {
-      callbackURL: "/auth/spotify/callback",
+      callbackURL: "https://sweet-beats.herokuapp.com/auth/spotify/callback",
       clientID: process.env.SPOTIFY_CLIENT_ID,
       clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
     },
