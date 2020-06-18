@@ -12,6 +12,7 @@ node_modules/.cache
 
 # production
 /build
+/client/build
 
 # misc
 .DS_Store
