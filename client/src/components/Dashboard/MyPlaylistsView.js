@@ -12,7 +12,7 @@ const MyPlaylistsView = ( { setPlaylists, setViewPlaylist, setPlaylistId, setPla
     useEffect(() => {
         // test function for loading states and playlist view
 
-        fetch(`http://localhost:8888/api/playlist/${username}`)
+        fetch(`https://sweet-beats.herokuapp.com/api/playlist/${username}`)
         .then(res => res.json())
         .then(data => setUserPlaylists(data))
         
