@@ -22,7 +22,8 @@ router.get(
   passport.authenticate("spotify", {
     failureRedirect: "/spotify",
   }), (req, res) => {
-    res.redirect(`http://localhost:3000/dashboard?access_token=${res.req.user.accessToken}&username=${res.req.user.username}`)
+    console.log(res.req.user)
+    res.redirect(`/dashboard?access_token=${res.req.user.accessToken}&username=${res.req.user.username}`)
   }
 );
 

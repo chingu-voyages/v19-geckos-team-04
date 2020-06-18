@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import Loader from 'react-loader-spinner';
 
 export default UserPlaylists;
@@ -50,8 +50,12 @@ function UserPlaylists({
         <UserTab
           style={
             playlistView === 'user'
-                ? { border: '1px solid white', padding: '10px 23px', fontWeight: 'bold' }
-                : { padding: '10px 23px' }
+              ? {
+                  border: '1px solid white',
+                  padding: '10px 23px',
+                  fontWeight: 'bold'
+                }
+              : { padding: '10px 23px' }
           }
           onClick={() => setPlaylistView('user')}
         >
@@ -60,7 +64,11 @@ function UserPlaylists({
         <FeaturedTab
           style={
             playlistView === 'spotify'
-              ? { border: '1px solid white', padding: '10px 23px', fontWeight: 'bold' }
+              ? {
+                  border: '1px solid white',
+                  padding: '10px 23px',
+                  fontWeight: 'bold'
+                }
               : { padding: '10px 23px' }
           }
           onClick={() => setPlaylistView('spotify')}
@@ -70,7 +78,7 @@ function UserPlaylists({
       </PlaylistTabs>
       <UsersPlaylists>
         {userPlaylists === 'fetching' ? (
-            <Loader type="Bars" color="orange" height={80} width={250} />
+          <Loader type="Bars" color="orange" height={80} width={250} />
         ) : playlistView === 'user' ? (
           userPlaylists.map((playlist, id) => {
             return (
@@ -78,16 +86,16 @@ function UserPlaylists({
                 key={'playlist-' + id}
                 onClick={() => addToSelectedPlaylists(playlist.id)}
               >
-                { playlist.images[0] ?
-                    <Playlist
-                      style={isSelectedPlaylist(
-                        playlist.id,
-                        playlist.images[0].url
-                      )}
-                    ></Playlist>
-                    :
-                    <PlaylistPlaceholder />
-                }
+                {playlist.images[0] ? (
+                  <Playlist
+                    style={isSelectedPlaylist(
+                      playlist.id,
+                      playlist.images[0].url
+                    )}
+                  ></Playlist>
+                ) : (
+                  <PlaylistPlaceholder />
+                )}
                 <PlaylistName>{playlist.name}</PlaylistName>
               </PlaylistContainer>
             );
@@ -95,7 +103,7 @@ function UserPlaylists({
         ) : (
           featuredPlaylists.map((playlist, id) => {
             return (
-              <PlaylistContainer key={ 'featuredplaylist-' + id }>
+              <PlaylistContainer key={'featuredplaylist-' + id}>
                 <Playlist
                   key={'playlists-' + id}
                   onClick={() => addToSelectedPlaylists(playlist.id)}
@@ -152,6 +160,10 @@ const UsersPlaylists = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+
+  @media screen and (max-width: 660px) {
+    justify-content: center;
+  }
 `;
 
 const PlaylistTabs = styled.div`
@@ -203,11 +215,11 @@ const Playlist = styled.div`
 `;
 
 const PlaylistPlaceholder = styled.div`
-    height: 100%;
-    width: 100%;
-    background-color: grey;
-    border-radius: 8px;
-    border: 2px solid transparent;
+  height: 100%;
+  width: 100%;
+  background-color: grey;
+  border-radius: 8px;
+  border: 2px solid transparent;
 `;
 
 const PlaylistName = styled.span`
