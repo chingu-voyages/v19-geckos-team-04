@@ -123,7 +123,7 @@ const PlaylistSettings = ({ setView, selected, token, setSongs, view }) => {
       body: JSON.stringify(data)
     }
 
-    fetch("http://localhost:8888/api/saved-playlist", options)
+    fetch("/api/saved-playlist", options)
     .then(res => res.json())
     .then(data => console.log('playlist', data))
     .catch(error => console.error(`Error: ${error}`))
