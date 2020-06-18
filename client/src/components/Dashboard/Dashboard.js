@@ -79,6 +79,7 @@ const Dashboard = ({ userData, accessToken, username }) => {
                 setViewPlaylist={() => setView('playlist')}
                 setPlaylistId={id => setPlaylistId(id)}
                 setPlaylist={setPlaylist}
+                username={username}
               />
               {/* <CreatePlaylistView /> */}
             </ViewsContainer>

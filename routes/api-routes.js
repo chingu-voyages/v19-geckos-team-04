@@ -22,4 +22,9 @@ router.post('/saved-playlist', (req, res) => {
     .catch(error => console.error(`Error: ${error}`))
 })
 
+router.get('/playlist/:spotifyID', (req, res) => {
+    User.findOne({ spotifyID: req.params.spotifyID })
+    .then(user => res.json(user.playlist))
+})
+
 module.exports = router;
