@@ -1,19 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import PlusIcon from '../../images/plus-icon.png';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from 'react-loader-spinner';
 import placeholder from './../../images/placeholder.jpg';
 
-const MyPlaylistsView = ( { setPlaylists, setViewPlaylist, setPlaylistId, setPlaylist } ) => {
+const MyPlaylistsView = ( { setPlaylists, setViewPlaylist, setPlaylistId, setPlaylist, username } ) => {
     
     const [ userPlaylists, setUserPlaylists ] = useState( 'fetching' );
     useEffect(() => {
         // test function for loading states and playlist view
-        setTimeout( () => {
-            setUserPlaylists( [ { id: 1, title: 'test1', songs: [ 'song1', 'song2' ] }, { id: 2, title: 'test2', songs: [ 'song3', 'song4' ] }, { id: 3, title: 'test3', songs: [ 'song5', 'song6' ] } ])
-            // setUserPlaylists( [] );
-        }, 1000 )
+
+        fetch(`http://localhost:8888/api/playlist/${username}`)
+        .then(res => res.json())
+        .then(data => setUserPlaylists(data))
+
+        // setTimeout( () => {
+        //     setUserPlaylists( [ { id: 1, title: 'test1', songs: [ 'song1', 'song2' ] }, { id: 2, title: 'test2', songs: [ 'song3', 'song4' ] }, { id: 3, title: 'test3', songs: [ 'song5', 'song6' ] } ])
+        //     // setUserPlaylists( [] );
+        // }, 1000 )
         
       // fetch user's saved playlists and setUserPlaylists to array of playlist objects - title, songs array, playlist ID
     }, []);
