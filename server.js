@@ -7,6 +7,7 @@ const cookieSession = require('cookie-session');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const app = express();
 
