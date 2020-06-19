@@ -24,8 +24,9 @@ const Dashboard = ({ userData, accessToken, username }) => {
   const [playlist, setPlaylist] = useState([]);
   const [themeType, setThemeType] = useState('dark');
   const [songs, setSongs] = useState([]);
+  const [savedUserPlaylists, setSavedUserPlaylists] = useState( 'fetching' );
   const { updateUserContext } = useContext(UserContext);
-
+  
   useEffect(() => {
     fetch(`https://api.spotify.com/v1/users/${userData.id}/playlists?limit=50`, {
       headers: { Authorization: 'Bearer ' + accessToken }
@@ -35,7 +36,6 @@ const Dashboard = ({ userData, accessToken, username }) => {
       })
       .then(res => res.json())
       .then(data => {
-          console.log('data', data)
         setUserPlaylists(data.items);
         updateUserContext(username);
       });
@@ -47,8 +47,12 @@ const Dashboard = ({ userData, accessToken, username }) => {
       .then(data => {
         setFeaturedPlaylists(data.playlists);
       });
+      
+    fetch(`https://sweet-beats.herokuapp.com/api/playlist/${username}`)
+      .then(res => res.json())
+      .then(data => setSavedUserPlaylists(data))
   }, []);
-
+  
   return (
     <ThemeProvider theme={{ mode: themeType }}>
       <GlobalStyleDashboard />
@@ -77,9 +81,10 @@ const Dashboard = ({ userData, accessToken, username }) => {
               <MyPlaylistsView
                 setPlaylists={() => setView('selectPlaylists')}
                 setViewPlaylist={() => setView('playlist')}
-                setPlaylistId={id => setPlaylistId(id)}
+                setPlaylistId={setPlaylistId}
                 setPlaylist={setPlaylist}
                 username={username}
+                savedUserPlaylists={savedUserPlaylists}
               />
               {/* <CreatePlaylistView /> */}
             </ViewsContainer>

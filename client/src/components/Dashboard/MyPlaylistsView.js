@@ -6,21 +6,10 @@ import Loader from 'react-loader-spinner';
 import placeholder from './../../images/placeholder.jpg';
 import { DarkTheme } from '../Shared/Styles/DarkTheme';
 
-const MyPlaylistsView = ( { setPlaylists, setViewPlaylist, setPlaylistId, setPlaylist, username } ) => {
-    
-    const [ userPlaylists, setUserPlaylists ] = useState( 'fetching' );
-    useEffect(() => {
-        // test function for loading states and playlist view
-
-        fetch(`https://sweet-beats.herokuapp.com/api/playlist/${username}`)
-        .then(res => res.json())
-        .then(data => setUserPlaylists(data))
+const MyPlaylistsView = ( { setPlaylists, setViewPlaylist, setPlaylistId, setPlaylist, username, savedUserPlaylists } ) => {
         
-      // fetch user's saved playlists and setUserPlaylists to array of playlist objects - title, songs array, playlist ID
-    }, []);
-    
     const viewPlaylist = id => {
-        let selectedPlaylist = userPlaylists.filter( playlist => playlist.id === id );
+        let selectedPlaylist = savedUserPlaylists.filter( playlist => playlist.id === id );
         setViewPlaylist();
         setPlaylistId( id );
         setPlaylist( selectedPlaylist )
@@ -28,19 +17,19 @@ const MyPlaylistsView = ( { setPlaylists, setViewPlaylist, setPlaylistId, setPla
     
   return (
     <MyPlaylistsViewContainer 
-      style={ { marginTop: ( userPlaylists === 'fetching' || !userPlaylists.length ? '20%' : '8%' ) } }
+      style={ { marginTop: ( savedUserPlaylists === 'fetching' || !savedUserPlaylists.length ? '20%' : '8%' ) } }
       className="my-playlist-view-text"
       >
-      { userPlaylists === 'fetching' ?
+      { savedUserPlaylists === 'fetching' ?
           <Loader type="Bars" color="orange" height={80} width={250} />
           :
-          ( userPlaylists !== 'fetching' && userPlaylists.length ? 
+          ( savedUserPlaylists !== 'fetching' && savedUserPlaylists.length ? 
               <>
                   <UserPlaylistsContainer>
-                      { userPlaylists.map( ( playlist, i ) => (
+                      { savedUserPlaylists.map( ( playlist, i ) => (
                           <UserPlaylistContainer className="user-playlist-container" key={ 'playlist-' + i }>
                               <PlaylistImage>
-                                  <UserPlaylistImage src={ placeholder } />
+                                  <UserPlaylistImage src={ playlist.songs[0].track.album.images[0].url } />
                               </PlaylistImage>
                               <PlaylistInfo>
                                   <UserPlaylistTitle>{ playlist.title }</UserPlaylistTitle>
@@ -105,13 +94,14 @@ const UserPlaylistContainer = styled.div`
   -webkit-box-shadow: 0px 0px 45px -15px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px 0px 45px -15px rgba(0,0,0,0.75);
   box-shadow: 0px 0px 45px -15px rgba(0,0,0,0.75);
-  width: 225px;
+  width: 245px;
   height: 150px
 `;
 
 const PlaylistImage = styled.div`
   display: flex;
   align-items: center;
+  margin-right: 10px;
 `;
 
 const UserPlaylistImage = styled.img`

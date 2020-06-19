@@ -287,7 +287,7 @@ const SongContainer = styled.div`
 
 const SongName = styled.div`
   color: white;
-  width: 30%;
+  width: 35%;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
@@ -305,7 +305,7 @@ const SongArtist = styled.div`
 
 const SongAlbum = styled.div`
   color: white;
-  width: 30%;
+  width: 25%;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
@@ -330,7 +330,7 @@ const SongDelete = styled.div`
 
 const SongPreview = styled.div`
   color: white;
-  width: 10%;
+  width: 7%;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;

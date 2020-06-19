@@ -5,51 +5,35 @@ import Loader from 'react-loader-spinner';
 
 const PlaylistView = ( { playlist, setView, userId, token } ) => {
     
-    const [songs, setSongs] = useState( 'fetching' )
-    
-    //placeholder song data
-    useEffect(() => {
-      fetch(`https://api.spotify.com/v1/playlists/2ZDyNE2eF9Ohaj1h1rDI5H/tracks`, {
-        headers: { Authorization: 'Bearer ' + token }
-      })
-        .catch(error => {
-          console.log(error);
-        })
-        .then(res => res.json())
-        .then(data => {
-          setSongs(data.items);
-        });
-    }, []);
-    
-  const addToSpotify = () => {
-  
-      const headers = { Authorization: `Bearer ${token}` };
-      const name = 'testapp';
-  
-      return fetch("https://api.spotify.com/v1/me", { headers: headers })
-        .then(response => response.json())
-        .then(jsonResponse => {
-          userId = jsonResponse.id;
-          console.log(jsonResponse)
-          return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
-            headers: headers,
-            method: "POST",
-            body: JSON.stringify({ name: name })
-          })
-            .then(response => response.json())
-            .then(jsonResponse => {
-              const playlistId = jsonResponse.id;
-              return fetch(
-                `https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks`,
-                {
-                  headers: headers,
-                  method: "POST",
-                  body: JSON.stringify({ uris: songs })
-                }
-              );
-            });
-        });
-    }
+  // const addToSpotify = () => {
+  // 
+  //     const headers = { Authorization: `Bearer ${token}` };
+  //     const name = 'testapp';
+  // 
+  //     return fetch("https://api.spotify.com/v1/me", { headers: headers })
+  //       .then(response => response.json())
+  //       .then(jsonResponse => {
+  //         userId = jsonResponse.id;
+  //         console.log(jsonResponse)
+  //         return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+  //           headers: headers,
+  //           method: "POST",
+  //           body: JSON.stringify({ name: name })
+  //         })
+  //           .then(response => response.json())
+  //           .then(jsonResponse => {
+  //             const playlistId = jsonResponse.id;
+  //             return fetch(
+  //               `https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks`,
+  //               {
+  //                 headers: headers,
+  //                 method: "POST",
+  //                 body: JSON.stringify({ uris: songs })
+  //               }
+  //             );
+  //           });
+  //       });
+  //   }
   
   return (
     <PlaylistViewContainer>
@@ -58,12 +42,12 @@ const PlaylistView = ( { playlist, setView, userId, token } ) => {
             {/*<AddToSpotify onClick={ () => addToSpotify() }>Open in Spotify</AddToSpotify>*/}
         </ButtonContainer>
         <PlaylistTitle className="playlist-title">{ playlist[0].title }</PlaylistTitle>
-        { songs === 'fetching' ?
+        { !playlist[0].songs.length ?
             <LoaderContainer>
               <Loader type="Bars" color="orange" height={80} width={250} />
             </LoaderContainer>
             : 
-            <SongsList songs={ songs } view='playlistView' token={token} />
+            <SongsList songs={ playlist[0].songs } view='playlistView' token={token} />
         }
     </PlaylistViewContainer>
   );
