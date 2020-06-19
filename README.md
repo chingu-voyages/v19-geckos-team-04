@@ -1,12 +1,11 @@
 [![ForTheBadge uses-js](http://ForTheBadge.com/images/badges/uses-js.svg)](http://ForTheBadge.com) [![ForTheBadge uses-git](http://ForTheBadge.com/images/badges/uses-git.svg)](https://GitHub.com/) [![ForTheBadge built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://GitHub.com/Naereen/)
 
 # Overview
-**BPM Workout** is a [Chingu](https://chingu.io/) project by team "Geckos 04." Made in just five weeks, and done entirely remote.
+**Sweet Beats** is a [Chingu](https://chingu.io/) project by team "Geckos 04." Made in just six weeks, and done entirely remote.
 <br><br><br>
 # Features
 * The Spotify Web API and [audio analysis](https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-analysis/).
 * Responsive web design via Styled Components.
-* Color switching 🎨
 * Create, update, and delete playlists according to beats per minute (and other song data).
 * Backend programming: user authentication with OAuth, MongoDB, Express.js, and cookies.
 <br><br><br>
@@ -14,11 +13,11 @@
 # Preview
 **Mobile**
 <br>
-![mobile image](https://user-images.githubusercontent.com/17715289/84580074-39d3ba00-ad99-11ea-8b1e-442bfed1f1d6.png)
+[mobile image here]
 <br><br>
 **Desktop**
 <br>
-![desktop image](https://user-images.githubusercontent.com/17715289/84580073-393b2380-ad99-11ea-9f75-be9ba5750110.png)
+[desktop image here]
 <br><br><br>
 
 # Running The App
@@ -26,25 +25,37 @@ This project was started with [create-react-app](https://reactjs.org/docs/create
 
 In Node Package Manager, run...
 
-`npx create-react-app bpm-workout`
+`npx create-react-app sweet-beats`
 <br>
-`cd bpm-workout`
+`cd sweet-beats`
 
 ## Dependencies
 Before running `npm start`, you will need these dependencies in the client folder:
 
-* Node Sass
-* RC Slider
-* React Loader Spinner
-* React Modal
-* Styled Components
-* Styled React Modal
+* "node-sass": "^4.14.1",
+* "rc-slider": "^9.3.0",
+* "react": "^16.13.1",
+* "react-dom": "^16.13.1",
+* "react-loader-spinner": "^3.1.14",
+* "react-modal": "^3.11.2",
+* "react-player": "^2.3.1",
+* "react-router-dom": "^5.2.0",
+* "react-scripts": "^3.4.1",
+* "styled-components": "^5.1.0",
+* "styled-react-modal": "^2.0.1",
 
 And these dependencies will need to be installed in the oauth-bridge folder:
 
-* Express
-* Querystring
-* Request
+* "body-parser": "^1.19.0",
+* "cookie-session": "^1.4.0",
+* "cors": "^2.8.5",
+* "dotenv": "^8.2.0",
+* "express": "^4.15.4",
+* "mongoose": "^5.9.18",
+* "passport": "^0.4.1",
+* "passport-spotify": "^1.1.0",
+* "querystring": "^0.2.0",
+* "request": "^2.81.0",
 
 ## Spotify
 In addition to a Spotify account, the app requires two unique IDs:

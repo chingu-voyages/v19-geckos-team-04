@@ -1,22 +1,43 @@
 {
-  "name": "oauth-bridge-template",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm install --prefix client && npm run build --prefix client",
-    "start": "node server.js"
-  },
+  "name": "v19-geckos-team-04",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "cookie-session": "^1.4.0",
-    "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "express": "^4.15.4",
-    "mongoose": "^5.9.18",
-    "passport": "^0.4.1",
-    "passport-spotify": "^1.1.0",
-    "querystring": "^0.2.0",
-    "request": "^2.81.0"
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "node-sass": "^4.14.1",
+    "rc-slider": "^9.3.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-loader-spinner": "^3.1.14",
+    "react-modal": "^3.11.2",
+    "react-player": "^2.3.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^3.4.1",
+    "styled-components": "^5.1.0",
+    "styled-react-modal": "^2.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "debug": "react-scripts start --no-cache"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
