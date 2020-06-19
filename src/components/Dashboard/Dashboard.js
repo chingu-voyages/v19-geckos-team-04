@@ -48,7 +48,7 @@ const Dashboard = ({ userData, accessToken, username }) => {
         setFeaturedPlaylists(data.playlists);
       });
       
-    fetch(`https://sweet-beats.herokuapp.com/api/playlist/${username}`)
+    fetch(`${process.env.REACT_APP_BACKEND_URI}/api/playlist/${username}`)
       .then(res => res.json())
       .then(data => setSavedUserPlaylists(data))
   }, []);
