@@ -23,7 +23,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "debug": "react-scripts start --no-cache"
+    "debug": "react-scripts start --no-cache",
+    "heroku-prebuild": "npm install"
   },
   "eslintConfig": {
     "extends": "react-app"
