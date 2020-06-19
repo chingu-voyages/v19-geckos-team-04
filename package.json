@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "express": "^4.17.1",
     "node-sass": "^4.14.1",
     "rc-slider": "^9.3.0",
     "react": "^16.13.1",
@@ -19,10 +20,11 @@
     "styled-react-modal": "^2.0.1"
   },
   "scripts": {
-    "dev": "react-scripts start",
-    "start": "serve -s build",
+    "start": "node frontend-server.js",
     "build": "react-scripts build",
-    "heroku-postbuild": "npm run build"
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "debug": "react-scripts start --no-cache"
   },
   "eslintConfig": {
     "extends": "react-app"
