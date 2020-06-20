@@ -46,8 +46,25 @@ const PlaylistView = ( { playlist, setView, userId, token } ) => {
       return( minutes + ' min' );
   }
   
-  const deletePlaylist = (id) => {
+  const deletePlaylist = (playlist, userId) => {
       //delete ID from backend
+      console.log(playlist)
+
+    //   const data = { id: playlist, spotifyID: userId };
+
+    //   const options = {
+    //     method: 'DELETE',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify(data)
+    //   }
+  
+      fetch(`${process.env.REACT_APP_BACKEND_URI}/api/delete-playlist/${playlist}`)
+      .then(res => res.json())
+      .then(data => console.log('delete playlist', data))
+      .catch(error => console.error(`Error: ${error}`))
+
       setView( 'home' );
   }
   
