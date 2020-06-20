@@ -33,6 +33,7 @@ const SignInStyle = styled.button`
   border: none;
   transition-duration: 0.5s;
   white-space: nowrap;
+  outline: none;
 
   &:hover {
     background-color: #14ff5b;

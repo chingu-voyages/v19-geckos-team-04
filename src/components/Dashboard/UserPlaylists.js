@@ -51,11 +51,14 @@ function UserPlaylists({
           style={
             playlistView === 'user'
               ? {
-                  border: '1px solid white',
-                  padding: '10px 23px',
-                  fontWeight: 'bold'
+                  padding: '13px 23px',
+                  fontWeight: 'bold',
+                  backgroundColor: 'rgba(15, 22, 27, 0.5)'
                 }
-              : { padding: '10px 23px' }
+              : { padding: '10px 23px',
+                  background: '#36444e', 
+                  color: '#6c7a86',
+              }
           }
           onClick={() => setPlaylistView('user')}
         >
@@ -65,11 +68,14 @@ function UserPlaylists({
           style={
             playlistView === 'spotify'
               ? {
-                  border: '1px solid white',
-                  padding: '10px 23px',
-                  fontWeight: 'bold'
+                  padding: '13px 23px',
+                  fontWeight: 'bold',
+                  backgroundColor: 'rgba(15, 22, 27, 0.5)'
                 }
-              : { padding: '10px 23px' }
+              : { padding: '10px 23px',
+                  background: '#36444e',
+                  color: '#6c7a86' 
+              }
           }
           onClick={() => setPlaylistView('spotify')}
         >
@@ -145,13 +151,13 @@ const BackButton = styled.button`
 `;
 
 const Button = styled.button`
-  background-color: #2dd760;
+  background-color: transparent;
   border-radius: 3px;
-  color: black;
+  color: white;
   padding: 10px 15px;
   margin-bottom: 30px;
   font-weight: bold;
-  border: none;
+  border: 1px solid #0DF0FF;
   box-shadow: 7px 7px 19px -5px rgb(18, 28, 37);
   cursor: pointer;
 `;
@@ -167,21 +173,31 @@ const UsersPlaylists = styled.div`
 `;
 
 const PlaylistTabs = styled.div`
+  width: 100%;
   display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 30px;
+  
+  @media screen and (max-width: 660px) {
+    flex-direction: column;
+  }
 `;
 
 const UserTab = styled.span`
   font-size: 20px;
-  margin-right: 30px;
   color: white;
   cursor: pointer;
+  width: 225px;
+  text-align: center;
 `;
 
 const FeaturedTab = styled.span`
   font-size: 20px;
   color: white;
   cursor: pointer;
+  width: 225px;
+  text-align: center;
 `;
 
 const PlaylistContainer = styled.div`

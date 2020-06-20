@@ -4,6 +4,7 @@ import SongsList from './SongsList';
 import Loader from 'react-loader-spinner';
 
 const PlaylistView = ( { playlist, setView, userId, token } ) => {
+    const [open, setOpen] = useState(false);
     
   // const addToSpotify = () => {
   // 
@@ -45,10 +46,23 @@ const PlaylistView = ( { playlist, setView, userId, token } ) => {
       return( minutes + ' min' );
   }
   
+  const deletePlaylist = (id) => {
+      //delete ID from backend
+      setView( 'home' );
+  }
+  
   return (
     <PlaylistViewContainer>
+        { open && 
+            <ConfirmDeleteContainer>
+              <p>Are you sure you want to delete this playlist?</p>
+              <ModalExit onClick={() => setOpen(false)}>Cancel</ModalExit>
+              <ModalConfirm onClick={() => deletePlaylist( playlist[0].id ) }>Confirm</ModalConfirm>
+            </ConfirmDeleteContainer>
+        }
         <ButtonContainer>
             <HomeButton onClick={() => setView('home') }>Back to playlists</HomeButton>
+            <DeletePlaylist onClick={() => setOpen(true)}>Delete</DeletePlaylist>
             {/*<AddToSpotify onClick={ () => addToSpotify() }>Open in Spotify</AddToSpotify>*/}
         </ButtonContainer>
         <PlaylistTitle className="playlist-title">{ playlist[0].title }</PlaylistTitle>
@@ -75,21 +89,74 @@ const PlaylistViewContainer = styled.div`
     flex-direction: column;
 `;
 
+const ConfirmDeleteContainer = styled.div`
+    height: fit-content;
+    padding: 10px 30px 30px 30px;
+    width: 200px;
+    position: absolute;
+    background: #36444e;
+    top: 15vh;
+    left: 30%;
+    border-radius: 10px;
+    position: fixed;
+    -webkit-box-shadow: -8px 11px 46px 5px rgba(19,28,32,0.72);
+    -moz-box-shadow: -8px 11px 46px 5px rgba(19,28,32,0.72);
+    box-shadow: -8px 11px 46px 5px rgba(19,28,32,0.72);
+    z-index: 5;
+    
+    p {
+        color: white;
+    }
+`;
+
+const ModalExit = styled.button`
+    background: transparent;
+    border: 4px solid rgba(15,22,27,0.5);
+    color: white;
+    border-radius: 7px;
+    padding: 15px;
+    font-weight: bold;
+    margin-right: 29px;
+    cursor: pointer;
+`;
+
+const ModalConfirm = styled.button`
+    background: rgba(15,22,27,.9);
+    border: 4px solid rgba(15,22,27,0.5);
+    color: white;
+    border-radius: 7px;
+    padding: 15px;
+    font-weight: bold;
+    cursor: pointer;
+`;
+
+
 const ButtonContainer = styled.div`
     display: flex;
     margin-bottom: 30px;
 `;
 
 const HomeButton = styled.button`
-    background: grey;
-    color: black;
-    padding: 10px 13px;
+    background: rgba(15, 22, 27, 0.5);
+    color: white;
+    padding: 15px;
     border-radius: 8px;
     border: none;
     font-weight: bold;
     width: 150px;
     cursor: pointer;
     margin-right: 30px;
+    outline: none;
+`;
+
+const DeletePlaylist = styled.button`
+    background: #36444e;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    width: 80px;
+    cursor: pointer;
+    outline: none;
 `;
 
 const AddToSpotify = styled.button`

@@ -26,8 +26,12 @@ const MyPlaylistsView = ( { setPlaylists, setViewPlaylist, setPlaylistId, setPla
           ( savedUserPlaylists !== 'fetching' && savedUserPlaylists.length ? 
               <>
                   <MyPlaylists>My Playlists</MyPlaylists>
+                  <CreatePlaylistButton
+                    src={ PlusIcon }
+                    onClick={ setPlaylists }
+                  />
                   <UserPlaylistsContainer>
-                      { savedUserPlaylists.map( ( playlist, i ) => (
+                      { savedUserPlaylists.reverse().map( ( playlist, i ) => (
                           <UserPlaylistContainer className="user-playlist-container" key={ 'playlist-' + i }>
                               <PlaylistImage>
                                   <UserPlaylistImage src={ playlist.songs[0].track.album.images[0].url } />
@@ -40,10 +44,7 @@ const MyPlaylistsView = ( { setPlaylists, setViewPlaylist, setPlaylistId, setPla
                           </UserPlaylistContainer>
                       ) ) }
                   </UserPlaylistsContainer>
-                  <CreatePlaylistButton
-                    src={ PlusIcon }
-                    onClick={ setPlaylists }
-                  />
+                  
               </>
               :
               <>
@@ -151,6 +152,7 @@ const CreatePlaylistButton = styled.img`
   cursor: pointer;
   width: 3rem;
   height: 3rem;
+  margin-bottom: 20px;
 
   @media screen and (max-width: 320px) {
     width: 1.5rem;
