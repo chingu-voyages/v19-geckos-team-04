@@ -17,7 +17,7 @@ const MyPlaylistsView = ( { setPlaylists, setViewPlaylist, setPlaylistId, setPla
     
   return (
     <MyPlaylistsViewContainer 
-      style={ { marginTop: ( savedUserPlaylists === 'fetching' || !savedUserPlaylists.length ? '20%' : '8%' ) } }
+      style={ { marginTop: ( savedUserPlaylists === 'fetching' || !savedUserPlaylists.length ? '20%' : '5%' ) } }
       className="my-playlist-view-text"
       >
       { savedUserPlaylists === 'fetching' ?
@@ -25,6 +25,7 @@ const MyPlaylistsView = ( { setPlaylists, setViewPlaylist, setPlaylistId, setPla
           :
           ( savedUserPlaylists !== 'fetching' && savedUserPlaylists.length ? 
               <>
+                  <MyPlaylists>My Playlists</MyPlaylists>
                   <UserPlaylistsContainer>
                       { savedUserPlaylists.map( ( playlist, i ) => (
                           <UserPlaylistContainer className="user-playlist-container" key={ 'playlist-' + i }>
@@ -75,11 +76,13 @@ const UserPlaylistsContainer = styled.div`
   padding: 20px 0 30px 0;
   display: flex;
   flex-wrap: wrap;
-  
-  @media screen and (max-width: 660px) {
-    justify-content: center;
-  }
+  justify-content: center;
 `;
+
+const MyPlaylists = styled.h1`
+  font-weight: bold;
+`;
+
 
 const UserPlaylistContainer = styled.div`
   display: flex;

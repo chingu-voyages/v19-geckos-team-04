@@ -35,6 +35,16 @@ const PlaylistView = ( { playlist, setView, userId, token } ) => {
   //       });
   //   }
   
+  
+  const playlistDuration = () => {
+      let ms = 0;
+      playlist[0].songs.forEach( song => {
+          return ms += song.track.duration_ms;
+      })
+      let minutes = Math.round(ms/60000)
+      return( minutes + ' min' );
+  }
+  
   return (
     <PlaylistViewContainer>
         <ButtonContainer>
@@ -42,6 +52,10 @@ const PlaylistView = ( { playlist, setView, userId, token } ) => {
             {/*<AddToSpotify onClick={ () => addToSpotify() }>Open in Spotify</AddToSpotify>*/}
         </ButtonContainer>
         <PlaylistTitle className="playlist-title">{ playlist[0].title }</PlaylistTitle>
+        <PlaylistInfo>
+            <PlaylistNumOfSongs>{ playlist[0].songs.length } songs,</PlaylistNumOfSongs>
+            <PlaylistDuration>{ playlistDuration() }</PlaylistDuration>
+        </PlaylistInfo>
         { !playlist[0].songs.length ?
             <LoaderContainer>
               <Loader type="Bars" color="orange" height={80} width={250} />
@@ -89,9 +103,26 @@ const AddToSpotify = styled.button`
     cursor: pointer;
 `;
 
-const PlaylistTitle = styled.h2`
-    ${'' /* color: white; */}
+const PlaylistTitle = styled.span`
+    font-size: 28px;
     font-weight: bold;
+    padding: 10px 0 5px 0;
+`;
+
+const PlaylistInfo = styled.div`
+    display: flex;
+    padding-bottom: 16px;
+`;
+
+const PlaylistNumOfSongs = styled.span`
+    font-size: 14px;
+    color: rgba(225, 225, 225, 0.6);
+    padding-right: 5px;
+`;
+
+const PlaylistDuration = styled.span`
+    font-size: 14px;
+    color: rgba(225, 225, 225, 0.6);
 `;
 
 const Song = styled.div`

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import sweetbeatslogo from '../../images/sweetbeatslogo.png';
 // import bars from '../../images/bars.png';
 
-export default function Logo() {
+export default function Logo({ setView }) {
   return (
     <>
       <LogoStyle
@@ -11,6 +11,7 @@ export default function Logo() {
         alt="icon" 
         aria-label="logo-icon"
         src={ sweetbeatslogo }
+        onClick={ () => setView('home') }
       ></LogoStyle>
     </>
   )
@@ -18,8 +19,9 @@ export default function Logo() {
 
 const LogoStyle = styled.img`
   display: inline-block;
-  height: 50px;
-  width: 50px;
+  height: 60px;
+  width: 60px;
+  cursor: pointer;
 
   @media screen and (max-width: 768px) {
     padding-bottom: 0.5rem;
