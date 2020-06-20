@@ -10,7 +10,7 @@ const SongPlayer = ( { song, playPause } ) => {
   const [controls, setControls] = useState(true);
   
   return (
-    <div style={{ marginBottom: '10px'}}>
+    <SongPlayerContainer style={{ marginBottom: '10px'}}>
         { song.track ?
             <ReactPlayer
                       className='react-player'
@@ -28,11 +28,14 @@ const SongPlayer = ( { song, playPause } ) => {
                 :
             <div style={ { height: '40px' } }></div>
         }
-    </div>
+    </SongPlayerContainer>
   );
 };
 
 export default SongPlayer;
 
-
-
+const SongPlayerContainer = styled.div`
+    video {
+        outline: none;
+    }
+`;

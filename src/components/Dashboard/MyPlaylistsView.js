@@ -17,7 +17,7 @@ const MyPlaylistsView = ( { setPlaylists, setViewPlaylist, setPlaylistId, setPla
     
   return (
     <MyPlaylistsViewContainer 
-      style={ { marginTop: ( savedUserPlaylists === 'fetching' || !savedUserPlaylists.length ? '20%' : '8%' ) } }
+      style={ { marginTop: ( savedUserPlaylists === 'fetching' || !savedUserPlaylists.length ? '20%' : '5%' ) } }
       className="my-playlist-view-text"
       >
       { savedUserPlaylists === 'fetching' ?
@@ -25,8 +25,13 @@ const MyPlaylistsView = ( { setPlaylists, setViewPlaylist, setPlaylistId, setPla
           :
           ( savedUserPlaylists !== 'fetching' && savedUserPlaylists.length ? 
               <>
+                  <MyPlaylists>My Playlists</MyPlaylists>
+                  <CreatePlaylistButton
+                    src={ PlusIcon }
+                    onClick={ setPlaylists }
+                  />
                   <UserPlaylistsContainer>
-                      { savedUserPlaylists.map( ( playlist, i ) => (
+                      { savedUserPlaylists.reverse().map( ( playlist, i ) => (
                           <UserPlaylistContainer className="user-playlist-container" key={ 'playlist-' + i }>
                               <PlaylistImage>
                                   <UserPlaylistImage src={ playlist.songs[0].track.album.images[0].url } />
@@ -39,10 +44,7 @@ const MyPlaylistsView = ( { setPlaylists, setViewPlaylist, setPlaylistId, setPla
                           </UserPlaylistContainer>
                       ) ) }
                   </UserPlaylistsContainer>
-                  <CreatePlaylistButton
-                    src={ PlusIcon }
-                    onClick={ setPlaylists }
-                  />
+                  
               </>
               :
               <>
@@ -75,11 +77,13 @@ const UserPlaylistsContainer = styled.div`
   padding: 20px 0 30px 0;
   display: flex;
   flex-wrap: wrap;
-  
-  @media screen and (max-width: 660px) {
-    justify-content: center;
-  }
+  justify-content: center;
 `;
+
+const MyPlaylists = styled.h1`
+  font-weight: bold;
+`;
+
 
 const UserPlaylistContainer = styled.div`
   display: flex;
@@ -148,6 +152,7 @@ const CreatePlaylistButton = styled.img`
   cursor: pointer;
   width: 3rem;
   height: 3rem;
+  margin-bottom: 20px;
 
   @media screen and (max-width: 320px) {
     width: 1.5rem;

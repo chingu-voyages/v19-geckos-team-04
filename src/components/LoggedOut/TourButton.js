@@ -231,6 +231,7 @@ const TourStyle = styled.button`
   box-shadow: 7px 7px 19px -5px rgb(18, 28, 37);
   border: none;
   transition-duration: 0.5s;
+  outline: none;
   
   @media screen and (max-width: 676px) {
     display: block;

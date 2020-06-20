@@ -60,8 +60,7 @@ const Dashboard = ({ userData, accessToken, username }) => {
         <DashboardContainer>
           <DashboardHeader>
             <Brand>
-              <Logo />
-              <AppName className="logo-text-TEMPORARY">SweetBeats</AppName>
+              <Logo setView={setView} />
             </Brand>
             {/* CurrentView will be set conditionally in the future */}
             {/* <SunMoonIcon

@@ -6,6 +6,7 @@ import MenuPlusIcon from '../../../images/menu-plus-icon.png';
 import MenuPlusIconLightMode from '../../../images/menu-plus-icon-light-mode.png';
 import Burger from '../UI/Burger';
 import bars from './../../../images/bars.png';
+import FallbackProfilePic from '../../../images/fallbackProfilePic.png';
 
 const Menu = props => {
   const [open, setOpen] = useState(false);
@@ -16,6 +17,8 @@ const Menu = props => {
   if (props.userData) {
     if (props.userData.images && props.userData.images.length) {
       profilePic = props.userData.images[0].url;
+    } else {
+      profilePic = FallbackProfilePic;
     }
     if (props.userData.display_name) {
       greeting = props.userData.display_name;
@@ -29,21 +32,29 @@ const Menu = props => {
         <UserProfile>
           <ProfilePic src={profilePic} />
           <div>
-            <Greeting onClick={ () => window.location = props.userData.external_urls.spotify } className="menu-greeting">{greeting}</Greeting>
-            <Followers>{ props.userData.followers.total } Followers</Followers>
+            <Greeting
+              onClick={() =>
+                (window.location = props.userData.external_urls.spotify)
+              }
+              className="menu-greeting"
+            >
+              {greeting}
+            </Greeting>
+            <Followers>{props.userData.followers.total} Followers</Followers>
             {/*<Logout className="menu-logout-text">Logout</Logout>*/}
           </div>
         </UserProfile>
         <MenuItems>
           <Item onClick={props.goHome} className="menu-my-playlists">
-            <Icon src={props.isDark ? ListIcon : ListIconLightMode} /> My Playlists
+            <Icon src={props.isDark ? ListIcon : ListIconLightMode} /> My
+            Playlists
           </Item>
           <Item onClick={props.setPlaylists} className="menu-create">
-            <Icon src={props.isDark ? MenuPlusIcon : MenuPlusIconLightMode} /> Create
+            <Icon src={props.isDark ? MenuPlusIcon : MenuPlusIconLightMode} />{' '}
+            Create
           </Item>
         </MenuItems>
         <Bars src={bars}></Bars>
-
       </MenuContainer>
     </Fragment>
   );
@@ -61,9 +72,9 @@ const MenuContainer = styled.div`
   ${'' /* background-color: ${DarkTheme.charcoal}; */}
   font-size: 1rem;
   z-index: 1;
-  -webkit-box-shadow: -10px 0px 35px -18px rgba(0,0,0,1);
-  -moz-box-shadow: -10px 0px 35px -18px rgba(0,0,0,1);
-  box-shadow: -10px 0px 35px -18px rgba(0,0,0,1);
+  -webkit-box-shadow: -10px 0px 35px -18px rgba(0, 0, 0, 1);
+  -moz-box-shadow: -10px 0px 35px -18px rgba(0, 0, 0, 1);
+  box-shadow: -10px 0px 35px -18px rgba(0, 0, 0, 1);
 
   @media screen and (min-width: 990px) {
     display: block;
@@ -102,9 +113,9 @@ const ProfilePic = styled.img`
   height: 6rem;
   border-radius: 100%;
   margin-bottom: 1rem;
-  -webkit-box-shadow: 0px 0px 33px -11px rgba(0,0,0,1);
-  -moz-box-shadow: 0px 0px 33px -11px rgba(0,0,0,1);
-  box-shadow: 0px 0px 33px -11px rgba(0,0,0,1);
+  -webkit-box-shadow: 0px 0px 33px -11px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 0px 0px 33px -11px rgba(0, 0, 0, 1);
+  box-shadow: 0px 0px 33px -11px rgba(0, 0, 0, 1);
 
   @media screen and (max-width: 500px) {
     width: 2rem;
@@ -156,9 +167,9 @@ const Item = styled.div`
   @media screen and (max-width: 500px) {
     font-size: 1rem;
   }
-  
+
   &:hover {
-      background-color: #212E3A;
+    background-color: #212e3a;
   }
 `;
 
