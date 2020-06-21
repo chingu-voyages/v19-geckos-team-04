@@ -28,6 +28,7 @@ const Dashboard = ({ userData, accessToken, username }) => {
   const { updateUserContext } = useContext(UserContext);
   
   useEffect(() => {
+    console.log(userData)
     fetch(`https://api.spotify.com/v1/users/${userData.id}/playlists?limit=50`, {
       headers: { Authorization: 'Bearer ' + accessToken }
     })
