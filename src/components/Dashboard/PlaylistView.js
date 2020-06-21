@@ -6,35 +6,44 @@ import Loader from 'react-loader-spinner';
 const PlaylistView = ( { playlist, setView, userId, token } ) => {
     const [open, setOpen] = useState(false);
     
-  // const addToSpotify = () => {
-  // 
-  //     const headers = { Authorization: `Bearer ${token}` };
-  //     const name = 'testapp';
-  // 
-  //     return fetch("https://api.spotify.com/v1/me", { headers: headers })
-  //       .then(response => response.json())
-  //       .then(jsonResponse => {
-  //         userId = jsonResponse.id;
-  //         console.log(jsonResponse)
-  //         return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
-  //           headers: headers,
-  //           method: "POST",
-  //           body: JSON.stringify({ name: name })
-  //         })
-  //           .then(response => response.json())
-  //           .then(jsonResponse => {
-  //             const playlistId = jsonResponse.id;
-  //             return fetch(
-  //               `https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks`,
-  //               {
-  //                 headers: headers,
-  //                 method: "POST",
-  //                 body: JSON.stringify({ uris: songs })
-  //               }
-  //             );
-  //           });
-  //       });
-  //   }
+  const addToSpotify = () => {
+
+    let songURI = [];
+    playlist[0].songs.forEach(song => {
+        songURI.push(song.track.uri)
+    })
+  
+      const headers = { 
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}` };
+      const name = `${playlist[0].title}`;
+
+      fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+          method: 'POST',
+          headers: headers,
+          body: JSON.stringify({
+              'name': name,
+              'public': true,
+          })
+      })
+      .then(res => res.json())
+      .then(data => {
+          console.log(data)
+          fetch(`https://api.spotify.com/v1/playlists/${data.id}/tracks`, {
+              method: 'POST',
+              headers: headers,
+              body: JSON.stringify({
+                  'uris': songURI
+              })
+          })
+          .then(res => res.json())
+          .then(data => console.log(data))
+
+          let win = window.open(`https://open.spotify.com/playlist/${data.id}`)
+          win.focus()
+      })
+      .catch(error => console.error(`Error: ${error}`))
+    }
   
   
   const playlistDuration = () => {
@@ -47,18 +56,7 @@ const PlaylistView = ( { playlist, setView, userId, token } ) => {
   }
   
   const deletePlaylist = (playlist, userId) => {
-      //delete ID from backend
       console.log(playlist)
-
-    //   const data = { id: playlist, spotifyID: userId };
-
-    //   const options = {
-    //     method: 'DELETE',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(data)
-    //   }
   
       fetch(`${process.env.REACT_APP_BACKEND_URI}/api/delete-playlist/${playlist}`)
       .then(res => res.json())
@@ -80,7 +78,7 @@ const PlaylistView = ( { playlist, setView, userId, token } ) => {
         <ButtonContainer>
             <HomeButton onClick={() => setView('home') }>Back to playlists</HomeButton>
             <DeletePlaylist onClick={() => setOpen(true)}>Delete</DeletePlaylist>
-            {/*<AddToSpotify onClick={ () => addToSpotify() }>Open in Spotify</AddToSpotify>*/}
+            <AddToSpotify onClick={ () => addToSpotify() }>Open in Spotify</AddToSpotify>
         </ButtonContainer>
         <PlaylistTitle className="playlist-title">{ playlist[0].title }</PlaylistTitle>
         <PlaylistInfo>
