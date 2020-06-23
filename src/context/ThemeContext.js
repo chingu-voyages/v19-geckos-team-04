@@ -9,7 +9,6 @@ const ThemeContextProvider = (props) => {
     ])
 
     const onChangeTheme = () => {
-        console.log('change')
         setDark({ isDarkMode: !dark.isDarkMode });
       }
 

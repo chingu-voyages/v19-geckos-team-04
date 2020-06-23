@@ -20,9 +20,6 @@ const SongPlayer = ( { song, playPause } ) => {
                       playing={playPause}
                       controls={controls}
                       loop={false}
-                      onReady={() => console.log('onReady')}
-                      onStart={() => console.log('onStart')}
-                      onBuffer={() => console.log('onBuffer')}
                       onError={e => console.log('onError', e)}
                     />
                 :
