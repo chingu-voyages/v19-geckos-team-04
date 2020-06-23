@@ -1,5 +1,5 @@
 # Sweet Beats Server
-**sweetbeats-backend** is the client side of a playlist creator that uses the [Spotify Web API](https://developer.spotify.com/documentation/web-api/quick-start/) and [OAuth 2.0 API](https://oauth.net/2/). The application allows the user to creator playlists based on bpm, danceability, energy, instrumentalness, and valence (musical positiveness). Users can enjoy a 30 second preview of songs in each playlist and save them to the user's Spotify account for later enjoyment. This application was created as part of [Chingu](https://chingu.io/) Voyage 19 by team Geckos 04.
+**[v19-geckos-team-04](https://sweet-beats.herokuapp.com/)** is the client side of a playlist creator that uses the [Spotify Web API](https://developer.spotify.com/documentation/web-api/quick-start/) and [OAuth 2.0 API](https://oauth.net/2/). The application allows the user to creator playlists based on bpm, danceability, energy, instrumentalness, and valence (musical positiveness). Users can enjoy a 30 second preview of songs in each playlist and save them to the user's Spotify account for later enjoyment. This application was created as part of [Chingu](https://chingu.io/) Voyage 19 by team Geckos 04.
 
 ![Alt Text](./src/images/sweetbeatsLandingPage.png)
 <br><br><br>
