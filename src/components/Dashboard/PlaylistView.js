@@ -28,7 +28,6 @@ const PlaylistView = ( { playlist, setView, userId, token } ) => {
       })
       .then(res => res.json())
       .then(data => {
-          console.log(data)
           fetch(`https://api.spotify.com/v1/playlists/${data.id}/tracks`, {
               method: 'POST',
               headers: headers,
@@ -37,7 +36,6 @@ const PlaylistView = ( { playlist, setView, userId, token } ) => {
               })
           })
           .then(res => res.json())
-          .then(data => console.log(data))
 
           let win = window.open(`https://open.spotify.com/playlist/${data.id}`)
           win.focus()
@@ -55,12 +53,9 @@ const PlaylistView = ( { playlist, setView, userId, token } ) => {
       return( minutes + ' min' );
   }
   
-  const deletePlaylist = (playlist, userId) => {
-      console.log(playlist)
-  
+  const deletePlaylist = (playlist, userId) => {  
       fetch(`${process.env.REACT_APP_BACKEND_URI}/api/delete-playlist/${playlist}`)
       .then(res => res.json())
-      .then(data => console.log('delete playlist', data))
       .catch(error => console.error(`Error: ${error}`))
 
       setView( 'home' );
