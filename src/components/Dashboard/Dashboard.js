@@ -47,10 +47,14 @@ const Dashboard = ({ userData, accessToken, username }) => {
       .then(data => {
         setFeaturedPlaylists(data.playlists);
       });
-      
-    fetch(`${process.env.REACT_APP_BACKEND_URI}/api/playlist/${username}`)
-      .then(res => res.json())
-      .then(data => setSavedUserPlaylists(data))
+    
+    const interval = setInterval( () => {
+        fetch(`${process.env.REACT_APP_BACKEND_URI}/api/playlist/${username}`)
+          .then(res => res.json())
+          .then(data => setSavedUserPlaylists(data))
+    }, 1000 );
+    return () => clearInterval(interval);
+    
   }, []);
   
   return (

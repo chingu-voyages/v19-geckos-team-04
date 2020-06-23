@@ -169,6 +169,7 @@ const DeletePlaylist = styled.button`
     width: 80px;
     cursor: pointer;
     outline: none;
+    margin-right: 30px;
 `;
 
 const AddToSpotify = styled.button`
@@ -178,8 +179,9 @@ const AddToSpotify = styled.button`
     border-radius: 8px;
     border: none;
     font-weight: bold;
-    width: 150px;
+    width: 135px;
     cursor: pointer;
+    outline: none;
 `;
 
 const PlaylistTitle = styled.span`
