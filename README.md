@@ -10,8 +10,7 @@
 
 * [] Create a `.env` file within the root directory and include the below entries:
 
-    ```REACT_APP_BACKEND_URI='http://localhost:8888'
-        ```
+    `REACT_APP_BACKEND_URI='http://localhost:8888'`
 
 ## Available Scripts
 
