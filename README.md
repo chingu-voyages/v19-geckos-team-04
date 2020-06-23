@@ -6,9 +6,9 @@
 
 ## Prerequisite
 
-* [] Clone the repository using `git clone`.
+* Clone the repository using `git clone`.
 
-* [] Create a `.env` file within the root directory and include the below entries:
+* Create a `.env` file within the root directory and include the below entries:
 
     `REACT_APP_BACKEND_URI='http://localhost:8888'`
 
