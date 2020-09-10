@@ -19,12 +19,16 @@ const HeaderDiv = styled.div`
 `;
 
 const HeaderStyle = styled.h1`
-  color: white;
+  color: red;
   font-size: 3.1rem;
   margin-bottom: 55px;
   font-weight: 700;
   letter-spacing: 0.25em;
   text-transform: uppercase;
+
+  @media screen and (max-width: 480px) {
+    font-size: 2rem;
+  }
 `;
 
 const SubheadStyle = styled.h3`
