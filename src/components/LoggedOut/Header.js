@@ -19,7 +19,7 @@ const HeaderDiv = styled.div`
 `;
 
 const HeaderStyle = styled.h1`
-  color: red;
+  color: white;
   font-size: 3.1rem;
   margin-bottom: 55px;
   font-weight: 700;
